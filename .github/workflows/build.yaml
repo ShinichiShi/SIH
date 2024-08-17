@@ -9,23 +9,52 @@ on:
       - main
 
 jobs:
-  build:
+  client:
+    name: Client Build and Test
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x] # specify the Node.js version
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 20.x
 
     - name: Install dependencies
+      working-directory: ./client
       run: npm install
 
-    
+    # - name: Run tests
+    #   working-directory: ./client
+    #   run: npm test
+
+    - name: Build the project
+      working-directory: ./client
+      run: npm run build
+
+  server:
+    name: Server Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+
+    - name: Install dependencies
+      working-directory: ./server
+      run: npm install
+
+    # - name: Run tests
+    #   working-directory: ./server
+    #   run: npm test
+
+    - name: Build the project
+      working-directory: ./server
+      run: npm run build
