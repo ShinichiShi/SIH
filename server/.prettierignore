@@ -1,0 +1,4 @@
+node_modules/
+.github/*
+package.json
+tailwind.config.ts
