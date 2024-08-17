@@ -55,6 +55,3 @@ jobs:
     #   working-directory: ./server
     #   run: npm test
 
-    - name: Build the project
-      working-directory: ./server
-      run: npm run build
