@@ -17,7 +17,7 @@ REACT_APP_FIREBASE_APP_ID=xxx
 
 Contact any of the maintainers for the contents of the `.env.local` file
 
-Then, run the development server:
+Then, run in the client folder terminal:
 
 ```bash
 npm run dev
