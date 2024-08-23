@@ -1,0 +1,921 @@
+{
+  "KARNATAKA": {
+    "KARNATAKA": {
+      
+    },
+    "Belgaum": {
+      "Belgaum": [
+        "Belgaum",
+        "Belgaum (M Corp. + OG)",
+        "Belgaum (M Corp.)",
+        "Belgaum Cantonment (CB)"
+      ],
+      "Chikodi": [
+        "Chikodi",
+        "Nipani  (CMC)",
+        "Sadalgi (TP)",
+        "Chikodi (TMC)"
+      ],
+      "Athni": [
+        "Athni",
+        "Athni (TMC + OG)",
+        "Athni (TMC)"
+      ],
+      "Raybag ": [
+        "Raybag ",
+        "Kudchi (TP)",
+        "Raybag (TP)"
+      ],
+      "Gokak": [
+        "Gokak",
+        "Mudalgi (TMC)",
+        "Konnur (TP)",
+        "Gokak Falls (NAC)",
+        "Gokak (CMC)"
+      ],
+      "Hukeri": [
+        "Hukeri",
+        "Sankeshwar (TMC)",
+        "Hukeri (TP)"
+      ],
+      "Khanapur": [
+        "Khanapur",
+        "Khanapur (TP)"
+      ],
+      "Sampgaon": [
+        "Sampgaon",
+        "Bail Hongal (TMC)"
+      ],
+      "Parasgad": [
+        "Parasgad",
+        "Saundatti-Yellamma (TMC)"
+      ],
+      "Ramdurg": [
+        "Ramdurg",
+        "Ramdurg (TMC + OG)",
+        "Ramdurg (TMC)"
+      ]
+    },
+    "Bagalkot ": {
+      "Bagalkot ": [
+        "Bagalkot "
+      ],
+      "Area not under any Sub-district": [
+        "Mahalingpur (TMC)",
+        "Area not under any Sub-district"
+      ],
+      "Jamkhandi": [
+        "Jamkhandi",
+        "Terdal (TMC)",
+        "Jamkhandi (CMC)",
+        "Rabkavi Banhatti (CMC)"
+      ],
+      "Bilgi": [
+        "Bilgi",
+        "Bilgi (TP)"
+      ],
+      "Mudhol": [
+        "Mudhol",
+        "Mudhol (TMC)"
+      ],
+      "Badami": [
+        "Badami",
+        "Kerur (TP)",
+        "Badami (TMC)",
+        "Guledgudda (TMC)"
+      ],
+      "Bagalkot": [
+        "Bagalkot",
+        "Bagalkot (CMC)"
+      ],
+      "Hungund": [
+        "Hungund",
+        "Hungund (TP)",
+        "Ilkal (CMC)"
+      ]
+    },
+    "Bijapur": {
+      "Bijapur": [
+        "Bijapur",
+        "Bijapur (CMC)"
+      ],
+      "Indi": [
+        "Indi",
+        "Indi (TMC)"
+      ],
+      "Sindgi": [
+        "Sindgi",
+        "Sindgi (TMC)"
+      ],
+      "Basavana Bagevadi": [
+        "Basavana Bagevadi",
+        "Basavana Bagevadi (TMC)"
+      ],
+      "Muddebihal": [
+        "Muddebihal",
+        "Muddebihal (TMC)",
+        "Talikota (TMC)"
+      ]
+    },
+    "Bidar": {
+      "Bidar": [
+        "Bidar"
+      ],
+      "Basavakalyan ": [
+        "Basavakalyan ",
+        "Basavakalyan (CMC)"
+      ],
+      "Bhalki ": [
+        "Bhalki ",
+        "Bhalki (TMC)"
+      ],
+      "Aurad ": [
+        "Aurad ",
+        "Aurad (TP)"
+      ],
+      "Bidar ": [
+        "Bidar ",
+        "Bidar (CMC + OG)",
+        "Bidar (CMC)"
+      ],
+      "Homnabad ": [
+        "Homnabad ",
+        "Homnabad (TMC)",
+        "Chitgoppa (TMC)"
+      ]
+    },
+    "Raichur": {
+      "Raichur": [
+        "Raichur"
+      ],
+      "Lingsugur ": [
+        "Lingsugur ",
+        "Mudgal (TP)",
+        "Lingsugur (TMC)",
+        "Hatti Gold Mines(NAC)"
+      ],
+      "Devadurga ": [
+        "Devadurga ",
+        "Devadurga (TMC)"
+      ],
+      "Raichur ": [
+        "Raichur ",
+        "Raichur (CMC)"
+      ],
+      "Manvi ": [
+        "Manvi ",
+        "Manvi (TMC)"
+      ],
+      "Sindhnur ": [
+        "Sindhnur ",
+        "Sindhnur (CMC)"
+      ]
+    },
+    "Koppal": {
+      "Koppal": [
+        "Koppal"
+      ],
+      "Yelbarga ": [
+        "Yelbarga ",
+        "Yelbarga (TP)"
+      ],
+      "Kushtagi ": [
+        "Kushtagi ",
+        "Kushtagi (TMC)"
+      ],
+      "Gangawati ": [
+        "Gangawati ",
+        "Gangawati (CMC + OG)",
+        "Gangawati (CMC)"
+      ],
+      "Koppal ": [
+        "Koppal ",
+        "Koppal (CMC)"
+      ]
+    },
+    "Gadag": {
+      "Gadag": [
+        "Gadag",
+        "Gadag-Betigeri (CMC)",
+        "Mulgund (TP)"
+      ],
+      "Nargund ": [
+        "Nargund ",
+        "Nargund (TMC)"
+      ],
+      "Ron ": [
+        "Ron ",
+        "Ron (TMC)",
+        "Gajendragarh (TMC)",
+        "Naregal (TP)"
+      ],
+      "Shirhatti ": [
+        "Shirhatti ",
+        "Shirhatti (TP)",
+        "Lakshmeshwar (TMC)"
+      ],
+      "Mundargi ": [
+        "Mundargi ",
+        "Mundargi (TMC)"
+      ]
+    },
+    "Dharwad": {
+      "Dharwad": [
+        "Dharwad",
+        "Alnavar (TP)"
+      ],
+      "Area not under any Sub-district": [
+        "Hubli-Dharwad (M Corp.)",
+        "Area not under any Sub-district"
+      ],
+      "Navalgund ": [
+        "Navalgund ",
+        "Navalgund (TMC)",
+        "Annigeri (TMC)"
+      ],
+      "Hubli": [
+        "Hubli"
+      ],
+      "Kalghatgi ": [
+        "Kalghatgi ",
+        "Kalghatgi (TP)"
+      ],
+      "Kundgol ": [
+        "Kundgol ",
+        "Kundgol (TP)"
+      ]
+    },
+    "Uttara Kannada": {
+      "Uttara Kannada": [
+        "Uttara Kannada"
+      ],
+      "Area not under any Sub-district": [
+        "Dandeli (CMC)",
+        "Area not under any Sub-district"
+      ],
+      "Karwar ": [
+        "Karwar ",
+        "Karwar (CMC + OG)",
+        "Karwar (CMC)"
+      ],
+      "Supa": [
+        "Supa"
+      ],
+      "Haliyal ": [
+        "Haliyal ",
+        "Haliyal (TP)"
+      ],
+      "Yellapur ": [
+        "Yellapur ",
+        "Yellapur (TP)"
+      ],
+      "Mundgod ": [
+        "Mundgod ",
+        "Mundgod (TP)"
+      ],
+      "Sirsi ": [
+        "Sirsi ",
+        "Sirsi (CMC)"
+      ],
+      "Ankola ": [
+        "Ankola ",
+        "Ankola (TP + OG)",
+        "Ankola (TP)"
+      ],
+      "Kumta ": [
+        "Kumta ",
+        "Kumta (TMC + OG)",
+        "Kumta (TMC)"
+      ],
+      "Siddapur ": [
+        "Siddapur ",
+        "Siddapur (TP)"
+      ],
+      "Honavar ": [
+        "Honavar ",
+        "Honavar (TP)"
+      ],
+      "Bhatkal ": [
+        "Bhatkal ",
+        "Bhatkal (TMC)"
+      ]
+    },
+    "Haveri": {
+      "Haveri": [
+        "Haveri"
+      ],
+      "Shiggaon ": [
+        "Shiggaon ",
+        "Shiggaon (TMC)",
+        "Bankapura (TMC)"
+      ],
+      "Savanur ": [
+        "Savanur ",
+        "Savanur (TMC)"
+      ],
+      "Hangal ": [
+        "Hangal ",
+        "Hangal (TMC)"
+      ],
+      "Haveri ": [
+        "Haveri ",
+        "Haveri (CMC)"
+      ],
+      "Byadgi ": [
+        "Byadgi ",
+        "Byadgi (TMC)"
+      ],
+      "Hirekerur ": [
+        "Hirekerur ",
+        "Hirekerur (TP)"
+      ],
+      "Ranibennur ": [
+        "Ranibennur ",
+        "Ranibennur (CMC)"
+      ]
+    },
+    "Bellary": {
+      "Bellary": [
+        "Bellary"
+      ],
+      "Hadagalli": [
+        "Hadagalli",
+        "Hoovina Hadagalli (TMC)"
+      ],
+      "Hagaribommanahalli": [
+        "Hagaribommanahalli"
+      ],
+      "Hospet ": [
+        "Hospet ",
+        "Hospet (CMC)",
+        "Kamalapuram (TP)",
+        "Kampli (TMC)"
+      ],
+      "Siruguppa ": [
+        "Siruguppa ",
+        "Siruguppa (TMC)",
+        "Tekkalakote (TP)"
+      ],
+      "Bellary ": [
+        "Bellary ",
+        "Bellary (M Corp.)"
+      ],
+      "Sandur ": [
+        "Sandur ",
+        "Sandur (TMC)"
+      ],
+      "Kudligi ": [
+        "Kudligi ",
+        "Kudligi (TP)",
+        "Kotturu (TP)"
+      ]
+    },
+    "Chitradurga": {
+      "Chitradurga": [
+        "Chitradurga"
+      ],
+      "Molakalmuru ": [
+        "Molakalmuru ",
+        "Molakalmuru (TP)"
+      ],
+      "Challakere ": [
+        "Challakere ",
+        "Challakere (TMC)"
+      ],
+      "Chitradurga ": [
+        "Chitradurga ",
+        "Chitradurga (CMC + OG)",
+        "Chitradurga (CMC)"
+      ],
+      "Holalkere ": [
+        "Holalkere ",
+        "Holalkere (TP)"
+      ],
+      "Hosdurga ": [
+        "Hosdurga ",
+        "Hosdurga (TMC)"
+      ],
+      "Hiriyur ": [
+        "Hiriyur ",
+        "Hiriyur (TMC)"
+      ]
+    },
+    "Davanagere": {
+      "Davanagere": [
+        "Davanagere"
+      ],
+      "Harihar ": [
+        "Harihar ",
+        "Harihar (CMC + OG)",
+        "Harihar (CMC)"
+      ],
+      "Harapanahalli ": [
+        "Harapanahalli ",
+        "Harapanahalli (TMC)"
+      ],
+      "Jagalur ": [
+        "Jagalur ",
+        "Jagalur (TP)"
+      ],
+      "Davanagere ": [
+        "Davanagere ",
+        "Davanagere (M Corp.)"
+      ],
+      "Honnali ": [
+        "Honnali ",
+        "Honnali (TP)"
+      ],
+      "Channagiri ": [
+        "Channagiri ",
+        "Channagiri (TP)"
+      ]
+    },
+    "Shimoga": {
+      "Shimoga": [
+        "Shimoga"
+      ],
+      "Sagar ": [
+        "Sagar ",
+        "Jog Kargal (TP)",
+        "Sagar (CMC)"
+      ],
+      "Sorab ": [
+        "Sorab ",
+        "Sorab (TP)"
+      ],
+      "Shikarpur": [
+        "Shikarpur",
+        "Siralkoppa (TP)",
+        "Shikarpur (TMC)"
+      ],
+      "Hosanagara ": [
+        "Hosanagara ",
+        "Hosanagara (TP)"
+      ],
+      "Tirthahalli": [
+        "Tirthahalli",
+        "Tirthahalli (TP)"
+      ],
+      "Shimoga ": [
+        "Shimoga ",
+        "Shimoga (CMC)"
+      ],
+      "Bhadravati ": [
+        "Bhadravati ",
+        "Bhadravati (CMC)"
+      ]
+    },
+    "Udupi": {
+      "Udupi": [
+        "Udupi",
+        "Saligram (TP)",
+        "Udupi (CMC + OG)",
+        "Udupi (CMC)"
+      ],
+      "Kundapura ": [
+        "Kundapura ",
+        "Kundapura (TMC)"
+      ],
+      "Karkal ": [
+        "Karkal ",
+        "Karkal (TMC)"
+      ]
+    },
+    "Chikmagalur": {
+      "Chikmagalur": [
+        "Chikmagalur"
+      ],
+      "Sringeri ": [
+        "Sringeri ",
+        "Sringeri (TP)"
+      ],
+      "Koppa ": [
+        "Koppa ",
+        "Koppa (TP)"
+      ],
+      "Narasimharajapura ": [
+        "Narasimharajapura ",
+        "Narasimharajapura (TP)"
+      ],
+      "Tarikere ": [
+        "Tarikere ",
+        "Tarikere (TMC)"
+      ],
+      "Kadur ": [
+        "Kadur ",
+        "Birur (TMC)",
+        "Kadur (TMC)"
+      ],
+      "Chikmagalur ": [
+        "Chikmagalur ",
+        "Chikmagalur (CMC)"
+      ],
+      "Mudigere ": [
+        "Mudigere ",
+        "Mudigere (TP)",
+        "Kudremukh (NAC)"
+      ]
+    },
+    "Tumkur": {
+      "Tumkur": [
+        "Tumkur"
+      ],
+      "Chiknayakanhalli ": [
+        "Chiknayakanhalli ",
+        "Chiknayakanhalli (TMC)"
+      ],
+      "Sira ": [
+        "Sira ",
+        "Sira (CMC)"
+      ],
+      "Pavagada ": [
+        "Pavagada ",
+        "Pavagada (TMC)"
+      ],
+      "Madhugiri ": [
+        "Madhugiri ",
+        "Madhugiri (TMC)"
+      ],
+      "Koratagere ": [
+        "Koratagere ",
+        "Koratagere (TP)"
+      ],
+      "Tumkur ": [
+        "Tumkur ",
+        "Tumkur (CMC)"
+      ],
+      "Gubbi ": [
+        "Gubbi ",
+        "Gubbi (TP)"
+      ],
+      "Tiptur ": [
+        "Tiptur ",
+        "Tiptur (CMC)"
+      ],
+      "Turuvekere ": [
+        "Turuvekere ",
+        "Turuvekere (TP)"
+      ],
+      "Kunigal ": [
+        "Kunigal ",
+        "Kunigal (TMC)"
+      ]
+    },
+    "Bangalore": {
+      "Bangalore": [
+        "Bangalore",
+        "BBMP (M Corp. + OG)"
+      ],
+      "Area not under any Sub-district": [
+        "BBMP (M Corp. + OG) (Part)",
+        "BBMP (M Corp.)",
+        "Area not under any Sub-district"
+      ],
+      "Bangalore North": [
+        "Bangalore North",
+        "BBMP (M Corp. + OG) (Part)"
+      ],
+      "Bangalore South": [
+        "Bangalore South",
+        "BBMP (M Corp. + OG) (Part)"
+      ],
+      "Bangalore East": [
+        "Bangalore East",
+        "BBMP (M Corp. + OG) (Part)"
+      ],
+      "Anekal": [
+        "Anekal",
+        "Anekal (TMC)"
+      ]
+    },
+    "Mandya": {
+      "Mandya": [
+        "Mandya"
+      ],
+      "Krishnarajpet ": [
+        "Krishnarajpet ",
+        "Krishnarajpet (TMC)"
+      ],
+      "Nagamangala ": [
+        "Nagamangala ",
+        "Nagamangala (TP)"
+      ],
+      "Pandavapura ": [
+        "Pandavapura ",
+        "Pandavapura (TP)"
+      ],
+      "Shrirangapattana ": [
+        "Shrirangapattana ",
+        "Shrirangapattana (TMC)"
+      ],
+      "Mandya ": [
+        "Mandya ",
+        "Mandya (CMC)"
+      ],
+      "Maddur ": [
+        "Maddur ",
+        "Maddur (TMC)"
+      ],
+      "Malavalli ": [
+        "Malavalli ",
+        "Malavalli (TMC)"
+      ]
+    },
+    "Hassan": {
+      "Hassan": [
+        "Hassan"
+      ],
+      "Sakleshpur ": [
+        "Sakleshpur ",
+        "Sakleshpur (TMC)"
+      ],
+      "Belur ": [
+        "Belur ",
+        "Belur (TMC)"
+      ],
+      "Arsikere ": [
+        "Arsikere ",
+        "Arsikere (TMC + OG)",
+        "Arsikere (TMC)"
+      ],
+      "Hassan ": [
+        "Hassan ",
+        "Hassan (CMC + OG)",
+        "Hassan (CMC)"
+      ],
+      "Alur ": [
+        "Alur ",
+        "Alur (TP)"
+      ],
+      "Arkalgud ": [
+        "Arkalgud ",
+        "Arkalgud (TP)"
+      ],
+      "Hole Narsipur ": [
+        "Hole Narsipur ",
+        "Hole Narsipur (TMC)"
+      ],
+      "Channarayapatna": [
+        "Channarayapatna",
+        "Channarayapatna (TMC + OG)",
+        "Channarayapatna (TMC)"
+      ]
+    },
+    "Dakshina Kannada": {
+      "Dakshina Kannada": [
+        "Dakshina Kannada"
+      ],
+      "Mangalore": [
+        "Mangalore",
+        "Mulki (TP)",
+        "Mudbidri (TMC)",
+        "Mangalore (M Corp. + OG)",
+        "Mangalore (M Corp.)",
+        "Ullal (TMC)"
+      ],
+      "Bantval ": [
+        "Bantval ",
+        "Bantval (TMC)"
+      ],
+      "Beltangadi ": [
+        "Beltangadi ",
+        "Beltangadi (TP)"
+      ],
+      "Puttur": [
+        "Puttur",
+        "Puttur (TMC)"
+      ],
+      "Sulya ": [
+        "Sulya ",
+        "Sulya (TP)"
+      ]
+    },
+    "Kodagu": {
+      "Kodagu": [
+        "Kodagu"
+      ],
+      "Madikeri ": [
+        "Madikeri ",
+        "Madikeri (CMC)"
+      ],
+      "Somvarpet ": [
+        "Somvarpet ",
+        "Somvarpet (TP)",
+        "Kushalnagar (TP)"
+      ],
+      "Virajpet ": [
+        "Virajpet ",
+        "Virajpet (TP)"
+      ]
+    },
+    "Mysore": {
+      "Mysore": [
+        "Mysore"
+      ],
+      "Piriyapatna ": [
+        "Piriyapatna ",
+        "Piriyapatna (TP)"
+      ],
+      "Hunsur ": [
+        "Hunsur ",
+        "Hunsur (TMC)"
+      ],
+      "Krishnarajanagara ": [
+        "Krishnarajanagara ",
+        "Krishnarajanagara (TMC)"
+      ],
+      "Mysore ": [
+        "Mysore ",
+        "Mysore (M Corp. + OG)",
+        "Mysore (M Corp.)"
+      ],
+      "Heggadadevankote ": [
+        "Heggadadevankote ",
+        "Heggadadevankote (TP)",
+        "Saragur (TP)"
+      ],
+      "Nanjangud ": [
+        "Nanjangud ",
+        "Nanjangud (TMC)"
+      ],
+      "Tirumakudal - Narsipur ": [
+        "Tirumakudal - Narsipur ",
+        "Bannur (TMC)",
+        "Tirumakudal  Narsipur (TP)"
+      ]
+    },
+    "Chamarajanagar": {
+      "Chamarajanagar": [
+        "Chamarajanagar"
+      ],
+      "Gundlupet ": [
+        "Gundlupet ",
+        "Gundlupet (TMC)"
+      ],
+      "Chamarajanagar ": [
+        "Chamarajanagar ",
+        "Chamarajanagar (CMC)"
+      ],
+      "Yelandur ": [
+        "Yelandur ",
+        "Yelandur (TP)"
+      ],
+      "Kollegal ": [
+        "Kollegal ",
+        "Kollegal (CMC)",
+        "Hanur (TP)"
+      ]
+    },
+    "Gulbarga": {
+      "Gulbarga": [
+        "Gulbarga"
+      ],
+      "Aland ": [
+        "Aland ",
+        "Aland (TMC)"
+      ],
+      "Afzalpur ": [
+        "Afzalpur ",
+        "Afzalpur (TP)"
+      ],
+      "Gulbarga ": [
+        "Gulbarga ",
+        "Gulbarga (M Corp. + OG)",
+        "Gulbarga (M Corp.)"
+      ],
+      "Chincholi ": [
+        "Chincholi ",
+        "Chincholi (TP)"
+      ],
+      "Sedam ": [
+        "Sedam ",
+        "Sedam (TMC)"
+      ],
+      "Chitapur ": [
+        "Chitapur ",
+        "Chitapur (TMC)",
+        "Shahabad ACC (NAC + OG)",
+        "Shahabad ACC (NAC)",
+        "Shahabad (CMC)",
+        "Wadi (TMC)"
+      ],
+      "Jevargi ": [
+        "Jevargi ",
+        "Jevargi (TP)"
+      ]
+    },
+    "Yadgir": {
+      "Yadgir": [
+        "Yadgir"
+      ],
+      "Shorapur ": [
+        "Shorapur ",
+        "Shorapur (TMC)"
+      ],
+      "Shahpur": [
+        "Shahpur",
+        "Bhimarayanagudi (NAC)",
+        "Shahpur (TMC)"
+      ],
+      "Yadgir ": [
+        "Yadgir ",
+        "Gurmatkal (TP)",
+        "Yadgir (CMC)"
+      ]
+    },
+    "Kolar": {
+      "Kolar": [
+        "Kolar"
+      ],
+      "Srinivaspur ": [
+        "Srinivaspur ",
+        "Srinivaspur (TMC)"
+      ],
+      "Kolar ": [
+        "Kolar ",
+        "Kolar (CMC)"
+      ],
+      "Malur ": [
+        "Malur ",
+        "Malur (TMC)"
+      ],
+      "Bangarapet ": [
+        "Bangarapet ",
+        "Bangarapet (TMC)",
+        "Robertson Pet (CMC + OG)",
+        "Robertson Pet (CMC)"
+      ],
+      "Mulbagal ": [
+        "Mulbagal ",
+        "Mulbagal (TMC)"
+      ]
+    },
+    "Chikkaballapura": {
+      "Chikkaballapura": [
+        "Chikkaballapura",
+        "Chikkaballapura (CMC)"
+      ],
+      "Gauribidanur ": [
+        "Gauribidanur ",
+        "Gauribidanur (TMC)"
+      ],
+      "Gudibanda ": [
+        "Gudibanda ",
+        "Gudibanda (TP)"
+      ],
+      "Bagepalli ": [
+        "Bagepalli ",
+        "Bagepalli (TMC)"
+      ],
+      "Sidlaghatta ": [
+        "Sidlaghatta ",
+        "Sidlaghatta (TMC)"
+      ],
+      "Chintamani ": [
+        "Chintamani ",
+        "Chintamani (CMC)"
+      ]
+    },
+    "Bangalore Rural": {
+      "Bangalore Rural": [
+        "Bangalore Rural"
+      ],
+      "Nelamangala ": [
+        "Nelamangala ",
+        "Nelamangala (TMC)"
+      ],
+      "Dod Ballapur ": [
+        "Dod Ballapur ",
+        "Dod Ballapur (CMC + OG)",
+        "Dod Ballapur (CMC)"
+      ],
+      "Devanahalli ": [
+        "Devanahalli ",
+        "Vijayapura (TMC)",
+        "Devanahalli (TMC)"
+      ],
+      "Hosakote ": [
+        "Hosakote ",
+        "Hosakote (TMC)"
+      ]
+    },
+    "Ramanagara": {
+      "Ramanagara": [
+        "Ramanagara",
+        "Ramanagara (CMC)"
+      ],
+      "Magadi ": [
+        "Magadi ",
+        "Magadi (TMC)"
+      ],
+      "Channapatna ": [
+        "Channapatna ",
+        "Channapatna (CMC)"
+      ],
+      "Kanakapura ": [
+        "Kanakapura ",
+        "Kanakapura (TMC)"
+      ]
+    }
+  }
+}
