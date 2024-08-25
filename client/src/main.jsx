@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Landing from './Landing';
-import Dashboard from '../../server/BDashboard';
+import Dashboard from './components/Buyer/BDashboard'
 import Signup from "./components/Buyer/Signup"
 import Login from "./components/Buyer/Login";
 import FLogin from "./components/Farmer/FLogin";

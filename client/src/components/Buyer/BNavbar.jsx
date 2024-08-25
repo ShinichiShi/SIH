@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export default function BNavbar({ handleNavigate, navigate }) {
   return (
     <nav className="bg-white border-t">
-      <div className="container mx-auto flex justify-between items-center px-4 py-3">
+      <div className=" mx-auto flex justify-between items-center px-4 py-3">
         <ul className="flex space-x-5">
           <li className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'home' ? "bg-green-300" : ""} hover:bg-green-200`} onClick={() => handleNavigate('home')}>Home</li>
           <li className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'deals' ? "bg-green-300" : ""} hover:bg-green-200`} onClick={() => handleNavigate('deals')}>Deals</li>

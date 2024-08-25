@@ -2,7 +2,7 @@ import { useState } from 'react';
 import BHeader from './BHeader';
 import BNavbar from './BNavbar';
 import BSettings from './Settings/BSettings';
-import BDeals from './BDeals';
+import BDeals from './Deals/BDeals';
 import BContract from './Contract/BContract';
 function Dashboard() {
   const [navigate, setNavigate] = useState('home');

@@ -20,13 +20,13 @@ function BHeader() {
       document.removeEventListener('mousedown', handleClickOutside);
     };  
   }, [dropdownRef]);
-  
+
   return (
-    <header className="w-full font-sans">
+    <header className="w-[100vw] h-[10vh] font-sans">
       <div className="bg-white shadow">
-        <div className="container mx-auto flex justify-between items-center px-4 py-4">
+        <div className="flex justify-between items-center py-4 px-4">
           <div className="text-green-500 text-2xl font-bold">AgriConnect</div>
-          <div className="flex-grow mx-8">
+          <div className="flex-grow items-center justify-centerc mx-8">
             <div className="flex">
               <input
                 type="text"
@@ -40,7 +40,7 @@ function BHeader() {
             </div>
           </div>
           <div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4">
               <div ref={dropdownRef} className="relative">
                 <div
                   onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -66,7 +66,7 @@ function BHeader() {
                   </div>
                 )}
               </div>
-              <button className="px-4 py-2 border rounded-lg bg-green-500 hover:bg-green-600 text-white" onClick={()=>{navigate('/login')}}>
+              <button className="py-2 border rounded-lg flex items-center justify-center bg-green-500 hover:bg-green-600 text-white" onClick={()=>{navigate('/login')}}>
                 Logout
               </button>
             </div>
