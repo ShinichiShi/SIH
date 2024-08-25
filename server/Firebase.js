@@ -3,7 +3,7 @@ import './config.js';
 
 // Import Firebase functions
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider} from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
@@ -25,4 +25,4 @@ const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 const storage = getStorage(app);
 
-export { auth, googleProvider, db, storage };
+export { auth, googleProvider, db, storage};
