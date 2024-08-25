@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import './profilesetup.css';
 
-import { db } from '../firebaseconfig';
+import { db } from '../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
 export default function Profilesetup() {
