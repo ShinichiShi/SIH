@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import './profilesetup.css';
 
-import { db } from '../firebaseconfig';
+import { db } from '../../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
 export default function Profilesetup() {
@@ -30,7 +30,6 @@ export default function Profilesetup() {
   const [subdistricts, setSubdistricts] = useState([]);
   const [selectedSubdistrict, setSelectedSubdistrict] = useState('');
   const [areas, setAreas] = useState([]);
-  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     fetch('http://localhost:5002/states')
@@ -128,7 +127,6 @@ export default function Profilesetup() {
     if (!bankname) tempErrors.bankname = "Bank name is required.";
     if (!branchname) tempErrors.branchname = "Branch name is required.";
     if (!branchaddress) tempErrors.branchaddress = "Branch address is required.";
-    setErrors(tempErrors);
 
     return Object.keys(tempErrors).length === 0;
   };
@@ -221,7 +219,7 @@ export default function Profilesetup() {
                   <div>
       <label>
         <strong>Select State:</strong>
-        <select value={selectedState} onChange={handleStateChange} class="form-select m-2" aria-label="Default select example">
+        <select value={selectedState} onChange={handleStateChange} className="form-select m-2" aria-label="Default select example">
           <option value="">Select a state</option>
           {states.map((state, index) => (
             <option key={index} value={state}>
@@ -234,7 +232,7 @@ export default function Profilesetup() {
       {districts.length > 0 && (
         <label>
           <strong>Select District:</strong>
-          <select value={selectedDistrict} onChange={handleDistrictChange} class="form-select m-2" aria-label="Default select example">
+          <select value={selectedDistrict} onChange={handleDistrictChange} className="form-select m-2" aria-label="Default select example">
             <option value="">Select a district</option>
             {districts.map((district, index) => (
               <option key={index} value={district}>
@@ -248,7 +246,7 @@ export default function Profilesetup() {
       {subdistricts.length > 0 && (
         <label>
          <strong>Select Subdistrict:</strong> 
-          <select value={selectedSubdistrict} class="form-select mx-4" aria-label="Default select example" onChange={handleSubdistrictChange}>
+          <select value={selectedSubdistrict} className="form-select mx-4" aria-label="Default select example" onChange={handleSubdistrictChange}>
             <option value="">Select a subdistrict</option>
             {subdistricts.map((subdistrict, index) => (
               <option key={index} value={subdistrict}>
@@ -262,7 +260,7 @@ export default function Profilesetup() {
       {areas.length > 0 && (
         <label>
          <strong>Select Area:</strong> 
-          <select class="form-select mx-4" aria-label="Default select example">
+          <select className="form-select mx-4" aria-label="Default select example">
             <option value="">Select an area</option>
             {areas.map((area, index) => (
               <option key={index} value={area}>
