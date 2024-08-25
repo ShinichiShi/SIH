@@ -5,6 +5,7 @@ import { db } from '../../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
 export default function Profilesetup() {
+  const port = import.meta.env.VITE_PORT
   const [imagePreview1, setImagePreview1] = useState(null);
   const [imagePreview2, setImagePreview2] = useState(null);
 
@@ -32,7 +33,7 @@ export default function Profilesetup() {
   const [areas, setAreas] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5002/states')
+    fetch(`http://localhost:/${port}states`)
       .then(response => response.json())
       .then(data => setStates(data));
   }, []);
@@ -40,7 +41,7 @@ export default function Profilesetup() {
   const handleStateChange = (e) => {
     const state = e.target.value;
     setSelectedState(state);
-    fetch(`http://localhost:5002/districts/${state}`)
+    fetch(`http://localhost:/${port}districts/${state}`)
       .then(response => response.json())
       .then(data => {
         setDistricts(data);
@@ -52,7 +53,7 @@ export default function Profilesetup() {
   const handleDistrictChange = (e) => {
     const district = e.target.value;
     setSelectedDistrict(district);
-    fetch(`http://localhost:5002/subdistricts/${selectedState}/${district}`)
+    fetch(`http://localhost:/${port}subdistricts/${selectedState}/${district}`)
       .then(response => response.json())
       .then(data => {
         setSubdistricts(data);
@@ -63,7 +64,7 @@ export default function Profilesetup() {
   const handleSubdistrictChange = (e) => {
     const subdistrict = e.target.value;
     setSelectedSubdistrict(subdistrict);
-    fetch(`http://localhost:5002/areas/${selectedState}/${selectedDistrict}/${subdistrict}`)
+    fetch(`http://localhost:/${port}areas/${selectedState}/${selectedDistrict}/${subdistrict}`)
       .then(response => response.json())
       .then(data => setAreas(data));
   };
