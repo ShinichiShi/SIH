@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { getAuth,signInWithPhoneNumber, RecaptchaVerifier} from 'firebase/auth';
@@ -10,7 +10,7 @@ const auth=getAuth(app);
 
 const FSignup = () => {
   const [phno,setphno]=useState("")
-  const [otp,setotp]=useState("")
+  // const [otp,setotp]=useState("")
   const navigate=useNavigate()
   
 

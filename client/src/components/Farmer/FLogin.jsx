@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-import { getAuth,signInWithPhoneNumber} from 'firebase/auth';
-import { app } from '../../../firebase';
+// import { getAuth,signInWithPhoneNumber} from 'firebase/auth';
+// import { app,auth } from '../../../firebase';
 import {useNavigate } from 'react-router-dom';
 import '../Buyer/Signup.css';
 
-const auth=getAuth(app);
+// const auth=getAuth(app);
 
 const FLogin = () => {
   const [phno,setphno]=useState("")
-  const [otp,setotp]=useState("")
+  // const [otp,setotp]=useState("")
   const navigate=useNavigate()
 
   
@@ -34,7 +34,7 @@ const FLogin = () => {
             <button >Login</button>
           </div>
           <p>
-           Don't have account? <a onClick={()=>{
+           Don&apos;t have account? <a onClick={()=>{
             navigate('/FSignup')
            }}>Register</a>
           </p>
