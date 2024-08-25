@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { getAuth,signInWithEmailAndPassword} from 'firebase/auth';
 import { app } from '../../../firebase';
 import {useNavigate } from 'react-router-dom';
@@ -9,7 +9,6 @@ const auth=getAuth(app);
 const Login = () => {
   const [email,setemail]=useState("")
   const [password,setpass]=useState("")
-  const [role,setrole]=useState("")
   const navigate=useNavigate()
 
 
@@ -17,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     try
     {
-      await signInWithEmailAndPassword(auth,email,password).then((value)=>
+      await signInWithEmailAndPassword(auth,email,password).then(()=>
       {
         alert("success")
         // navigate('/Login') 
@@ -51,7 +50,7 @@ const Login = () => {
             <button onClick={signinUser}>Login</button>
           </div>
           <p>
-           Don't have account? <a onClick={()=>{
+           Don&apos;t have account? <a onClick={()=>{
             navigate('/Signup')
            }}>Register</a>
           </p>

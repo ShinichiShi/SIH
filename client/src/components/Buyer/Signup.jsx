@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
-import { app } from '../../../firebase';
+import { useState } from 'react';
+import { auth } from '../../../firebase';
 import {useNavigate } from 'react-router-dom';
 import './Signup.css';
-import {getAuth,createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from "firebase/auth"
-import { setDoc,doc, getFirestore } from 'firebase/firestore';
+import {createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from "firebase/auth"
+// import {  getFirestore } from 'firebase/firestore';
 
 
-const auth=getAuth(app);
-const db=getFirestore(app);
+// const db=getFirestore(app);
 const googleProvider= new GoogleAuthProvider();
 
 export default function Signup() {
   const [email,setemail]=useState("")
   const [password,setpass]=useState("")
-  const [role,setrole]=useState("")
   const navigate=useNavigate()
 
 
   const signupWithGoogle=()=>{
-    signInWithPopup(auth,googleProvider).then((value)=>alert("success"))
+    signInWithPopup(auth,googleProvider).then(()=>alert("success"))
   }
 
   const create= async(e)=>{
     e.preventDefault();
     try
     {
-      await createUserWithEmailAndPassword(auth,email,password).then((value)=>
+      await createUserWithEmailAndPassword(auth,email,password).then(()=>
       {
         alert("success")
         // navigate('/Login') 
