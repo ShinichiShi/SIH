@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet');
+body {
+  font-family: 'Teko', sans-serif;
+}
+
+.navbar-nav a {
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: 'Teko', sans-serif;
+
+}
+
+.navbar-light .navbar-brand {
+  color: #000;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: 'Teko', sans-serif;
+}
+
+.navbar-brand span {
+  color: green;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+  color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: green;
+}
+
+.w-100 {
+  height: 100vh;
+}
+
+.navbar-toggler {
+  padding: 1px 5px;
+  font-size: 18px;
+  line-height: 0.3;
+  background: #fff;
+}
+
+.navbar-toggler-icon {
+  background: green;
+}
+
+.navbar-light .navbar-toggler {
+  color: #FFF;
+  border-color: transparent;
+  background: green;
+}
+
+.dropdown-menu {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.dropdown-item {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+}
+
+.dropdown-item:hover, 
+.dropdown-item:focus {
+  background-color: #ff9900;
+  color: #fff;
+}
+
+.carousel-item {
+  height: 100vh;
+  min-height: 300px;
+  background-color: #f7f5eb;
+}
+
+.carousel-caption {
+  
+  bottom: 0;
+  z-index: 2;
+  text-align: left;
+  font-family: 'Teko', sans-serif;
+}
+
+.carousel-caption h5 {
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 25px;
+  color: #262626;
+}
+
+.carousel-caption p {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #262626;
+}
+
+.banner-info .btn {
+  padding: 10px 60px;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #ffff;
+  background: green;
+}
+
+.banner-info {
+  padding-top: 25%;
+}
+
+.imgBox img {
+  width: 700px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  height: 80px;
+  width: 80px;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  background-image: none;
+  color: #fff;
+  background: green;
+}
+
+.carousel-control-next-icon:after {
+  
+  font-size: 55px;
+  color: #fff;
+}
+
+.carousel-control-prev-icon:after {
+  
+  font-size: 55px;
+  color: #fff;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: green;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .navbar-nav {
+      text-align: center;
+  }
+
+  .navbar-collapse {
+      background: green;
+  }
+
+  .carousel-caption {
+      bottom: 370px;
+  }
+
+  .carousel-caption p {
+      width: 100%;
+  }
+
+  .navbar-collapse .nav-link {
+      color: #fff !important;
+  }
+
+  .carousel-caption {
+      bottom: 0;
+      text-align: center;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar-nav {
+      text-align: center;
+  }
+
+  .navbar-collapse {
+      background: green;
+  }
+
+  .navbar-collapse .nav-link {
+      color: #fff !important;
+  }
+
+  .carousel-caption {
+      bottom: 0;
+      text-align: center;
+  }
+
+  .carousel-caption h5 {
+      font-size: 17px;
+  }
+
+  .carousel-caption p {
+      width: 100%;
+      line-height: 1.6;
+      font-size: 12px;
+  }
+
+  .banner-info .btn {
+      padding: 0 15px;
+      font-size: 20px;
+  }
+
+  .imgBox .img-fluid {
+      max-width: 80%;
+      height: auto;
+  }
+
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+      height: 50px;
+      width: 50px;
+  }
+
+  .carousel-control-next-icon:after {
+      font-size: 30px;
+  }
+
+  .carousel-control-prev-icon:after {
+      font-size: 30px;
+  }
+}
+
+.imgBox {
+  position: relative;
+  top: 140px;
+  left: 35px;
+  
+  
+}
+
+.imgBox1 {
+  position: relative;
+  top: 140px;
+  left: 35px;
+  
+}
+
+.central-section {
+  padding: 4rem 2rem;
+  background: rgb(238, 246, 215);
+  text-align: center;
+}
+
+.central-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-family: 'Teko', sans-serif;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.feature {
+  flex: 1;
+  margin: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Teko', sans-serif;
+}
+
+.how-it-works, .cta-section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.how-it-works h2, .cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-family: 'Teko', sans-serif;
+}
+
+.how-it-works ol {
+  list-style: decimal inside;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: x-large;
+}
+
+.how-it-works li {
+  margin-bottom: 1rem;
+}
+
+.how-it-works li strong {
+  color: #83ae83;
+}
+
+.how-it-works {
+  background-color: #f7f5eb;
+}
+
+footer {
+  background: #006400;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.logo {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: x-large;
+  color: #44a544;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  width: 80%;
+}
+
+.feature img {
+  height: 90px;
+  width: 90px;
+  object-fit: cover;
+}
+/* Ensure Flexbox for the buttons container */
+.nav-item.dropdown.d-flex {
+  display: flex;
+  gap: 10px; /* Adjust spacing between the buttons */
+}
+
+/* Ensure buttons look consistent */
+.navbar-nav .btn {
+  background-color: #f7f5eb;
+  border: none;
+  color: #000;
+}
+
+/* Button hover effects */
+.navbar-nav .btn:hover {
+  color: #fff;
+  background-color: green;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.dropdown-item {
+  color: #333;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: #ff9900;
+  color: #fff;
+}
+
+
