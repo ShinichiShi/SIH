@@ -1,6 +1,15 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './Landing.css'
+import img from '../../assets/buyerPic2.jpeg'
+import img1 from '../../assets/farmerPic.jpeg'
+import img2 from '../../assets/handshake3.svg'
+import img3 from '../../assets/reshot-icon-laptop.svg'
+import img4 from '../../assets/reshot-icon-envelope.svg'
+import img5 from '../../assets/reshot-icon-calendar.svg'
+import img6 from  '../../assets/etoe.svg'
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 const AgriConnect = () => {
   return (
@@ -44,7 +53,7 @@ const AgriConnect = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <div className="carousel-caption">
-              <div className="row">
+              <div className="row ">
                 <div className="col-lg-5 col-md-12 col-12">
                   <div className="banner-info">
                     <h5>Secure Income, Grow with Confidence</h5>
@@ -54,7 +63,7 @@ const AgriConnect = () => {
                 </div>
                 <div className="col-lg-7 col-md-12 col-12">
                   <div className="imgBox1">
-                    <img src="farmerPic.jpeg" className="img-fluid" alt="" style={{ height: '290px', borderRadius: '20%' }} />
+                    <img src={img} className="img-fluid" alt="" style={{ height: '290px', borderRadius: '20%' }} />
                   </div>
                 </div>
               </div>
@@ -72,7 +81,7 @@ const AgriConnect = () => {
                 </div>
                 <div className="col-lg-7 col-md-12 col-12">
                   <div className="imgBox">
-                    <img src="buyerPic2.jpeg" className="img-fluid" alt="" style={{ borderRadius: '30%' ,height:'290px'}} />
+                    <img src={img1} className="img-fluid" alt="" style={{ borderRadius: '30%' ,height:'290px'}} />
                   </div>
                 </div>
               </div>
@@ -93,27 +102,27 @@ const AgriConnect = () => {
         <h2>Why Choose AgriConnect?</h2>
         <div className="features">
           <div className="feature">
-            <img src="icons/handshake3.svg" alt="Guaranteed Market Access" />
+            <img src={img2} alt="Guaranteed Market Access" />
             <h3>Guaranteed Market Access</h3>
             <p>Connect with verified buyers and secure a steady market for your produce.</p>
           </div>
           <div className="feature">
-            <img src="icons/reshot-icon-laptop-speech-bubble-3FTBXEHGL2.svg" alt="Transparent Negotiation" />
+            <img src={img3} alt="Transparent Negotiation" />
             <h3>Transparent Negotiation</h3>
             <p>Discuss terms in real-time and reach agreements with ease.</p>
           </div>
           <div className="feature">
-            <img src="./icons/reshot-icon-envelope-FD2JGW9ELS.svg" alt="Secure Contracts" />
+            <img src={img4} alt="Secure Contracts" />
             <h3>Secure Contracts</h3>
             <p>Legal assurance with securely stored contracts.</p>
           </div>
           <div className="feature">
-            <img src="icons/reshot-icon-calendar-T8KE5NP7DR.svg" alt="Timely Payments" />
+            <img src={img5} alt="Timely Payments" />
             <h3>Timely Payments</h3>
             <p>Get paid on time, every time with our integrated payment system.</p>
           </div>
           <div className="feature">
-            <img src="icons/etoe.svg" alt="End-to-End Support" />
+            <img src={img6} alt="End-to-End Support" />
             <h3>End-to-End Support</h3>
             <p>From initial contact to final delivery, we ensure smooth transactions.</p>
           </div>
