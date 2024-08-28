@@ -5,7 +5,6 @@ import {useNavigate } from 'react-router-dom';
 import './Signup.css';
 
 const auth=getAuth(app);
-
 const Login = () => {
   const [email,setemail]=useState("")
   const [password,setpass]=useState("")
@@ -19,7 +18,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth,email,password).then(()=>
       {
         alert("success")
-        // navigate('/Login') 
+        navigate('/buyer') 
       })
     }
     catch(error){

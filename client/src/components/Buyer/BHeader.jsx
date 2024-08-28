@@ -2,7 +2,10 @@ import { FaSearch } from 'react-icons/fa';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { IoIosArrowDropdown ,IoIosArrowDropup } from "react-icons/io";
 import { useState, useEffect, useRef } from 'react';
+import { signOut } from 'firebase/auth';  
+import { auth } from '../../../firebase'
 import {useNavigate} from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify';
 
 function BHeader() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -21,17 +24,28 @@ function BHeader() {
     };  
   }, [dropdownRef]);
 
+  const handleLogout = async () => {
+    console.log("enter")
+    try {
+      await signOut(auth);
+      console.log('hello')
+      toast.success("Logged Out")
+      navigate('/login'); 
+    } catch (error) {
+      toast.error('Error signing out:', error);
+    }
+  };
   return (
-    <header className="w-[100vw] h-[10vh] font-sans">
-      <div className="bg-white shadow">
-        <div className="flex justify-between items-center py-4 px-4">
+    <header className="h-20 font-sans">
+      <div className="bg-white h-full shadow flex w-full">
+        <div className=" w-full flex justify-between items-center  px-4">
           <div className="text-green-500 text-2xl font-bold">AgriConnect</div>
-          <div className="flex-grow items-center justify-centerc mx-8">
-            <div className="flex">
+          <div className="flex-grow items-center justify-center mx-8">
+            <div className="flex items-center justify-center ">
               <input
                 type="text"
                 placeholder="Search"
-                className="w-full px-4 py-2 border border-gray-300 rounded-l"
+                className="w-full px-4 border border-gray-300 rounded-l"
               />
               <button className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-r flex items-center justify-center gap-4">
                 <FaSearch />
@@ -66,12 +80,13 @@ function BHeader() {
                   </div>
                 )}
               </div>
-              <button className="py-2 border rounded-lg flex items-center justify-center bg-green-500 hover:bg-green-600 text-white" onClick={()=>{navigate('/login')}}>
+              <button className="py-2 border rounded-lg flex items-center justify-center bg-green-500 hover:bg-green-600 text-white" onClick={handleLogout}>
                 Logout
               </button>
             </div>
           </div>
         </div>
+        <ToastContainer/>
       </div>
     </header>
   );
