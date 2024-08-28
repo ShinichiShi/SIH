@@ -9,6 +9,7 @@ header{
     position: absolute;
     text-align: center;
     border: 2px solid red;
+    overflow: scroll;
 }
 footer{
     position: relative;
@@ -20,4 +21,5 @@ footer>textarea{
     width: 80vw;
     text-align: center;
     font-size: 19px;
+    color: black;
 }
