@@ -4,7 +4,7 @@ import PhoneInput from 'react-phone-number-input'
 // import { getAuth,signInWithPhoneNumber} from 'firebase/auth';
 // import { app,auth } from '../../../firebase';
 import {useNavigate } from 'react-router-dom';
-import '../Buyer/Signup.css';
+// import '../Buyer/Signup.css';
 
 // const auth=getAuth(app);
 

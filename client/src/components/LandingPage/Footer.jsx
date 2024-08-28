@@ -1,5 +1,4 @@
-import React from 'react'
-import './Landing.css'
+// import './Landing.css'
 
 export default function Footer() {
   return (

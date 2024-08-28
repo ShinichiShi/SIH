@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { auth } from '../../../firebase';
 import {useNavigate } from 'react-router-dom';
-import './Signup.css';
+// import './Signup.css';
 import {createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from "firebase/auth"
 // import {  getFirestore } from 'firebase/firestore';
 
@@ -23,13 +23,14 @@ export default function Signup() {
     e.preventDefault();
     try
     {
-      await createUserWithEmailAndPassword(auth,email,password).then(()=>
+      await createUserWithEmailAndPassword(auth,email,password)
+      .then(()=>
       {
         alert("success")
-        // navigate('/Login') 
+        navigate('/buyer') 
         // UNCOMMENT THIS AND PLACE IN THE PLACE WHERE IT HAS TO REDIRECT GUIZZZZZZZZZZZZZZZZZZZZZZZZZ
-        // const user=auth.currentUser;
-        // console.log(user);
+        const user=auth.currentUser;
+        console.log(user);
         // if(user){
         //   await setDoc(doc(db,"credentials",user.uid),{
         //     Email:user.email,
@@ -67,7 +68,7 @@ export default function Signup() {
           </div>
           <p>
             Already have account? <a onClick={()=>{
-              navigate('/Login')
+              navigate('/login')
             }}>Login</a>
           </p>
           </div>
