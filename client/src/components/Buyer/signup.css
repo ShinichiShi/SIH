@@ -13,6 +13,9 @@
     background-color: black;
     color: white;
 }
+.heading h1{
+    font-size: 35px;
+}
 .box{
     margin:5rem;
 }
@@ -91,5 +94,5 @@ a{
 }
 #recaptcha-container{
     position: relative;
-    left: 4vw;
+    left: 2vw;
 }

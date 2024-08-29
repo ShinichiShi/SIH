@@ -1,4 +1,4 @@
-import './Dashboard.css'
+import './FDashboard.css'
 import { useState } from 'react';
 
 function Searchsvg() {
@@ -143,7 +143,7 @@ function MainBox() {
   )
 }
 
-function FarmerDashboard() {
+function FDashboard() {
   return (
     <>
       <Navbar />
@@ -153,4 +153,4 @@ function FarmerDashboard() {
   )
 }
 
-export default FarmerDashboard;
+export default FDashboard;
