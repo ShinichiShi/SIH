@@ -1,0 +1,408 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+  overflow-x: hidden;
+}
+header{
+  height: 15vh;
+  background-color: green;
+  border: none;
+}
+.navp{
+  height: 70%;
+  background-color: #fff;
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 1fr 3fr 0.4fr;
+  align-items: center;
+  border: 0.5px solid rgb(159, 159, 159);
+}
+.navp h1{
+  font-size: 42px;
+  /* padding: 20px; */
+  color: #00B207;
+}
+.h1nav{
+  display: flex;
+  padding: 20px;
+  /* justify-content: center; */
+}
+#h1e{
+  color: black;
+}
+/* h1{
+  display: flex;
+} */
+.search-nav{
+  width: 450px;
+  height: 33px;
+  background-color: #00B207;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  /* justify-content:flex-start; */
+  border: 1px solid rgb(159, 159, 159);
+  box-shadow: 2px 2px 2px rgba(8, 0, 0, 0.4);
+  font-size: 15px;
+}
+.search-nav input{
+  width: 370px;
+  height: 32px;
+  border-radius: 0.25rem;
+  outline: none;
+  border: 2px solid white;
+}
+.profileicon{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+.profileicon:hover{
+  color: #00B207;
+}
+.navs{
+  height: 30%;
+  /* border: 0.5px solid rgb(159, 159, 159); */
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+.navs ul{
+  display: flex;
+  align-items: center;
+  list-style-type:none;
+  gap: 25px;
+  margin-left: 40px;
+  font-size: 19px;
+  font-weight: 600;
+  text-align: center;
+}
+.navs ul li:hover{
+  /* background-color: #1fe726;
+  border :1px solid #1fe726; */
+  text-decoration: underline #00B207;
+  text-decoration-thickness: 3px;
+  border-radius: 0.5rem;
+  padding: 0px 4px;
+}
+
+
+.search-box{
+  height:8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 250px;
+  border: 0.5px solid rgb(159, 159, 159);
+}
+.search-box-div{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+} 
+.search-box-div p{
+  font-size: 20px;
+}
+.search-bar {
+  border-radius: 50%; 
+  width: 40px; 
+  height: 40px; 
+  background-color: #1fe726;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.4s ease, border-radius 0.4s ease, padding 0.4s ease; 
+  overflow: hidden;
+  position: relative; 
+}
+.search-bar svg{
+  filter: invert(100%);
+}
+
+.search-bar:hover {
+  width: 300px; 
+  border-radius: 20px;
+  padding: 2px 15px;
+  background-color: white;
+  border: 1px solid rgb(159, 159, 159);
+}
+
+.search-bar input {
+  border-radius: 0.5rem;
+  padding: 2px 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 100;
+  outline: none;
+  width: 100%; 
+  opacity: 0; 
+  transition: opacity 0.4s ease;
+}
+
+.search-bar:hover input {
+  opacity: 1;
+}
+
+.search-bar svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.4s ease, position 0.4s ease, right 0.4s ease; 
+  position: absolute; 
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%); 
+}
+
+.search-bar:hover svg {
+  right: 10px; 
+  transform: translateY(-50%) scale(1.0);
+}
+.container-p{
+  height: 80vh;
+  background-color: white;
+  /* overflow-y: scroll; */
+  /* display: flex;
+  align-items: center;
+  flex-direction: column; */
+  padding-top: 10px;
+  overflow: scroll;
+}
+.container-p h1{
+  text-align: center;
+  font-size: 32px;
+}
+.container-s{
+  height: 75vh;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 50px;
+  place-items: center; 
+  gap: 30px;
+}
+.box-primary{
+  width: 550px;
+  height: 200px;
+  background-color: rgb(248, 248, 248);
+  display: flex;
+  border: 0.25px solid rgb(180, 177, 177);
+  border-radius: 0.5rem;
+  box-shadow: 3px 3px 3px rgba(8, 0, 0, 0.6);
+}
+.primary-details{
+  width: 70%;
+  font-size: 20px;
+  /* padding: 30px;
+  line-height: 25px; */
+  display: flex; 
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  padding-left: 30px;
+  gap: 5px;
+}
+.primary-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.primary-btn button{
+  /* padding: 8px; */
+  height: 50px;
+  width: 80px;
+  border: none;
+  background-color: #00B207;
+  color: white;
+  border-radius: 0.25rem;
+  border:1px solid #00B207;
+  font-size: 16px;
+  /* outline: none; */
+  box-shadow: none;
+}
+.primary-btn button:hover{
+  background-color: white;
+  color: #00B207;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+/* secondary box css */
+
+/* .box-sec {
+  width: 700px;
+  height: 400px;
+  background-color: white;
+  overflow-y: scroll;
+  z-index: 2;
+  position: relative; 
+  color:black;
+}
+
+.box-sec h3 {
+  text-align:center;
+}
+
+.crossbtn {
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  z-index: 4;
+}
+
+.crossbtn button {
+  font-size: 18px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.crossbtn button:hover {
+  background-color: red;
+  color: white;
+}
+
+.sec-details {
+  font-size: 18px;
+  padding: 5px 20px;
+  line-height:15px;
+}
+
+.contract-btn {
+  display:flex;
+  justify-content:center;
+  padding-bottom:10px;
+}
+.contract-btn button{
+  padding:10px;
+  background-color: #00B207;
+  border:1px solid #00B207;
+  color:white;
+  border-radius:0.5rem;
+}
+.contract-btn button:hover{
+  background-color: white;
+  color:#00B207;
+  border:1px solid #00B207;
+} */
+
+/* ```````````````````````````````````````````````` */
+
+/* Existing styles */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* secondary box css */
+.box-sec {
+  width: 700px;
+  height: 400px;
+  background-color: white;
+  overflow-y: scroll;
+  z-index: 10000;
+  position: relative;
+  color: black;
+  border-radius: 0.25rem;
+}
+
+.box-sec h3 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.crossbtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  /* width: 20px; */
+  /* width: auto; */
+  box-shadow: none;
+  border: none;
+}
+
+.crossbtn button {
+  font-size: 18px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding:1px 3px;
+  width: 30px;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0.1rem;
+}
+
+.crossbtn button:hover{
+  background-color: red;
+  color: white;
+}
+
+.sec-details {
+  font-size: 18px;
+  padding: 5px 20px;
+  /* line-height: 15px; */
+}
+.sec-details p{
+  padding-top: 3px;
+  font-size: 18px;
+}
+
+.contract-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.contract-btn {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 20px; */
+}
+
+.contract-btn button {
+  background-color: #00B207;
+  color: white;
+  border: none;
+  /* padding: 10px 20px; */
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 140px;
+}
+
+.contract-btn button:hover {
+  background-color: darkgreen;
+}
