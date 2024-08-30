@@ -8,9 +8,9 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body{
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
-header{
+.headerfd{
   height: 15vh;
   background-color: green;
   border: none;

@@ -2,24 +2,39 @@
     margin: 0;
     padding: 0;
 }
-.main{
+.mainvg{
     width: 100%;
+    height: 100vh;
+    color: white;
 }
-.header{
+.headervg{
     margin: 0;
     height: 5rem;
     width: 100%;
     text-align: center;
-    background-color: black;
-    color: white;
+    color: black;
 }
 .heading h1{
     font-size: 35px;
 }
-.box{
+.bgimg{
+    margin: 0px;
+    padding: 0px;
+    height: inherit;
+    background-image: url("https://th.bing.com/th/id/R.77dfcc4d3db9d58d263ddfb9424aa74d?rik=9dwG7dUFc8aI9A&riu=http%3a%2f%2fs.wsj.net%2fpublic%2fresources%2fimages%2fBN-BB446_ifarm_P_20140111221144.jpg&ehk=fcYS84qt1uyS6xk2qf7no1vx09cNSjswk8cR4%2bLOSs4%3d&risl=&pid=ImgRaw&r=0");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+}
+.fade{
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.boxvg{
     margin:5rem;
 }
-.container{
+.containervg{
+    background:rgba(0, 0, 0, 0.774);
     margin: 0;
     padding: 20px;
     text-align: center;  
@@ -30,63 +45,65 @@
     position: relative;
     left: 28vw;
     gap: 40px;
-    box-shadow: 0PX 7PX 20PX 0PX BLACK;
+    border-radius: 15px;
 }
-.form{
+.formvg{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
 }
-.choice{
-    display: flex;
-    width: 15vw;
-    position: relative;
-    right: 10px;
+/* select{
+    width: 22vw;
+    text-decoration: none;
+    background-color: transparent;
+    border-bottom: 2px solid gray;
+    outline:none;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
 }
-.choice span{
-    font-size:large;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight:lighter;
-    position: relative;
-    right: 10px;
-}
-input,button{
+select>option{
+    background-color: transparent;
+    color: black;
+} */
+.i1,.bt1{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 18px;
     width: 22vw;
     border: none;
-    color: black;
     border-bottom: 2px solid gray;
     outline: none;
-    background-color: white;
+    background-color: transparent;
 }
-input::placeholder{
-    color: black;
+.i1::placeholder{
+    background-color: transparent;
+    color: white;
 }
-button{
+.btn>button{
+    border: none;
     width: 18vw;
     height: 5vh;
-    border: none;
     box-shadow: 0PX 0PX 5PX 0PX BLACK;
     border-radius: 15px;
     background-color: chartreuse;
     cursor: pointer;
+    color: black;
 }
-p{
+.p1{
     font-size: 18px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-a{
+.a1{
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bold;
     cursor: pointer;
 }
 .google>button{
-    background-color: white;
+    background-color: transparent;
     box-shadow:none ;
+    border: none;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 22px;
     cursor: pointer;
@@ -96,3 +113,10 @@ a{
     position: relative;
     left: 2vw;
 }
+.i2{
+    width: 22vw;
+    color: black;
+   
+}
+
+
