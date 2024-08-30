@@ -24,7 +24,7 @@ function ProfileIcon() {
 
 function Navbar() {
   return (
-    <header>
+    <header className={styles.headerfd}>
       <div className={styles.navp}>
         <div className={`${styles.h1nav} ${styles['text-excess']}`}>
           <h1>Agri</h1>

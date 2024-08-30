@@ -1,76 +1,81 @@
 import { useState } from 'react';
 import { auth } from '../../../firebase';
-import {useNavigate } from 'react-router-dom';
-// import './Signup.css';
-import {createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from "firebase/auth"
-// import {  getFirestore } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import styles from './signup.module.css'; // Import the CSS Module
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
+import Navbar from '../LandingPage/Navbar';
 
-
-// const db=getFirestore(app);
-const googleProvider= new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 export default function Signup() {
-  const [email,setemail]=useState("")
-  const [password,setpass]=useState("")
-  const navigate=useNavigate()
+  const [email, setemail] = useState('');
+  const [password, setpass] = useState('');
+  const navigate = useNavigate();
 
+  const signupWithGoogle = () => {
+    signInWithPopup(auth, googleProvider).then(() => alert('success'));
+  };
 
-  const signupWithGoogle=()=>{
-    signInWithPopup(auth,googleProvider).then(()=>alert("success"))
-  }
-
-  const create= async(e)=>{
+  const create = async (e) => {
     e.preventDefault();
-    try
-    {
-      await createUserWithEmailAndPassword(auth,email,password)
-      .then(()=>
-      {
-        alert("success")
-        navigate('/buyer') 
-        // UNCOMMENT THIS AND PLACE IN THE PLACE WHERE IT HAS TO REDIRECT GUIZZZZZZZZZZZZZZZZZZZZZZZZZ
-        const user=auth.currentUser;
+    try {
+      await createUserWithEmailAndPassword(auth, email, password).then(() => {
+        alert('success');
+        navigate('/buyer');
+        const user = auth.currentUser;
         console.log(user);
-        // if(user){
-        //   await setDoc(doc(db,"credentials",user.uid),{
-        //     Email:user.email,
-        //     Role:role,
-        // })
-      })
-    }
-    catch(error){
-      // Handle errors here
+      });
+    } catch (error) {
       alert(`Error: ${error.message}`);
-    };
+    }
+  };
 
-  }
+
   return (
-    <div className='main'>
-      <div className="header">NAVBAR</div>
-      <div className="box">
-        <div className="container">
-          <div className="heading">
-            <h1>Create Account</h1>
-          </div>
-          <div className="form">
-            {/* <div className="choice">
-              <input type="radio" name="choice" value="Farmer" /><span>Farmer</span>
-              <input type="radio" name="choice" value="Dealer"/><span>Dealer</span>
-            </div> */}
-            <input type="email" placeholder="Email" onChange={(e)=>setemail(e.target.value)} value={email}/>
-            <input type="password" placeholder="Password" onChange={(e)=>setpass(e.target.value)} value={password}/>
-            <div className="google">
-              <button onClick={signupWithGoogle}>Sign In With Google</button>
-            </div>
+    <div className={styles.mainvg}>
+      <div className={styles.bgimg}>
+        <div className={styles.fade}>
+          <div className={styles.headervg}>
             
-          <div className="btn">
-            <button onClick={create}>Create Account</button>
           </div>
-          <p>
-            Already have account? <a onClick={()=>{
-              navigate('/login')
-            }}>Login</a>
-          </p>
+          <div className={styles.boxvg}>
+            <div className={styles.containervg}>
+              <div className={styles.heading}>
+                <h1>Create Account</h1>
+              </div>
+              <div className={styles.formvg}>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  onChange={(e) => setemail(e.target.value)}
+                  value={email}
+                  className={styles.i1}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => setpass(e.target.value)}
+                  value={password}
+                  className={styles.i1}
+                />
+                <div className={styles.google}>
+                  <button onClick={signupWithGoogle} className={styles.bt1}>
+                    Sign In With Google
+                  </button>
+                </div>
+                <div className={styles.btn}>
+                  <button onClick={create} className={styles.bt1}>Create Account</button>
+                </div>
+                <p className={styles.p1}>
+                  Already have an account?{' '}
+                  <a onClick={() => navigate('/login')} className={styles.a1}>Login</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
