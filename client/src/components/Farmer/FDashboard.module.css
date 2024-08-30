@@ -66,6 +66,7 @@ header{
   display: flex;
   align-items: center;
   font-weight: bold;
+  cursor: pointer;
 }
 .profileicon:hover{
   color: #00B207;
@@ -76,16 +77,24 @@ header{
   background-color: white;
   display: flex;
   align-items: center;
+  /* justify-content: center; */
+  position: relative;
 }
 .navs ul{
+  height: 100%;
+  list-style-type:none;
+  /* flex-grow: 1; */
   display: flex;
   align-items: center;
-  list-style-type:none;
   gap: 25px;
   margin-left: 40px;
   font-size: 19px;
   font-weight: 600;
-  text-align: center;
+  /* text-align: center; */
+  /* border: 1px solid; */
+  position: absolute;
+  top: 0;
+  cursor: pointer;
 }
 .navs ul li:hover{
   /* background-color: #1fe726;
@@ -93,7 +102,7 @@ header{
   text-decoration: underline #00B207;
   text-decoration-thickness: 3px;
   border-radius: 0.5rem;
-  padding: 0px 4px;
+  /* padding: 0px 4px; */
 }
 
 
@@ -107,11 +116,13 @@ header{
 }
 .search-box-div{
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   gap: 5px;
+  /* border: 1px solid; */
 } 
 .search-box-div p{
   font-size: 20px;
+  text-align: center;
 }
 .search-bar {
   border-radius: 50%; 
@@ -161,6 +172,7 @@ header{
   right: 10px;
   top: 50%;
   transform: translateY(-50%); 
+  cursor: pointer;
 }
 
 .search-bar:hover svg {
@@ -198,10 +210,11 @@ header{
   border: 0.25px solid rgb(180, 177, 177);
   border-radius: 0.5rem;
   box-shadow: 3px 3px 3px rgba(8, 0, 0, 0.6);
+  /* align-items: center; */
 }
 .primary-details{
   width: 70%;
-  font-size: 20px;
+  font-size: 16px;
   /* padding: 30px;
   line-height: 25px; */
   display: flex; 
@@ -209,7 +222,9 @@ header{
   /* align-items: center; */
   justify-content: center;
   padding-left: 30px;
-  gap: 5px;
+  /* gap: 2px; */
+  /* border: 1px solid; */
+  line-height: 20px;
 }
 .primary-btn{
   display: flex;
@@ -401,6 +416,7 @@ header{
   cursor: pointer;
   border-radius: 5px;
   width: 140px;
+  margin-bottom: 10px;
 }
 
 .contract-btn button:hover {
