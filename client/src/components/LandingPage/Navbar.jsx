@@ -22,10 +22,17 @@ export default function Navbar() {
                 <li><a className="dropdown-item" href="#">Buyer</a></li>
               </ul>
 
-              <a className="nav-link dropdown-toggle btn btn-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ backgroundColor: '#f7f5eb' }}>
-                Languages
-              </a>
-              <ul className="dropdown-menu">
+                <a
+                  className="nav-link dropdown-toggle btn btn-secondary"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style={{ backgroundColor: '#f7f5eb',fontSize:'20px'}}
+                >
+                  Languages
+                </a>
+                <ul className="dropdown-menu">
                 <li><a className="dropdown-item" href="#">English</a></li>
                 <li><a className="dropdown-item" href="#">Hindi</a></li>
                 <li><a className="dropdown-item" href="#">Kannada</a></li>
