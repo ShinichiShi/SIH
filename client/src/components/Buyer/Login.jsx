@@ -3,6 +3,9 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import styles from './signup.module.css'; // Import the CSS Module
+import Navi from './Navi'
+import { toast, ToastContainer } from 'react-toastify';
+import img from '../../assets/bgimg.jpeg';
 
 const auth = getAuth(app);
 
@@ -15,12 +18,12 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password).then(() => {
-        alert('success');
+        toast.success('Welcome');
         navigate('/buyer');
       });
     } catch (error) {
       // Handle errors here
-      alert(`Error: ${error.message}`);
+      toast.error('Error Loging in:', error);
     }
   };
 
@@ -30,8 +33,9 @@ const Login = () => {
     <>
       <div className={styles.mainvg}>
         <div className={styles.bgimg}>
+          <img src={img} alt="" />
           <div className={styles.fade}>
-            <div className={styles.headervg}>{/* Header content */}</div>
+            <div className={styles.headervg}><Navi/></div>
             <div className={styles.boxvg}>
               <div className={styles.containervg}>
                 <div className={styles.heading}>
@@ -64,6 +68,7 @@ const Login = () => {
             </div>
           </div>
         </div>
+        <ToastContainer/>
       </div>
     </>
   );
