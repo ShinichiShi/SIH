@@ -1,11 +1,11 @@
-import { useState,useEffect } from 'react';
-import './profilesetup.css';
+import { useState, useEffect } from 'react';
+import styles from './profilesetup.module.css'; // Import the CSS module
 
 import { db } from '../../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
 export default function Profilesetup() {
-  const port = import.meta.env.VITE_PORT
+  const port = import.meta.env.VITE_PORT;
   const [imagePreview1, setImagePreview1] = useState(null);
   const [imagePreview2, setImagePreview2] = useState(null);
 
@@ -34,16 +34,16 @@ export default function Profilesetup() {
 
   useEffect(() => {
     fetch(`http://localhost:${port}/states`)
-      .then(response => response.json())
-      .then(data => setStates(data));
+      .then((response) => response.json())
+      .then((data) => setStates(data));
   }, [port]);
 
   const handleStateChange = (e) => {
     const state = e.target.value;
     setSelectedState(state);
     fetch(`http://localhost:${port}/districts/${state}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setDistricts(data);
         setSubdistricts([]);
         setAreas([]);
@@ -54,8 +54,8 @@ export default function Profilesetup() {
     const district = e.target.value;
     setSelectedDistrict(district);
     fetch(`http://localhost:${port}/subdistricts/${selectedState}/${district}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setSubdistricts(data);
         setAreas([]);
       });
@@ -64,9 +64,11 @@ export default function Profilesetup() {
   const handleSubdistrictChange = (e) => {
     const subdistrict = e.target.value;
     setSelectedSubdistrict(subdistrict);
-    fetch(`http://localhost:${port}/areas/${selectedState}/${selectedDistrict}/${subdistrict}`)
-      .then(response => response.json())
-      .then(data => setAreas(data));
+    fetch(
+      `http://localhost:${port}/areas/${selectedState}/${selectedDistrict}/${subdistrict}`
+    )
+      .then((response) => response.json())
+      .then((data) => setAreas(data));
   };
 
   const userCollectionRef = collection(db, 'farmerdata');
@@ -115,19 +117,24 @@ export default function Profilesetup() {
   // Validate form fields
   const validateForm = () => {
     let tempErrors = {};
-    if (!firstname) tempErrors.firstname = "First name is required.";
-    if (!lastname) tempErrors.lastname = "Last name is required.";
-    if (!gender) tempErrors.gender = "Gender is required.";
-    if (!dob || new Date(dob) >= new Date('2003-01-01')) tempErrors.dob = "DOB must be before 2002.";
-    if (!address) tempErrors.address = "Address is required.";
-    if (!pincode || pincode.length !== 6) tempErrors.pincode = "Pincode must be 6 digits.";
-    if (!photoidtype) tempErrors.photoidtype = "Photo ID type is required.";
-    if (!photoidnumber) tempErrors.photoidnumber = "Photo ID number is required.";
-    if (!ifsc) tempErrors.ifsc = "IFSC code is required.";
-    if (!accountnumber) tempErrors.accountnumber = "Account number is required.";
-    if (!bankname) tempErrors.bankname = "Bank name is required.";
-    if (!branchname) tempErrors.branchname = "Branch name is required.";
-    if (!branchaddress) tempErrors.branchaddress = "Branch address is required.";
+    if (!firstname) tempErrors.firstname = 'First name is required.';
+    if (!lastname) tempErrors.lastname = 'Last name is required.';
+    if (!gender) tempErrors.gender = 'Gender is required.';
+    if (!dob || new Date(dob) >= new Date('2003-01-01'))
+      tempErrors.dob = 'DOB must be before 2002.';
+    if (!address) tempErrors.address = 'Address is required.';
+    if (!pincode || pincode.length !== 6)
+      tempErrors.pincode = 'Pincode must be 6 digits.';
+    if (!photoidtype) tempErrors.photoidtype = 'Photo ID type is required.';
+    if (!photoidnumber)
+      tempErrors.photoidnumber = 'Photo ID number is required.';
+    if (!ifsc) tempErrors.ifsc = 'IFSC code is required.';
+    if (!accountnumber)
+      tempErrors.accountnumber = 'Account number is required.';
+    if (!bankname) tempErrors.bankname = 'Bank name is required.';
+    if (!branchname) tempErrors.branchname = 'Branch name is required.';
+    if (!branchaddress)
+      tempErrors.branchaddress = 'Branch address is required.';
 
     return Object.keys(tempErrors).length === 0;
   };
@@ -135,9 +142,9 @@ export default function Profilesetup() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
-      alert("Please fill all required fields correctly.");
+      alert('Please fill all required fields correctly.');
       return;
     }
 
@@ -172,191 +179,466 @@ export default function Profilesetup() {
   };
 
   return (
-    <>
-      <div className="row mt-4">
-        <div className="col-3">
-          <nav id="navbar-example3" className="h-100 flex-column align-items-stretch pe-4 border-end">
-            <nav className="nav nav-pills flex-column btn-success">
-              <a className="nav-link" href="#item-1">Registration Form</a>
+    <div className={styles.pfp}>
+    <div className={styles.litem}>
+            <nav>
+              <a>
+                Registration Form
+              </a>
+            </nav>
+        </div>
+      <div className={styles.cc}>
+        {/* <div className={styles.litem}>
+          <nav
+            id="navbar-example3"
+          >
+            <nav>
+              <a>
+                Registration Form
+              </a>
             </nav>
           </nav>
-        </div>
-        <div className="col-8">
-          <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" className="scrollspy-example-2" tabIndex="0">
+        </div> */}
+        <div className={styles.col8}>
+          <div
+            data-bs-spy="scroll"
+            data-bs-target="#navbar-example3"
+            data-bs-smooth-scroll="true"
+            className={styles.scrollSpyExample}
+            tabIndex="0"
+          >
             <div id="item-1">
-              <h1>Personal Details</h1>
-              <form className="needs-validation" onSubmit={handleSubmit}>
-                <div className="row g-3">
-                  <div className="col-sm-5">
-                    <label htmlFor="firstName" className="form-label"><strong>First Name</strong></label>
-                    <input type="text" className="form-control" id="firstName" placeholder="Enter first name" required onChange={(e) => setFirstname(e.target.value)} />
-                  </div>
+              <h1 className={styles.pdtext}>Personal Details</h1>
+              <form className={styles.needsValidation} onSubmit={handleSubmit}>
+                <div>
+                  <div className={styles.pd}>
+                    <div className={styles.bfl1}>
+                      <div className={styles.fname111}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="firstName"
+                            className={styles.formLabel}
+                          >
+                            <strong>First Name</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="text"
+                          className={styles.formControl}
+                          id="firstName"
+                          placeholder="Enter first name"
+                          required
+                          onChange={(e) => setFirstname(e.target.value)}
+                        />
+                      </div>
 
-                  <div className="col-sm-5">
-                    <label htmlFor="lastName" className="form-label"><strong>Last Name</strong></label>
-                    <input type="text" className="form-control" id="lastName" placeholder="Enter last name" required onChange={(e) => setLastname(e.target.value)} />
-                  </div>
-
-                  <div className="col-md-5">
-                    <label htmlFor="Gender" className="form-label"><strong>Gender</strong></label>
-                    <select className="form-select" id="gender" required onChange={(e) => setGender(e.target.value)}>
-                      <option value="">Choose...</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-
-                  <div className="col-md-5">
-                    <label htmlFor="dob" className="form-label"><strong>Date of Birth</strong></label>
-                    <input type="date" className="form-control" id="dob" required onChange={(e) => setDob(e.target.value)} />
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="address" className="form-label"><strong>Address</strong></label>
-                    <textarea className="form-control" id="address" rows="3" placeholder="Enter your full address" required onChange={(e) => setAddress(e.target.value)}></textarea>
-                  </div>
-
-                  <div>
-      <label>
-        <strong>Select State:</strong>
-        <select value={selectedState} onChange={handleStateChange} className="form-select m-2" aria-label="Default select example">
-          <option value="">Select a state</option>
-          {states.map((state, index) => (
-            <option key={index} value={state}>
-              {state}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      {districts.length > 0 && (
-        <label>
-          <strong>Select District:</strong>
-          <select value={selectedDistrict} onChange={handleDistrictChange} className="form-select m-2" aria-label="Default select example">
-            <option value="">Select a district</option>
-            {districts.map((district, index) => (
-              <option key={index} value={district}>
-                {district}
-              </option>
-            ))}
-          </select>
-        </label>
-      )}
-
-      {subdistricts.length > 0 && (
-        <label>
-         <strong>Select Subdistrict:</strong> 
-          <select value={selectedSubdistrict} className="form-select mx-4" aria-label="Default select example" onChange={handleSubdistrictChange}>
-            <option value="">Select a subdistrict</option>
-            {subdistricts.map((subdistrict, index) => (
-              <option key={index} value={subdistrict}>
-                {subdistrict}
-              </option>
-            ))}
-          </select>
-        </label>
-      )}
-
-      {areas.length > 0 && (
-        <label>
-         <strong>Select Area:</strong> 
-          <select className="form-select mx-4" aria-label="Default select example">
-            <option value="">Select an area</option>
-            {areas.map((area, index) => (
-              <option key={index} value={area}>
-                {area}
-              </option>
-            ))}
-          </select>
-        </label>
-      )}
-    </div>
-
-                  <div className="col-md-5">
-                    <label htmlFor="pincode" className="form-label"><strong>Pincode</strong></label>
-                    <input type="number" className="form-control" id="pincode" placeholder="Enter 6-digit pincode" required onChange={(e) => setPincode(e.target.value)} />
-                  </div>
-
-                  <div className="col-md-5">
-                    <label htmlFor="photoidtype" className="form-label"><strong>Photo-Id Type</strong></label>
-                    <select className="form-select" id="photoidtype" required onChange={(e) => setPhotoidtype(e.target.value)}>
-                      <option value="">Choose...</option>
-                      <option value="Aadhaar">Aadhaar</option>
-                      <option value="PAN">PAN</option>
-                    </select>
-                  </div>
-
-                  <div className="col-md-5">
-                    <label htmlFor="photoidnumber" className="form-label"><strong>Photo-Id Number</strong></label>
-                    <input type="number" className="form-control" id="photoidnumber" placeholder="Enter ID number" required onChange={(e) => setPhotoidnumber(e.target.value)} />
-                  </div>
-
-                  <h1>Bank Details</h1>
-
-                  <div className="col-sm-6">
-                    <label htmlFor="ifsc" className="form-label"><strong>IFSC Code</strong></label>
-                    <input type="text" className="form-control" id="ifsc" placeholder="Enter IFSC code" required onChange={(e) => setIfsc(e.target.value)} />
-                  </div>
-
-                  <div className="col-sm-6">
-                    <label htmlFor="accountname" className="form-label"><strong>Account Holder Name</strong></label>
-                    <input type="text" className="form-control" id="accountname" placeholder="Enter account holder's name" required onChange={(e) => setAccountname(e.target.value)} />
-                  </div>
-
-                  <div className="col-sm-6">
-                    <label htmlFor="bankname" className="form-label"><strong>Bank Name</strong></label>
-                    <input type="text" className="form-control" id="bankname" placeholder="Enter bank name" required onChange={(e) => setBankname(e.target.value)} />
-                  </div>
-
-                  <div className="col-sm-6">
-                    <label htmlFor="accountnumber" className="form-label"><strong>Bank Account Number</strong></label>
-                    <input type="number" className="form-control" id="accountnumber" placeholder="Enter bank account number" required onChange={(e) => setAccountnumber(e.target.value)} />
-                  </div>
-
-                  <div className="col-sm-6">
-                    <label htmlFor="branchname" className="form-label"><strong>Branch Name</strong></label>
-                    <input type="text" className="form-control" id="branchname" placeholder="Enter branch name" required onChange={(e) => setBranchname(e.target.value)} />
-                  </div>
-
-                  <div className="col-sm-6">
-                    <label htmlFor="branchaddress" className="form-label"><strong>Branch Address</strong></label>
-                    <input type="text" className="form-control" id="branchaddress" placeholder="Enter branch address" required onChange={(e) => setBranchaddress(e.target.value)} />
-                  </div>
-
-                  <h1>Upload Documents</h1>
-
-                  <div className="mb-3">
-                    <label htmlFor="formFile1" className="form-label"><strong>Upload Front Page of Passbook</strong></label>
-                    <input className="form-control" type="file" id="formFile1" onChange={handleImageChange1} />
-                  </div>
-
-                  {imagePreview1 && (
-                    <div>
-                      <img src={imagePreview1} alt="Preview" className="preview-image" />
-                      <button type="button" onClick={removeImage1}>Remove Image</button>
+                      <div className={styles.lname111}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="lastName"
+                            className={styles.formLabel}
+                          >
+                            <strong>Last Name</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="text"
+                          className={styles.formControl}
+                          id="lastName"
+                          placeholder="Enter last name"
+                          required
+                          onChange={(e) => setLastname(e.target.value)}
+                        />
+                      </div>
                     </div>
-                  )}
 
-                  <div className="mb-3">
-                    <label htmlFor="formFile2" className="form-label">Upload ID Proof (Aadhaar, PAN, etc.)</label>
-                    <input className="form-control" type="file" id="formFile2" onChange={handleImageChange2} />
+                    <div className={styles.bfl2}>
+                      <div className={styles.gender}>
+                        <div className={styles.labels}>
+                          <label htmlFor="Gender" className={styles.formLabel}>
+                            <strong>Gender</strong>
+                          </label>
+                        </div>
+                        <select
+                          className={styles.formSelect}
+                          id="gender"
+                          required
+                          onChange={(e) => setGender(e.target.value)}
+                        >
+                          <option value="">Choose...</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+
+                      <div className={styles.dob}>
+                        <div className={styles.labels}>
+                          <label htmlFor="dob" className={styles.formLabel}>
+                            <strong>Date of Birth</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="date"
+                          className={styles.formControl}
+                          id="dob"
+                          required
+                          onChange={(e) => setDob(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={styles.add}>
+                      <div className={styles.labels}>
+                        <label htmlFor="address" className={styles.formLabel}>
+                          <strong>Address</strong>
+                        </label>
+                      </div>
+                      <textarea
+                        className={styles.formControl}
+                        id="address"
+                        rows="3"
+                        placeholder="Enter your full address"
+                        required
+                        onChange={(e) => setAddress(e.target.value)}
+                      ></textarea>
+                    </div>
+
+                    <div className={styles.ss}>
+                      <label>
+                        <div>
+                          <strong>Select State:</strong>
+                        </div>
+                        <select
+                          value={selectedState}
+                          onChange={handleStateChange}
+                          className={styles.selst}
+                          aria-label="Default select example"
+                        >
+                          <option value="">Select a state</option>
+                          {states.map((state, index) => (
+                            <option key={index} value={state}>
+                              {state}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+
+                      {districts.length > 0 && (
+                        <div className={styles.sd111}>
+                          <label>
+                            <div>
+                              <strong>Select District:</strong>
+                            </div>
+                            <select
+                              value={selectedDistrict}
+                              onChange={handleDistrictChange}
+                              className={styles.seld}
+                              aria-label="Default select example"
+                            >
+                              <option value="">Select a district</option>
+                              {districts.map((district, index) => (
+                                <option key={index} value={district}>
+                                  {district}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        </div>
+                      )}
+
+                      {subdistricts.length > 0 && (
+                        <div className={styles.sss111}>
+                          <label>
+                            <div>
+                              <strong>Select Subdistrict:</strong>
+                            </div>
+                            <select
+                              value={selectedSubdistrict}
+                              className={styles.selsd}
+                              aria-label="Default select example"
+                              onChange={handleSubdistrictChange}
+                            >
+                              <option value="">Select a subdistrict</option>
+                              {subdistricts.map((subdistrict, index) => (
+                                <option key={index} value={subdistrict}>
+                                  {subdistrict}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        </div>
+                      )}
+
+                      {areas.length > 0 && (
+                        <div className={styles.sa111}>
+                          <label>
+                            <div>
+                              <strong>Select Area:</strong>
+                            </div>
+                            <select
+                              className={styles.sela}
+                              aria-label="Default select example"
+                            >
+                              <option value="">Select an area</option>
+                              {areas.map((area, index) => (
+                                <option key={index} value={area}>
+                                  {area}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className={styles.pincode}>
+                      <div className={styles.labels}>
+                        <label htmlFor="pincode" className={styles.formLabel}>
+                          <strong>Pincode</strong>
+                        </label>
+                      </div>
+                      <input
+                        type="number"
+                        className={styles.formControl}
+                        id="pincode"
+                        placeholder="Enter 6-digit pincode"
+                        required
+                        onChange={(e) => setPincode(e.target.value)}
+                      />
+                    </div>
+
+                    <div className={styles.pln}>
+                      <div className={styles.pit}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="photoidtype"
+                            className={styles.formLabel}
+                          >
+                            <strong>Photo-Id Type</strong>
+                          </label>
+                        </div>
+                        <select
+                          className={styles.formSelect}
+                          id="photoidtype"
+                          required
+                          onChange={(e) => setPhotoidtype(e.target.value)}
+                        >
+                          <option value="">Choose...</option>
+                          <option value="Aadhaar">Aadhaar</option>
+                          <option value="PAN">PAN</option>
+                        </select>
+                      </div>
+
+                      <div className={styles.pinn}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="photoidnumber"
+                            className={styles.formLabel}
+                          >
+                            <strong>Photo-Id Number</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="number"
+                          className={styles.formControl}
+                          id="photoidnumber"
+                          placeholder="Enter ID number"
+                          required
+                          onChange={(e) => setPhotoidnumber(e.target.value)}
+                        />
+                      </div>
+                    </div>
                   </div>
 
-                  {imagePreview2 && (
-                    <div>
-                      <img src={imagePreview2} alt="Preview" className="preview-image" />
-                      <button type="button" onClick={removeImage2}>Remove Image</button>
-                    </div>
-                  )}
+                  <h1 className={styles.pdtext}>Bank Details</h1>
 
-                  <button className="w-100 btn btn-primary btn-lg" type="submit">Submit Form</button>
+                  <div className={styles.bs}>
+                    <div className={styles.bfl1}>
+                      <div className={styles.ifsc}>
+                        <div className={styles.labels}>
+                          <label htmlFor="ifsc" className={styles.formLabel}>
+                            <strong>IFSC Code</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="text"
+                          className={styles.formControl}
+                          id="ifsc"
+                          placeholder="Enter IFSC code"
+                          required
+                          onChange={(e) => setIfsc(e.target.value)}
+                        />
+                      </div>
+
+                      <div className={styles.accname}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="accountname"
+                            className={styles.formLabel}
+                          >
+                            <strong>Account Holder Name</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="text"
+                          className={styles.formControl}
+                          id="accountname"
+                          placeholder="Enter account holder's name"
+                          required
+                          onChange={(e) => setAccountname(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={styles.bfl2}>
+                      <div className={styles.bn}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="bankname"
+                            className={styles.formLabel}
+                          >
+                            <strong>Bank Name</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="text"
+                          className={styles.formControl}
+                          id="bankname"
+                          placeholder="Enter bank name"
+                          required
+                          onChange={(e) => setBankname(e.target.value)}
+                        />
+                      </div>
+
+                      <div className={styles.baccn}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="accountnumber"
+                            className={styles.formLabel}
+                          >
+                            <strong>Bank Account Number</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="number"
+                          className={styles.formControl}
+                          id="accountnumber"
+                          placeholder="Enter bank account number"
+                          required
+                          onChange={(e) => setAccountnumber(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={styles.bfl3}>
+                      <div className={styles.bbn}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="branchname"
+                            className={styles.formLabel}
+                          >
+                            <strong>Branch Name</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="text"
+                          className={styles.formControl}
+                          id="branchname"
+                          placeholder="Enter branch name"
+                          required
+                          onChange={(e) => setBranchname(e.target.value)}
+                        />
+                      </div>
+
+                      <div className={styles.bba}>
+                        <div className={styles.labels}>
+                          <label
+                            htmlFor="branchaddress"
+                            className={styles.formLabel}
+                          >
+                            <strong>Branch Address</strong>
+                          </label>
+                        </div>
+                        <input
+                          type="text"
+                          className={styles.formControl}
+                          id="branchaddress"
+                          placeholder="Enter branch address"
+                          required
+                          onChange={(e) => setBranchaddress(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <h1 className={styles.pdtext}>Upload Documents</h1>
+
+                  <div className={styles.pig}>
+                    <div className={styles.img111}>
+                      <div className={styles.labels}>
+                        <label htmlFor="formFile1" className={styles.formLabel}>
+                          <strong>Upload Passbook</strong>
+                        </label>
+                      </div>
+                      <input
+                        className={styles.formControl}
+                        type="file"
+                        id="formFile1"
+                        onChange={handleImageChange1}
+                      />
+                    </div>
+
+                    {imagePreview1 && (
+                      <div>
+                        <img
+                          src={imagePreview1}
+                          alt="Preview"
+                          className={styles.previewImage}
+                        />
+                        <button type="button" onClick={removeImage1}>
+                          Remove Image
+                        </button>
+                      </div>
+                    )}
+
+                    <div className={styles.img112}>
+                      <div className={styles.labels}>
+                        <label htmlFor="formFile2" className={styles.formLabel}>
+                          <strong>Upload ID Proof (Aadhaar, PAN, etc.)</strong>
+                        </label>
+                      </div>
+                      <input
+                        className={styles.formControl}
+                        type="file"
+                        id="formFile2"
+                        onChange={handleImageChange2}
+                      />
+                    </div>
+
+                    {imagePreview2 && (
+                      <div>
+                        <img
+                          src={imagePreview2}
+                          alt="Preview"
+                          className={styles.previewImage}
+                        />
+                        <button type="button" onClick={removeImage2}>
+                          Remove Image
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  <button className={styles.btnSubmit} type="submit">
+                    Submit Form
+                  </button>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
