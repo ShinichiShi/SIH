@@ -1,14 +1,21 @@
 require("dotenv").config({ path: './.env.local' });
 
 const express = require('express');
+const http = require('http');
 const cors = require('cors');
 const app = express();
-const port = process.env.PORT;
+const {Server} = require('socket.io');
 
-app.use(cors());
-
+const SERVER_PORT = process.env.SERVER_PORT;
+const CLIENT_PORT = process.env.CLIENT_PORT;
 const states = require('./states.json');
 
+const server = http.createServer(app);
+
+//middleware
+app.use(cors());
+
+//routings
 app.get('/states', (req, res) => {
   res.json(Object.keys(states));
 });
@@ -34,6 +41,23 @@ app.get('/areas/:state/:district/:subdistrict', (req, res) => {
   res.json(areas);
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+//socket.io connections
+const io = new Server(server, {
+  cors:{
+      origin : `http://localhost:${CLIENT_PORT}`,
+      methods : ['GET', 'POST']
+  }
+
+})
+io.on("connection", (socket)=>{
+  console.log(socket.id);
+
+  socket.on("send-message", (data)=>{
+    console.log('sending message');
+    socket.broadcast.emit("recieve-message", data.message);
+  })
+})
+
+server.listen(SERVER_PORT, () => {
+  console.log(`Server is running on http://localhost:${SERVER_PORT}`);
 });
