@@ -14,7 +14,6 @@ import FDashboard from './components/Farmer/FDashboard';
 import Profilesetup from './components/ProfileSetup/Profilesetup';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <AuthProvider >
     <BrowserRouter>
       <Routes>
@@ -32,5 +31,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
     </AuthProvider>
 
-  </React.StrictMode>
 );
