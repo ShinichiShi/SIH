@@ -11,9 +11,9 @@ import FSignup from "./components/Farmer/FSignup";
 import Chat from "./components/Negotiate/Chat";
 import  NotFoundPage  from './components/NotFoundPage';
 import FDashboard from './components/Farmer/FDashboard';
+import Profilesetup from './components/ProfileSetup/Profilesetup';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <AuthProvider >
     <BrowserRouter>
       <Routes>
@@ -26,9 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/flogin" element={<FLogin/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/farmerdashboard" element={<FDashboard/>}/>
+        <Route path="/profilesetup" element={<Profilesetup/>}/>
       </Routes>
     </BrowserRouter>
     </AuthProvider>
 
-  </React.StrictMode>
 );

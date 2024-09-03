@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './Landing.css'
 import img from '../../assets/buyerPic2.jpeg'
 import img1 from '../../assets/farmerPic.jpeg'
