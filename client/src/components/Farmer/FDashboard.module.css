@@ -178,6 +178,7 @@ body{
 .search-bar:hover svg {
   right: 10px; 
   transform: translateY(-50%) scale(1.0);
+  filter: invert(0%);
 }
 .container-p{
   height: 80vh;
