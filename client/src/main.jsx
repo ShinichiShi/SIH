@@ -12,6 +12,7 @@ import Chat from "./components/Negotiate/Chat";
 import  NotFoundPage  from './components/NotFoundPage';
 import FDashboard from './components/Farmer/FDashboard';
 import Profilesetup from './components/ProfileSetup/Profilesetup';
+import FarmSell from './components/Farmer/FarmSell';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <AuthProvider >
@@ -27,6 +28,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login/>}/>
         <Route path="/farmerdashboard" element={<FDashboard/>}/>
         <Route path="/profilesetup" element={<Profilesetup/>}/>
+        <Route path="/farmsell" element={<FarmSell/>}/>
+        
       </Routes>
     </BrowserRouter>
     </AuthProvider>

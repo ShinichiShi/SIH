@@ -1,0 +1,89 @@
+{
+    "crops": [
+      {
+        "name": "Wheat",
+        "imageUrl": "https://images.pexels.com/photos/54084/wheat-grain-agriculture-seed-54084.jpeg?auto=compress&cs=tinysrgb&w=600"
+      },
+      {
+        "name": "Rice",
+        "imageUrl": "https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg?auto=compress&cs=tinysrgb&w=600"
+      },
+      {
+        "name": "Millet",
+        "imageUrl": "https://images.pexels.com/photos/5500154/pexels-photo-5500154.jpeg?auto=compress&cs=tinysrgb&w=600"
+      },
+      {
+        "name": "Maize",
+        "imageUrl": "https://images.pexels.com/photos/5463228/pexels-photo-5463228.jpeg?auto=compress&cs=tinysrgb&w=600"
+      },
+      {
+        "name": "Chickpeas (Bengal Gram)",
+        "imageUrl": "https://images.pexels.com/photos/7717474/pexels-photo-7717474.jpeg?auto=compress&cs=tinysrgb&w=600"
+      },
+      {
+        "name": "Lentils (Masoor)",
+        "imageUrl": "https://images.squarespace-cdn.com/content/v1/5ea3b22556f3d073f3d9cae4/1597506171268-4O8B07HWPQI2E2EDNVM2/17fb3a2c-585b-4c1f-9cb4-b1d28675c4cc.jpg"
+      },
+      {
+        "name": "Pigeon Peas (Arhar/Tur)",
+        "imageUrl": "https://ooofarms.com/cdn/shop/products/Toor1_UPDal.jpg?v=1722510820"
+      },
+      {
+        "name": "Black Gram (Urad)",
+        "imageUrl": "https://ooofarms.com/cdn/shop/products/Urad_Whole.jpg?v=1672251878"
+      },
+      {
+        "name": "Green Gram (Moong)",
+        "imageUrl": "https://5.imimg.com/data5/XB/WX/FJ/SELLER-5061788/wheat-seeds.jpeg"
+      },
+      {
+        "name": "Groundnut (Peanut)",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy4Me_L_NUlntVvCPvh_aWwUF498UMDysijQ&s"
+      },
+      {
+        "name": "Mustard (Rapeseed)",
+        "imageUrl": "https://thumbs.dreamstime.com/z/rapeseed-plant-yellow-flowers-seeds-mustard-plant-yellow-blossom-rapeseed-plant-yellow-flowers-seeds-mustard-161976897.jpg"
+      },
+      {
+        "name": "Soybean",
+        "imageUrl": "https://5.imimg.com/data5/ZR/AN/TA/SELLER-19153449/soybean-seeds-500x500.jpg"
+      },
+      {
+        "name": "Sesame (Til)",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0255/7385/1229/files/sesame1_large.jpg?v=1559723085"
+      },
+      {
+        "name": "Cotton",
+        "imageUrl": "https://5.imimg.com/data5/DA/TO/DI/SELLER-72269125/natural-cotton-500x500.jpg"
+      },
+      {
+        "name": "Sugarcane",
+        "imageUrl": "https://cdn11.bigcommerce.com/s-b9pwig4brj/product_images/uploaded_images/0-featured-closeup-of-sugarcane-growing-in-plantation.jpg"
+      },
+      {
+        "name": "Tea leaves",
+        "imageUrl": "https://rukminim2.flixcart.com/image/850/1000/l29c9e80/vitamin-supplement/q/r/p/50-darjeeling-tea-leaves-anti-oxidants-veer-pharma-original-imagdmwqt3xftcj6.jpeg?q=20&crop=false"
+      },
+      {
+        "name": "Coffee",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roasted_coffee_beans.jpg/1200px-Roasted_coffee_beans.jpg"
+      },
+      {
+        "name": "Mango",
+        "imageUrl": "https://4.imimg.com/data4/EX/IX/MY-26971534/alphonso-mango1.jpg"
+      },
+      {
+        "name": "Banana",
+        "imageUrl": "https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bunch-of-bananas-67e91d5.jpg?quality=90&resize=440,400"
+      },
+      {
+        "name": "Coconut",
+        "imageUrl": "https://facts.net/wp-content/uploads/2023/09/14-facts-about-coconut-1695067813.jpg"
+      },
+      {
+        "name": "Grapes",
+        "imageUrl": "https://smartyield.in/wp-content/uploads/2021/06/Green-grape.png"
+      }
+    ]
+  }
+  
