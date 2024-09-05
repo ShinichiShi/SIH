@@ -4,6 +4,8 @@ import styles from './profilesetup.module.css'; // Import the CSS module
 import { db } from '../../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
+import Navbar from '../Farmer/FarmNav';
+
 export default function Profilesetup() {
   const port = import.meta.env.VITE_PORT;
   const [imagePreview1, setImagePreview1] = useState(null);
@@ -179,6 +181,8 @@ export default function Profilesetup() {
   };
 
   return (
+    <>
+    <Navbar />
     <div className={styles.pfp}>
     <div className={styles.litem}>
             <nav>
@@ -640,5 +644,6 @@ export default function Profilesetup() {
         </div>
       </div>
     </div>
+    </>
   );
 }
