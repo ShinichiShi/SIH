@@ -49,19 +49,19 @@
   padding: 7px;
 }
 
-button[type="submit"] {
+.btnSubmit {
   width: 80%;
-  background-color: #4CAF50;
+  background-color: #00B207;
   color: white;
   padding: 10px;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-
-button[type="submit"]:hover {
+.btnSubmit:hover {
   background-color: #45a049;
 }
 
@@ -107,12 +107,13 @@ font-style: normal; */
 .litem>nav{
   height:10vh;
   width: 200px;
-  background-color:#45a049;
+  background-color:#00B207;
   margin-top:10px;
   padding: 20px;
   text-align: center;
   border-radius: 15px;
   font-weight: 650;
+
 }
 
 .cc{

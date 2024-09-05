@@ -32,7 +32,7 @@ export default function FESignup() {
     try {
       await createUserWithEmailAndPassword(auth, email, password).then(() => {
        toast.success('Welcome');
-        navigate('/buyer');
+        navigate('/profilesetup');
         const user = auth.currentUser;
         console.log(user);
       });
@@ -70,6 +70,7 @@ export default function FESignup() {
                   value={password}
                   className={styles.i1}
                 />
+
                 <div className={styles.google}>
                   <button onClick={signupWithGoogle} className={styles.bt1}>
                     <FcGoogle />
