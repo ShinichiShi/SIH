@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { auth } from '../../../firebase';
 import { Navigate, useNavigate } from 'react-router-dom';
-import Navi from './Navi'
-import styles from './signup.module.css'; // Import the CSS Module
+import Navi from '../Buyer/Navi'
+import styles from '../Buyer/signup.module.css'; // Import the CSS Module
 import { FcGoogle } from "react-icons/fc";
 import { toast, ToastContainer } from 'react-toastify';
 import img from '../../assets/bgimg.jpeg';
@@ -15,7 +15,7 @@ import {
 
 const googleProvider = new GoogleAuthProvider();
 
-export default function Signup() {
+export default function FESignup() {
   const [email, setemail] = useState('');
   const [password, setpass] = useState('');
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function Signup() {
   const signupWithGoogle = () => {
     signInWithPopup(auth, googleProvider).then((e) => {
       toast.success('Welcome')
-      navigate('/buyer');  
+      navigate('/profilesetup');  
     });
   };
 
@@ -81,8 +81,8 @@ export default function Signup() {
                 </div>
                 <p className={styles.p1}>
                   Already have an account?{' '}
-                  <a onClick={() => navigate('/login')} className={styles.a1}>Login</a><br></br>
-                  Signup as a Farmer{' '}
+                  <a onClick={() => navigate('/farmerlogin')} className={styles.a1}>Login</a><br></br>
+                  Signup With Phone Number{' '}
                   <a onClick={() => navigate('/fsignup')} className={styles.a1}>Click Here</a>
                 </p>
               </div>
