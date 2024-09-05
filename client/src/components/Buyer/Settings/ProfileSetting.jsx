@@ -1,9 +1,13 @@
 import { useContext, useState, useEffect } from 'react';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { updatePassword,reauthenticateWithCredential,EmailAuthProvider } from 'firebase/auth';
+import {
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+} from 'firebase/auth';
 import { db } from '../../../../firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { AuthContext } from '../../context/Authcontext';
+import { AuthContext } from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,7 +18,7 @@ export default function ProfileSetting() {
     lname: '',
     email: '',
     phone: '',
-    photoUrl:''
+    photoUrl: '',
   });
 
   const [address, setAddress] = useState({
@@ -42,7 +46,7 @@ export default function ProfileSetting() {
             lname: data.profile.lname || '',
             email: data.profile.email || '',
             phone: data.profile.phone || '',
-            photoUrl:data.profile.photoUrl ||''
+            photoUrl: data.profile.photoUrl || '',
           });
           setAddress({
             addr1: data.address.addr1 || '',
@@ -55,7 +59,13 @@ export default function ProfileSetting() {
             phone: data.address.phone || '',
           });
         } else {
-          setProfile({ displayName: '', lname: '', email: '', phone: '',photoUrl:'' });
+          setProfile({
+            displayName: '',
+            lname: '',
+            email: '',
+            phone: '',
+            photoUrl: '',
+          });
           setAddress({
             addr1: '',
             addr2: '',
@@ -82,8 +92,8 @@ export default function ProfileSetting() {
   });
 
   const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   // Function to handle input change
   const handleInputChange = (e, stateUpdater) => {
     const { name, value } = e.target;
@@ -94,7 +104,7 @@ export default function ProfileSetting() {
   const handleEdit = (section) => {
     setIsEditable((prev) => ({ ...prev, [section]: !prev[section] }));
   };
-  const handlePhotoChange = (e)=>{
+  const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     setPhoto(file);
     setPhotoPreview(URL.createObjectURL(file)); // Generate a preview of the selected photo
@@ -107,7 +117,10 @@ export default function ProfileSetting() {
       let photoUrl = profile.photoUrl;
       if (photo) {
         const storage = getStorage();
-        const storageRef = ref(storage, `profilePictures/buyers/${currentUser.uid}`);
+        const storageRef = ref(
+          storage,
+          `profilePictures/buyers/${currentUser.uid}`
+        );
         await uploadBytes(storageRef, photo);
         photoUrl = await getDownloadURL(storageRef);
       }
@@ -147,7 +160,10 @@ export default function ProfileSetting() {
       toast.error('New password and confirmation password do not match');
       return;
     }
-    const credential = EmailAuthProvider.credential(currentUser.email, currentPassword);
+    const credential = EmailAuthProvider.credential(
+      currentUser.email,
+      currentPassword
+    );
 
     try {
       await reauthenticateWithCredential(currentUser, credential);
@@ -158,11 +174,11 @@ export default function ProfileSetting() {
       setConfirmPassword('');
     } catch (error) {
       console.error('Error updating password:', error);
-      toast.error('Failed to update password. Please ensure the current password is correct.');
-
+      toast.error(
+        'Failed to update password. Please ensure the current password is correct.'
+      );
     }
-    setIsEditable({  password: false });
-
+    setIsEditable({ password: false });
   };
   return (
     <div className="w-3/4 ml-8">
@@ -177,7 +193,7 @@ export default function ProfileSetting() {
                 value={profile.displayName}
                 onChange={(e) => handleInputChange(e, setProfile)}
                 placeholder="First Name"
-                className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
+                className={`w-1/2 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
                 disabled={!isEditable.profile}
               />
               <input
@@ -186,7 +202,7 @@ export default function ProfileSetting() {
                 value={profile.lname}
                 onChange={(e) => handleInputChange(e, setProfile)}
                 placeholder="Last Name"
-                className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
+                className={`w-1/2 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
                 disabled={!isEditable.profile}
               />
             </div>
@@ -196,30 +212,36 @@ export default function ProfileSetting() {
               value={profile.email}
               onChange={(e) => handleInputChange(e, setProfile)}
               placeholder="Email"
-              className={`w-full p-2 border border-gray-300 rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
+              className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
               disabled={!isEditable.profile}
             />
             <input
-              type="text"
+              type="number"
               name="phone"
               value={profile.phone}
               onChange={(e) => handleInputChange(e, setProfile)}
               placeholder="Phone Number"
-              className={`w-full p-2 border border-gray-300 rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
+              className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
               disabled={!isEditable.profile}
             />
           </div>
           <div className="flex flex-col items-center space-y-4">
-          <img
-            src={photoPreview || 'https://via.placeholder.com/150'}
-            alt="Profile"
+            <img
+              src={photoPreview || 'https://via.placeholder.com/150'}
+              alt="Profile"
               className="rounded-full border border-gray-300 w-16 h-16 object-cover"
-          />
-            <label className={`text-green-500 border border-green-500 px-4 py-2 rounded  `}>Upload Profile Image 
-            <input type="file" className={`hidden ${isEditable.profile ? 'cursor-pointer' : 'cursor-not-allowed'}`} onChange={handlePhotoChange} 
-             disabled={!isEditable.profile}
             />
-          </label>
+            <label
+              className={`text-green-500 border placeholder:text-black border-green-500 px-4 py-2 rounded  `}
+            >
+              Upload Profile Image
+              <input
+                type="file"
+                className={`hidden ${isEditable.profile ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                onChange={handlePhotoChange}
+                disabled={!isEditable.profile}
+              />
+            </label>
           </div>
         </div>
         <div className="flex gap-2">
@@ -249,7 +271,7 @@ export default function ProfileSetting() {
             value={address.addr1}
             onChange={(e) => handleInputChange(e, setAddress)}
             placeholder="Address Line 1"
-            className={`w-full p-2 border border-gray-300 rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
+            className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
             disabled={!isEditable.address}
           />
           <input
@@ -258,7 +280,7 @@ export default function ProfileSetting() {
             value={address.addr2}
             onChange={(e) => handleInputChange(e, setAddress)}
             placeholder="Address Line 2"
-            className={`w-full p-2 border border-gray-300 rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
+            className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
             disabled={!isEditable.address}
           />
           <input
@@ -267,7 +289,7 @@ export default function ProfileSetting() {
             value={address.companyName}
             onChange={(e) => handleInputChange(e, setAddress)}
             placeholder="Company Name (optional)"
-            className={`w-full p-2 border border-gray-300 rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
+            className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
             disabled={!isEditable.address}
           />
           <input
@@ -276,7 +298,7 @@ export default function ProfileSetting() {
             value={address.streetAddr}
             onChange={(e) => handleInputChange(e, setAddress)}
             placeholder="Street Address"
-            className={`w-full p-2 border border-gray-300 rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
+            className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
             disabled={!isEditable.address}
           />
           <div className="flex space-x-4">
@@ -284,7 +306,7 @@ export default function ProfileSetting() {
               name="country"
               value={address.country}
               onChange={(e) => handleInputChange(e, setAddress)}
-              className={`w-1/3 p-2 border border-gray-300 rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
+              className={`w-1/3 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
               disabled={!isEditable.address}
             >
               <option value="India">India</option>
@@ -295,16 +317,16 @@ export default function ProfileSetting() {
               value={address.state}
               onChange={(e) => handleInputChange(e, setAddress)}
               placeholder="State"
-              className={`w-1/3 p-2 border border-gray-300 rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
+              className={`w-1/3 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
               disabled={!isEditable.address}
             />
             <input
-              type="text"
+              type="number"
               name="zipCode"
               value={address.zipCode}
               onChange={(e) => handleInputChange(e, setAddress)}
               placeholder="Zip Code"
-              className={`w-1/3 p-2 border border-gray-300 rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
+              className={`w-1/3 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
               disabled={!isEditable.address}
             />
           </div>
@@ -319,7 +341,7 @@ export default function ProfileSetting() {
           <button
             className={`mt-6 px-6 py-2 bg-blue-400 ${isEditable.address ? 'cursor-pointer' : 'cursor-not-allowed'} text-white rounded`}
             onClick={handleSave}
-            disabled={!isEditable.address} 
+            disabled={!isEditable.address}
           >
             Save
           </button>
@@ -335,7 +357,7 @@ export default function ProfileSetting() {
             placeholder="Current Password"
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
-            className={`w-full p-2 border border-gray-300 rounded ${isEditable.password ? '' : 'bg-slate-400'} `}
+            className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.password ? '' : 'bg-slate-400'} `}
             disabled={!isEditable.password}
           />
           <input
@@ -343,15 +365,17 @@ export default function ProfileSetting() {
             placeholder="New Password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
-            className={`w-full p-2 border border-gray-300 rounded ${isEditable.password ? '' : 'bg-slate-400'} `}
+            className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.password ? '' : 'bg-slate-400'} `}
             disabled={!isEditable.password}
           />
           <input
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
-            onChange={(e)=>{setConfirmPassword(e.target.value)}}
-            className={`w-full p-2 border border-gray-300 rounded ${isEditable.password ? '' : 'bg-slate-400'} `}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
+            className={`w-full p-2 border border-gray-300 rounded placeholder:text-black ${isEditable.password ? '' : 'bg-slate-400'} `}
             disabled={!isEditable.password}
           />
         </div>
@@ -372,7 +396,6 @@ export default function ProfileSetting() {
         </div>
       </div>
       <ToastContainer />
-
     </div>
   );
 }

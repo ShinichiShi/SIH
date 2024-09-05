@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../../context/Authcontext';
+import { AuthContext } from '../../context/AuthContext';
 import { db } from '../../../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -105,7 +105,7 @@ export default function PaymentSetting() {
                 name="ifsc"
                 value={bank.ifsc}
                 onChange={(e) => handleChange(e, setBank)}
-                className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
+                className={`w-1/2 p-2 border placeholder:text-black border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
                 disabled={!isEditable}
               />
               <input
@@ -114,7 +114,7 @@ export default function PaymentSetting() {
                 name="bank_name"
                 value={bank.bank_name}
                 onChange={(e) => handleChange(e, setBank)}
-                className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
+                className={`w-1/2 p-2 border placeholder:text-black border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
                 disabled={!isEditable}
               />
             </div>
@@ -124,7 +124,7 @@ export default function PaymentSetting() {
               name="branch_name"
               value={bank.branch_name}
               onChange={(e) => handleChange(e, setBank)}
-              className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
+              className={`w-1/2 p-2 border placeholder:text-black border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
               disabled={!isEditable}
             />
             <input
@@ -133,25 +133,25 @@ export default function PaymentSetting() {
               name="name"
               value={bank.name}
               onChange={(e) => handleChange(e, setBank)}
-              className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
+              className={`w-1/2 p-2 border placeholder:text-black border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
               disabled={!isEditable}
             />
             <input
-              type="text"
+              type="number"
               placeholder="Bank Account No."
               name="acc_no"
               value={bank.acc_no}
               onChange={(e) => handleChange(e, setBank)}
-              className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
+              className={`w-1/2 p-2 border placeholder:text-black border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
               disabled={!isEditable}
             />
             <input
-              type="text"
+              type="number"
               placeholder="Confirm Account No."
               name="confirm"
               value={confirmNumber}
               onChange={(e) => setConfirmNumber(e.target.value)}
-              className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
+              className={`w-1/2 p-2 border placeholder:text-black border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
               disabled={!isEditable}
             />
             <input
@@ -160,21 +160,27 @@ export default function PaymentSetting() {
               name="address"
               value={bank.address}
               onChange={(e) => handleChange(e, setBank)}
-              className={`w-1/2 p-2 border border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
+              className={`w-1/2 p-2 border placeholder:text-black border-gray-300 rounded ${isEditable ? '' : 'bg-slate-400'} `}
               disabled={!isEditable}
             />
             <div className="flex flex-row items-center space-y-4 gap-4">
-            <img
-            src={signaturePreview || 'https://via.placeholder.com/150'}
-            alt="Digital Signature"
-              className="rounded-full border border-gray-300 w-16 h-16 object-cover"
-          />
-            <label className={`text-green-500 border border-green-500 px-4 py-2 rounded ${isEditable ? 'cursor-pointer' : 'cursor-not-allowed'} `}>Upload Digital Signature 
-            <input type="file" name="signature" className={`hidden ${isEditable ? 'cursor-pointer' : 'cursor-not-allowed'}  `} onChange={handleFileChange} 
-             disabled={!isEditable}
-            />
-          </label>
-         
+              <img
+                src={signaturePreview || 'https://via.placeholder.com/150'}
+                alt="Digital Signature"
+                className="rounded-full border border-gray-300 w-16 h-16 object-cover"
+              />
+              <label
+                className={`text-green-500 border border-green-500 px-4 py-2 rounded ${isEditable ? 'cursor-pointer' : 'cursor-not-allowed'} `}
+              >
+                Upload Digital Signature
+                <input
+                  type="file"
+                  name="signature"
+                  className={`hidden ${isEditable ? 'cursor-pointer' : 'cursor-not-allowed'}  `}
+                  onChange={handleFileChange}
+                  disabled={!isEditable}
+                />
+              </label>
             </div>
           </div>
         </div>
