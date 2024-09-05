@@ -2,6 +2,7 @@ import { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import { toast, ToastContainer } from 'react-toastify';
+import { SiGmail } from "react-icons/si";
 import {
   getAuth,
   signInWithPhoneNumber,
@@ -101,10 +102,18 @@ const FSignup = () => {
                   <button onClick={verifyotp} className={styles.bt1}>Verify OTP</button>
                 </div>
                 </div>
+                <div className={styles.google}>
+                  <div className={styles.email}>
+                  <button className={styles.bt1} onClick={()=>navigate('/farmersignup')}>
+                    <SiGmail />
+                    <span className={styles.span}>Sign In With E-Mail</span>
+                  </button>
+                  </div>
+                </div>
                 <p className={styles.p1}>
                   Already have an account?{' '}
                   <a onClick={() => navigate('/FLogin')} className={styles.a1}>Login</a><br></br>
-                  Are you a Buyer?{' '}
+                  Login as a Buyer{' '}
                   <a onClick={() => navigate('/signup')} className={styles.a1}>Click Here</a>
                 </p>
                 <div id="recaptcha-container" className={styles.captcha} style={{display: flagg? "block":"none"}}></div>

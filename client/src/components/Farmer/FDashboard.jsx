@@ -1,5 +1,8 @@
 import styles from './FDashboard.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../../firebase';  // Import your firebase configuration
+
 
 function Searchsvg() {
   return (
@@ -76,24 +79,29 @@ function Search() {
   );
 }
 
-function Box({ showSecondaryBox }) {
+
+
+
+
+
+function Box({ data, showSecondaryBox }) {
   return (
     <div className={styles['box-primary']}>
       <div className={styles['primary-details']}>
-        <p>Name : Arvind Kumar</p>
-        <p>Crop : Rice</p>
-        <p>Quantity required : 100kg</p>
-        <p>Mobile No : 1234567890</p>
-        <p>State : Karnataka</p>
+        <p>Name: {data.name}</p>
+        <p>Crop: {data.crop}</p>
+        <p>Quantity required: {data.quantity}</p>
+        <p>Mobile No: {data.mobile}</p>
+        <p>State: {data.state}</p>
       </div>
       <div className={styles['primary-btn']}>
-        <button onClick={showSecondaryBox}>Show more details</button>
+        <button onClick={() => showSecondaryBox(data)}>Show more details</button>
       </div>
     </div>
   )
 }
 
-function Secondarybox({ hideSecondaryBox }) {
+function Secondarybox({ data, hideSecondaryBox }) {
   return (
     <div className={styles['box-sec']}>
       <h3>Details:</h3>
@@ -101,17 +109,17 @@ function Secondarybox({ hideSecondaryBox }) {
         <button onClick={hideSecondaryBox}>✕</button>
       </div>
       <div className={styles['sec-details']}>
-        <p>Name : Arvind Kumar</p>
-        <p>Crop : Rice</p>
-        <p>Quantity : 100kg</p>
-        <p>Language Known : Kannada, Hindi, English</p>
-        <p>Mobile : 1234567890</p>
-        <p>E-mail : arvind@gmail.com</p>
-        <p>Address : 23, Jayanagar, Bengaluru</p>
-        <p>City : Bengaluru</p>
-        <p>District : Bengaluru</p>
-        <p>State : Karnataka</p>
-        <p>Pincode : 560078</p>
+        <p>Name: {data.name}</p>
+        <p>Crop: {data.crop}</p>
+        <p>Quantity: {data.quantity}</p>
+        <p>Language Known: {data.languages}</p>
+        <p>Mobile: {data.mobile}</p>
+        <p>E-mail: {data.email}</p>
+        <p>Address: {data.address}</p>
+        <p>City: {data.city}</p>
+        <p>District: {data.district}</p>
+        <p>State: {data.state}</p>
+        <p>Pincode: {data.pincode}</p>
       </div>
       <div className={styles['contract-btn']}>
         <button>Make a Contract</button>
@@ -122,23 +130,41 @@ function Secondarybox({ hideSecondaryBox }) {
 
 function MainBox() {
   const [showBox, setShowBox] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
+  const [dealers, setDealers] = useState([]);
 
-  const showSecondaryBox = () => setShowBox(true);
+  useEffect(() => {
+    const fetchDealers = async () => {
+      const dealersCollection = collection(db, '');  // enter ur collection name inside the quotes'
+      const dealersSnapshot = await getDocs(farmerdataCollection);//here too
+      const dealersList = dealersSnapshot.docs.map(doc => doc.data());
+      setDealers(dealersList);
+    };
+
+    fetchDealers();
+  }, []);
+
+  const showSecondaryBox = (data) => {
+    setSelectedData(data);
+    setShowBox(true);
+  };
+
+ 
   const hideSecondaryBox = () => setShowBox(false);
 
   return (
     <div className={styles['container-p']}>
       <h1>DEALERS</h1>
       <div className={styles['container-s']}>
-        <Box showSecondaryBox={showSecondaryBox} />
-        <Box showSecondaryBox={showSecondaryBox} />
-        <Box showSecondaryBox={showSecondaryBox} />
-        <Box showSecondaryBox={showSecondaryBox} />
-        <Box showSecondaryBox={showSecondaryBox} />
+        {dealers.map((dealer, index) => (
+          <Box key={index} data={dealer} showSecondaryBox={showSecondaryBox} />
+        ))}
       </div>
-      {showBox && <div className={styles.modal}>
-        <Secondarybox hideSecondaryBox={hideSecondaryBox} />
-      </div>}
+      {showBox && selectedData && (
+        <div className={styles.modal}>
+          <Secondarybox data={selectedData} hideSecondaryBox={hideSecondaryBox} />
+        </div>
+      )}
     </div>
   )
 }
