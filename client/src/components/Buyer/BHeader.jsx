@@ -36,7 +36,7 @@ function BHeader() {
     }
   };
   return (
-    <header className="h-20 font-sans">
+    <div className="h-20 font-sans">
       <div className="bg-white h-full shadow flex w-full">
         <div className=" w-full flex justify-between items-center  px-4">
           <div className="text-green-500 text-2xl font-bold">AgriConnect</div>
@@ -88,7 +88,7 @@ function BHeader() {
         </div>
         <ToastContainer/>
       </div>
-    </header>
+    </div>
   );
 }
 

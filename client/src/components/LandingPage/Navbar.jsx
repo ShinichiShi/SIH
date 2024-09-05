@@ -1,6 +1,6 @@
-import React from "react";
+// import React from "react";
 import 'tailwindcss/tailwind.css';
-import './Landing.css'; // Ensure you also adjust any custom styles if necessary
+// import './Landing.module.css'; // Ensure you also adjust any custom styles if necessary
 
 export default function Navbar() {
   return (
