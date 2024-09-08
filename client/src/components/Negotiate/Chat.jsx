@@ -1,136 +1,146 @@
 import './chat.css';
-import io from 'socket.io-client';
+import io from 'socket.io-client'
 import { useState, useRef, useEffect, useContext } from 'react';
 import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import { AuthContext } from '../context/Authcontext';
 
+
+const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
+
 export default function Chat() {
-  //current user context
+
   const { currentUser } = useContext(AuthContext);
-  const [userType, setUserType] = useState('buyers'); //change depending upon the type of user(buyer or farmer)
-  const [contacts, setContacts] = useState({});
-  // console.log(currentUser);
-  console.log(contacts);
-  //testing values, to be removed later
-  const roomID = 'room1';
-  const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
-
   const [socket, setSocket] = useState(null);
+  const [currentRoomID, setRoomID] = useState(1);
+  const [prevRoomID, setPrevRoomID] = useState(null);
+  const [userType, setUserType] = useState('buyers');
+  const [contacts, setContacts] = useState(null);
 
-  useEffect(() => {
+  useEffect(()=>{
+    if(!currentUser){
+      return;
+    }
     //establish new socket connection
     const newSocket = io.connect(`http://localhost:${SERVER_PORT}`);
     setSocket(newSocket);
 
-    //monitor messages
-    newSocket.on('recieve-message', (recieved_message) => {
-      setMessages((prevMessages) => [...prevMessages, recieved_message]);
-    });
-
-    // get all contacts when u load the page
-    getContacts(currentUser.uid, userType).then((result) => {
+    loadContacts(currentUser.uid, userType).then((result)=>{
       setContacts(result);
-    });
+    })
+
+    console.log("current user id ", currentUser.uid);
+
     return () => {
+      console.log("disconnected");
       newSocket.disconnect();
     };
-  }, []);
+  },[currentUser])
 
-  // State for the input text and messages
-  const [text, setText] = useState('');
-  const [messages, setMessages] = useState([]);
-
-  // Refs for the container and the last message
-  const messagesEndRef = useRef(null);
-
-  // Scroll to the bottom whenever messages change
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
-  // Handle the click event to add a new message
-  const handleClick = async () => {
-    //send message to server through websocket
-    if (text.trim()) {
-      
-      if (socket) {
-        socket.emit('send-message', { message: text });
-      }
-
-      //add message to database
-      try {
-        await addDoc(collection(db, 'chats', roomID, 'messages'), {
-          message: text,
-          timeStamp: new Date(),
-          user: currentUser.uid,
-        });
-      } catch (error) {
-        console.error('Error uploading message:', error);
-      }
-
-      setMessages([...messages, text]);
-      setText('');
+  useEffect(()=>{
+    if(contacts!=null){
+      console.log("contacts ", contacts);
     }
-  };
+  },[contacts])
 
-  // Handle the change event for the textarea
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
+  useEffect(()=>{
 
+    //monitor events
+    if(socket){
+      socket.on("connect", () => {
+        console.log("current socket ID:", socket.id); // Now it's guaranteed to be defined
+      });
+      socket.on("recieve-message", (received_message) => {
+        console.log("recieved message ", received_message.message, " from room ,", received_message.room);
+        
+      });
+      socket.on("joined-room", (room)=>{
+        console.log(`${socket.id} joined room ${room}`);
+      })
+      socket.on("left-room", (room)=>{
+        console.log(`${socket.id} left room ${room}`);
+      })
+    }
+    return ()=>{
+      if(socket){
+        socket.off("connect");
+        socket.off("recieve-message");
+        socket.off("joined-room");
+        socket.off("left-room");
+      }
+    }
+  }, [socket])
+
+  useEffect(()=>{
+
+    //switch rooms/contacts
+    if(socket){
+      switchRooms(socket, prevRoomID, currentRoomID);
+      loadMessage(currentRoomID);
+    }
+  }, [currentRoomID])
+
+
+  const handleClick = async ()=>{
+    //broadcast message 
+    await socket.emit("send-message", {message : `message from ${socket.id}`, room:currentRoomID});
+
+    //upload message to database
+    uploadMessage(currentRoomID);
+  }
   return (
-    <div className="mainsec">
-      <div className="sidebar">
-        hi
-      </div>
-      <div className="chatui" id="chatmain">
-        <nav>
-          <header>
-            <h1>Person chatting with</h1>
-          </header>
-        </nav>
-        <main className="chats-display">
-          {messages.map((msg, index) => (
-            <div key={index} className="container">
-              <span>{msg}</span>
-            </div>
-          ))}
-          {/* Empty div to scroll to */}
-          <div ref={messagesEndRef} />
-        </main>
-        <footer className="chatbar">
-          <textarea
-            name="negotiate"
-            id="chat"
-            placeholder="Enter text"
-            value={text}
-            onChange={handleChange}
-          />
-          <button onClick={handleClick}>Send</button>
-        </footer>
-      </div>
-    </div>
+  <>
+    <button onClick={handleClick}>Send message</button>
+    <button onClick={()=>{
+      if(currentRoomID<3){
+        setPrevRoomID(currentRoomID);
+        setRoomID(currentRoomID+1);
+      }
+      else{
+        setPrevRoomID(currentRoomID);
+        setRoomID(1);
+      }
+    }}>Switch Room</button>
+  </>
   );
 }
 
-const getContacts = async (userID, userType) => {
+const switchRooms = async (socket, prevRoomID, currentRoomID)=>{
+  await socket.emit('leave-room', prevRoomID)
+  await socket.emit('join-room', currentRoomID);
+}
+
+const uploadMessage = async (currentRoomID)=>{
   try {
-    const userDocRef = doc(db, userType, userID);
+    await addDoc(collection(db, 'chats', `${currentRoomID}`, 'messages'), {
+      message: 'test text',
+      timeStamp: new Date(),
+      // user: currentUser.uid,
+      user: 'asdjka'
+    }).then(console.log("message sent"));
+  } catch (error) {
+    console.error("Error uploading message:", error);
+  }
+}
+
+const loadContacts = async (currentUserID, userType)=>{
+  try {
+    const userDocRef = doc(db, userType, currentUserID);
     const userDoc = await getDoc(userDocRef);
     if (userDoc.exists()) {
       const userData = userDoc.data();
-      return userData.Contacts;
-      // const contacts = userData.contacts || [];
-
-      // console.log("Contacts:", contacts);
-      // return contacts;
+      return userData.Contacts || {};
     } else {
-      console.log('No such user!');
-      return [];
+      console.log("No such user!");
+      return {};
     }
   } catch (error) {
-    console.error('Error fetching contacts:', error);
-    return [];
+    console.error("Error fetching contacts:", error);
+    return {};
   }
-};
+}
+
+const loadMessage = async (currentRoomID)=>{
+  //TODO
+  console.log(`fetching messages from ${currentRoomID}`);
+}
