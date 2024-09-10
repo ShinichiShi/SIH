@@ -116,7 +116,7 @@ select>option{
     text-decoration: underline;
     display: flex;
     gap: 10px;
-    padding-left: 60px;
+    padding-left: 30px;
     
 }
 .google>button>span{

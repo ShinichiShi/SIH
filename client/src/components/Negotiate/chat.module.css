@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.chatui{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+.cntlist{
+    width: 25vw;
+    height: 100vh;
+}
+.profileinfo{
+    padding: 13px;
+    background-color:white;
+    height: 7vh;
+    text-align: center;
+    font-size: 22px;
+    display: flex;
+    gap: 5vw;
+     border-right:1px solid rgba(128, 128, 128, 0.267);
+    /* border-radius: 5px; */
+}
+.profileinfo a{
+ cursor: pointer;
+}
+.profileinfo>h1{
+    position: relative;
+    bottom: 0.7vh;
+    right: 4vw;
+}
+.list{
+    /* border-radius: 10px; */
+    display: flex;
+    flex-direction: column;
+    height: 93vh;
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    background-color: white;
+    overflow-y: auto;
+}
+.list>button>span{
+    position: relative;
+    bottom: 1vh;
+}
+.cnt1{
+    height: 9vh;
+    font-size: 25px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+.cnt1>span{
+    position: relative;
+    bottom: 6px;
+}
+.cnt1:focus{
+    background-color:rgba(0, 0, 0, 0.034);
+}
+.chat{
+    display: flex;
+    flex-direction: column;
+}
+.clientpfp{
+    height:7.4vh;
+    width: 76vw;
+    text-align: center;
+    padding: 8px;
+    background-color: whitesmoke;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    /* border-radius:5px; */
+}
+.icons{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+.display{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    font-size: 20px;
+    background-color: rgb(228, 226, 226);
+    height: 85vh;
+    z-index: -1;
+    text-align: center;
+    overflow-y: scroll;
+}
+.send{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: whitesmoke;
+    gap: 15px;
+    padding-left: 3vw;
+}
+.send>textarea{
+    padding: 4px;
+    width: 55vw;
+    height: 6vh;
+    color: black;
+    font-size: 18px;
+    outline: none;
+    background-color: white;
+    text-align: center;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+.send>button{
+    /* border-radius:10px; */
+    background-color:greenyellow;
+    width: 10vw;
+    text-align: center;
+    border-radius: 10px;
+}
