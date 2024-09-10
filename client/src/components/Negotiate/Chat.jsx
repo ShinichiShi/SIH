@@ -1,9 +1,16 @@
-import './chat.css';
+import styles from './chat.module.css';
 import io from 'socket.io-client'
 import { useState, useRef, useEffect, useContext } from 'react';
 import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import { AuthContext } from '../context/Authcontext';
+import { useNavigate } from 'react-router-dom';
+import { LuUserCircle2 } from "react-icons/lu";
+import { IoArrowBackOutline } from "react-icons/io5";
+import { MdCall } from "react-icons/md";
+import { IoVideocam } from "react-icons/io5";
+import { IoMdMore } from "react-icons/io";
+import { FaPlus } from "react-icons/fa6";
 
 
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
@@ -16,6 +23,9 @@ export default function Chat() {
   const [prevRoomID, setPrevRoomID] = useState(null);
   const [userType, setUserType] = useState('buyers');
   const [contacts, setContacts] = useState(null);
+  const [message,setmessage]=useState();
+  const navigate = useNavigate();
+  const [currperson,setperson]=useState();
 
   useEffect(()=>{
     if(!currentUser){
@@ -86,11 +96,90 @@ export default function Chat() {
     await socket.emit("send-message", {message : `message from ${socket.id}`, room:currentRoomID});
 
     //upload message to database
-    uploadMessage(currentRoomID);
+    uploadMessage(currentRoomID,message,currentUser.uid);
   }
+  const handleChange = (event) => {
+    setmessage(event.target.value);
+  };
   return (
-  <>
-    <button onClick={handleClick}>Send message</button>
+  <div className={styles.chitchat}>
+    <div className={styles.chatui}>
+      <div className={styles.cntlist}>
+        <div className={styles.profileinfo}>
+          <a onClick={()=>navigate()}><IoArrowBackOutline /></a>
+          <h1>Chats</h1>
+        </div>
+        <div className={styles.list}>
+          {/* <div className={styles.cnt1}>
+            <LuUserCircle2 />
+            <span>lavi</span>
+          </div>
+          <div className={styles.cnt1}>
+          <LuUserCircle2 />
+            <span>supreeth</span>
+          </div>
+          <div className={styles.cnt1}>
+            <LuUserCircle2 />
+            <span>dilip</span>
+          </div>
+          <div className={styles.cnt1}>
+            <LuUserCircle2 />
+            <span>isha</span>
+          </div>
+          <div className={styles.cnt1}>
+            <LuUserCircle2 />
+            <span>samyak</span>
+          </div> */}
+         {Object.keys(contacts).map((key) => {
+            const contact = contacts[key];
+            return (
+              <button
+                key={key}
+                onClick={() => {
+                  loadMessage(contact.roomID)
+                  setperson(`${contact.farmer_name}`)}}
+                style={{ marginBottom: '10px', cursor: 'pointer',textAlign:'center' }}
+                className={styles.cnt1}
+              >
+                <LuUserCircle2 />
+                <span>{contact.farmer_name}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div className={styles.chat}>
+        <div className={styles.clientpfp}>
+          <span style={{display:'flex',gap:'15px'}}>
+            <span style={{position:'relative',top:'1vh'}}><LuUserCircle2 /></span>
+            {currperson}
+            </span>
+          <div className={styles.icons}>
+          <MdCall />
+          <IoVideocam />
+          <IoMdMore />
+          </div>
+        </div>
+        <div className={styles.display}>
+          <div className={styles.mess}>
+            {/* <span>message 1</span> */}
+          </div>
+          <div className={styles.mess}>
+            {/* <span>message 2</span> */}
+          </div>
+        </div>
+        <div className={styles.send}>
+          <textarea
+            name="negotiate"
+            id="chat"
+            placeholder="Send a message"
+            onChange={handleChange}
+          />
+          <button onClick={handleClick}>Send</button>
+        </div>
+      </div>
+    </div>
+    {/*
     <button onClick={()=>{
       if(currentRoomID<3){
         setPrevRoomID(currentRoomID);
@@ -100,8 +189,8 @@ export default function Chat() {
         setPrevRoomID(currentRoomID);
         setRoomID(1);
       }
-    }}>Switch Room</button>
-  </>
+    }}>Switch Room</button> */}
+  </div>
   );
 }
 
@@ -110,13 +199,13 @@ const switchRooms = async (socket, prevRoomID, currentRoomID)=>{
   await socket.emit('join-room', currentRoomID);
 }
 
-const uploadMessage = async (currentRoomID)=>{
+const uploadMessage = async (currentRoomID,mess,userId)=>{
   try {
     await addDoc(collection(db, 'chats', `${currentRoomID}`, 'messages'), {
-      message: 'test text',
+      message: `${mess}`,
       timeStamp: new Date(),
       // user: currentUser.uid,
-      user: 'asdjka'
+      user:`${userId}`
     }).then(console.log("message sent"));
   } catch (error) {
     console.error("Error uploading message:", error);
