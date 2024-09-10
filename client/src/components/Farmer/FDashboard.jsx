@@ -42,18 +42,18 @@ function Box({ data, showSecondaryBox }) {
   return (
     <div className={styles['box-primary']}>
       <div className={styles['primary-details']}>
-        <p>Name: {data.name}</p>
-        <p>Crop: {data.crop}</p>
-        <p>Quantity required: {data.quantity}</p>
-        <p>Mobile No: {data.mobile}</p>
-        <p>State: {data.state}</p>
+        <p>Name: {data.profile?.displayName || 'N/A'} {data.profile?.lname || ''}</p>
+        <p>Contact Name: {data.displayName || 'N/A'} </p>
+        <p>Phone: {data.profile?.phone || 'N/A'}</p>
+        <p>State: {data.address?.state || 'N/A'}</p>
       </div>
       <div className={styles['primary-btn']}>
         <button onClick={() => showSecondaryBox(data)}>Show more details</button>
       </div>
     </div>
-  )
+  );
 }
+
 
 function Secondarybox({ data, hideSecondaryBox }) {
   return (
@@ -63,24 +63,25 @@ function Secondarybox({ data, hideSecondaryBox }) {
         <button onClick={hideSecondaryBox}>✕</button>
       </div>
       <div className={styles['sec-details']}>
-        <p>Name: {data.name}</p>
-        <p>Crop: {data.crop}</p>
-        <p>Quantity: {data.quantity}</p>
-        <p>Language Known: {data.languages}</p>
-        <p>Mobile: {data.mobile}</p>
-        <p>E-mail: {data.email}</p>
-        <p>Address: {data.address}</p>
-        <p>City: {data.city}</p>
-        <p>District: {data.district}</p>
-        <p>State: {data.state}</p>
-        <p>Pincode: {data.pincode}</p>
-      </div>
-      <div className={styles['contract-btn']}>
-        <button>Make a Contract</button>
+        <p>Name : {data.profile?.displayName || 'N/A'} {data.profile?.lname || ''}</p>
+        <p>Company Name : {data.address?.companyName || 'N/A'}</p>
+        <p>Phone : {data.profile?.phone || 'N/A'}</p>
+        <p>Email : {data.profile?.email || 'N/A'}</p>
+        <p>Address 1 : {data.address?.addr1}</p>
+        <p>Address 2 : {data.address?.addr2}</p>
+        <p>State : {data.address?.state}</p>
+        <p>Country : {data.address?.country}</p>
+        <p>Bank: {data.bank?.bank_name || 'N/A'}</p>
+
+        {/* <p>IFSC Code: {data.ifsc || 'N/A'}</p>
+        <p>Branch: {data.branch_name || 'N/A'}</p>
+        <p>Bank: {data.bank_name || 'N/A'}</p>
+        <p>Signature: <img src={data.signatureUrl} alt="Signature" /></p> */}
       </div>
     </div>
-  )
+  );
 }
+
 
 function MainBox() {
   const [showBox, setShowBox] = useState(false);
@@ -89,13 +90,18 @@ function MainBox() {
 
   useEffect(() => {
     const fetchDealers = async () => {
-      const dealersCollection = collection(db, '');  // enter ur collection name inside the quotes'
-      const dealersSnapshot = await getDocs(farmerdataCollection);//here too
-      const dealersList = dealersSnapshot.docs.map(doc => doc.data());
-      setDealers(dealersList);
+      try {
+        // Reference to the 'buyers' collection in Firestore
+        const dealersCollection = collection(db, 'buyers');
+        const dealersSnapshot = await getDocs(dealersCollection);
+        const dealersList = dealersSnapshot.docs.map(doc => doc.data());
+        setDealers(dealersList);  // Store fetched data in state
+      } catch (error) {
+        console.error("Error fetching buyers data: ", error);
+      }
     };
 
-    fetchDealers();
+    fetchDealers();  // Fetch the data when the component mounts
   }, []);
 
   const showSecondaryBox = (data) => {
@@ -103,7 +109,6 @@ function MainBox() {
     setShowBox(true);
   };
 
- 
   const hideSecondaryBox = () => setShowBox(false);
 
   return (
@@ -120,7 +125,7 @@ function MainBox() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function FDashboard() {
