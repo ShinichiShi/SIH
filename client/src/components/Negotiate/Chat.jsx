@@ -1,7 +1,7 @@
 import styles from './chat.module.css';
 import io from 'socket.io-client'
 import { useState, useRef, useEffect, useContext } from 'react';
-import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, orderBy, query, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import { AuthContext } from '../context/Authcontext';
 import { useNavigate } from 'react-router-dom';
@@ -19,13 +19,15 @@ export default function Chat() {
 
   const { currentUser } = useContext(AuthContext);
   const [socket, setSocket] = useState(null);
-  const [currentRoomID, setRoomID] = useState(1);
+  const [currentRoomID, setRoomID] = useState(null);
   const [prevRoomID, setPrevRoomID] = useState(null);
   const [userType, setUserType] = useState('buyers');
   const [contacts, setContacts] = useState(null);
   const [message,setmessage]=useState();
+  const[messages, setMessages] = useState();
   const navigate = useNavigate();
   const [currperson,setperson]=useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
     if(!currentUser){
@@ -37,6 +39,7 @@ export default function Chat() {
 
     loadContacts(currentUser.uid, userType).then((result)=>{
       setContacts(result);
+      setLoading(false);
     })
 
     console.log("current user id ", currentUser.uid);
@@ -49,7 +52,7 @@ export default function Chat() {
 
   useEffect(()=>{
     if(contacts!=null){
-      console.log("contacts ", contacts);
+      // console.log("contacts ", contacts);
     }
   },[contacts])
 
@@ -82,13 +85,16 @@ export default function Chat() {
   }, [socket])
 
   useEffect(()=>{
-
     //switch rooms/contacts
-    if(socket){
-      switchRooms(socket, prevRoomID, currentRoomID);
-      loadMessage(currentRoomID);
-    }
+      if(socket){
+        switchRooms(socket, prevRoomID, currentRoomID);
+        loadMessage(currentRoomID).then((result)=>{setMessages(result)});
+      }
   }, [currentRoomID])
+
+  useEffect(()=>{
+    console.log(messages);
+  }, [messages])
 
 
   const handleClick = async ()=>{
@@ -101,6 +107,15 @@ export default function Chat() {
   const handleChange = (event) => {
     setmessage(event.target.value);
   };
+
+  if (loading) {
+    return <div><h1>Loading contacts...</h1></div>; // Show a loading message or spinner
+  }
+
+  if (!contacts || Object.keys(contacts).length === 0) {
+    return <div>No contacts available</div>; // Handle case where no contacts are available
+  }
+
   return (
   <div className={styles.chitchat}>
     <div className={styles.chatui}>
@@ -136,7 +151,9 @@ export default function Chat() {
               <button
                 key={key}
                 onClick={() => {
-                  loadMessage(contact.roomID)
+                  // loadMessage(contact.roomID)
+                  setPrevRoomID(currentRoomID);
+                  setRoomID(contact.roomID);
                   setperson(`${contact.farmer_name}`)}}
                 style={{ marginBottom: '10px', cursor: 'pointer',textAlign:'center' }}
                 className={styles.cnt1}
@@ -179,17 +196,6 @@ export default function Chat() {
         </div>
       </div>
     </div>
-    {/*
-    <button onClick={()=>{
-      if(currentRoomID<3){
-        setPrevRoomID(currentRoomID);
-        setRoomID(currentRoomID+1);
-      }
-      else{
-        setPrevRoomID(currentRoomID);
-        setRoomID(1);
-      }
-    }}>Switch Room</button> */}
   </div>
   );
 }
@@ -200,15 +206,19 @@ const switchRooms = async (socket, prevRoomID, currentRoomID)=>{
 }
 
 const uploadMessage = async (currentRoomID,mess,userId)=>{
-  try {
-    await addDoc(collection(db, 'chats', `${currentRoomID}`, 'messages'), {
-      message: `${mess}`,
-      timeStamp: new Date(),
-      // user: currentUser.uid,
-      user:`${userId}`
-    }).then(console.log("message sent"));
-  } catch (error) {
-    console.error("Error uploading message:", error);
+  if(currentRoomID){
+    try {
+      await addDoc(collection(db, 'chats', `${currentRoomID}`, 'messages'), {
+        message: `${mess}`,
+        timeStamp: new Date(),
+        // user: currentUser.uid,
+        user:`${userId}`
+      }).then(console.log("message sent"));
+    } catch (error) {
+      console.error("Error uploading message:", error);
+    }    
+  }else{
+    console.log("select room");
   }
 }
 
@@ -230,6 +240,23 @@ const loadContacts = async (currentUserID, userType)=>{
 }
 
 const loadMessage = async (currentRoomID)=>{
-  //TODO
   console.log(`fetching messages from ${currentRoomID}`);
+  try {
+    const messagesCollectionRef = collection(db, "chats", `${currentRoomID}`, "messages");
+    const q = query(messagesCollectionRef, orderBy('timeStamp', 'asc'));
+
+    const querySnapshot = await getDocs(q);
+    const fetchedMessages = querySnapshot.docs.map(doc=>{
+      const data = doc.data();
+      return{
+        user:data.user,
+        text:data.message
+      }
+    })
+    // console.log(fetchedMessages);
+    return fetchedMessages;
+  } catch (error) {
+    console.error("Error fetching messages: ", error);
+  }
+  
 }
