@@ -30,8 +30,11 @@ function ProfileIcon() {
     try {
       await signOut(auth);
       console.log('hello')
-      toast.success("Logged Out")
-      navigate('/flogin'); 
+      toast.success("Logging Out")
+      setTimeout(() => {
+        navigate('/flogin');
+      }, 1000);
+      // navigate('/flogin'); 
     } catch (error) {
       toast.error('Error signing out:', error);
     }

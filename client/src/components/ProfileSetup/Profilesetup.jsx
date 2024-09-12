@@ -73,7 +73,7 @@ export default function Profilesetup() {
       .then((data) => setAreas(data));
   };
 
-  const userCollectionRef = collection(db, 'farmerdata');
+  const userCollectionRef = collection(db, 'farmers');
 
   // Image handling
   const handleImageChange1 = (event) => {

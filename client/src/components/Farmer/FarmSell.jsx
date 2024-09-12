@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { collection, addDoc, doc,setDoc} from 'firebase/firestore';
 import { db } from '../../../firebase';
 import { useAuth } from '../context/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
 import Navbar from './FarmNav';
 
 function Box({ crop }) {
@@ -57,6 +58,8 @@ function Details({ crops, setSelectedCrop, handleInputChange }) {
               placeholder="Enter quantity"
               onChange={handleInputChange}
               required
+              min={0}
+              step={1}
             />
           </div>
 
@@ -69,6 +72,8 @@ function Details({ crops, setSelectedCrop, handleInputChange }) {
               placeholder="Enter selling price"
               onChange={handleInputChange}
               required
+              min={0}
+              step={1}
             />
           </div>
 
@@ -81,6 +86,8 @@ function Details({ crops, setSelectedCrop, handleInputChange }) {
               placeholder="Enter land area"
               onChange={handleInputChange}
               required
+              min={0}
+              step={1}
             />
           </div>
 
@@ -141,6 +148,8 @@ function Details({ crops, setSelectedCrop, handleInputChange }) {
               placeholder="Enter pincode"
               onChange={handleInputChange}
               required
+              min={0}
+              step={1}
             />
           </div>
         </div>
@@ -226,20 +235,20 @@ function FarmSell() {
   };
 
   
-
+  // console.log(currentUser);
   const submitDetails = async () => {
     // Check if the user is logged in
     if (!currentUser) {
-      alert('No user is logged in. Please log in to submit details.');
+      toast.error('No user is logged in. Please log in to submit details.');
       return;
     }
   
     // Ensure a crop is selected
     if (!selectedCrop) {
-      alert('Please select a crop.');
+      toast.error('Please select a crop.');
       return;
     }
-  
+    // console.log(currentUser);
     // Structure the data to be submitted as part of a map
     const cropData = {
       cropName: selectedCrop.name,
@@ -261,19 +270,28 @@ function FarmSell() {
       await setDoc(
         farmerDocRef,
         {
-          cropProduce: cropData, // Use the crop name as a key and store the data
+          cropProduce: {
+            ...cropData, // Use the crop name as a key and store the data
+          } // Use the crop name as a key and store the data
           
         },
         { merge: true } // Merge to avoid overwriting existing data
       );
-  
-      alert('Details submitted successfully!');
+      
+      toast.success('Crop details is submitted successfully!');
+      // alert('Details submitted successfully!');
+    // console.log(currentUser);
+
     } catch (e) {
       console.error('Error adding document: ', e);
-      alert('Failed to submit details. Please try again.');
+      toast.error('Failed to submit details. Please try again.');
     }
   };
   
+  const handleCropSelection = (crop) => {
+    setSelectedCrop(crop);
+    document.getElementById('details-section').scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <>
@@ -285,14 +303,15 @@ function FarmSell() {
       />
       <Details
         crops={filteredCrops}
-        setSelectedCrop={setSelectedCrop}
+        setSelectedCrop={handleCropSelection}
         handleInputChange={handleInputChange}
       />
       <div className={styles['submit-btn-div']}>
-        <button className={styles['submit-button']} onClick={submitDetails}>
+        <button id="details-section" className={styles['submit-button']} onClick={submitDetails}>
           Submit Details
         </button>
       </div>
+      <ToastContainer />
     </>
   );
 }
