@@ -402,13 +402,13 @@ body{
   justify-content: center;
 }
 
-.contract-btn {
+.contractBtn {
   display: flex;
   justify-content: center;
   /* margin-top: 20px; */
 }
 
-.contract-btn button {
+.contractBtn button {
   background-color: #00B207;
   color: white;
   border: none;
@@ -422,4 +422,19 @@ body{
 
 .contract-btn button:hover {
   background-color: darkgreen;
+}
+
+/* ```````````````````````````````secimg`````````````````````````` */
+.secImgbox{
+  height: 115px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.secImg{
+  height: 85px;
+  width: 85px;
+  border-radius: 7rem;
+  border: 0.5px solid #ccc;
+  filter: opacity(0.8);
 }
