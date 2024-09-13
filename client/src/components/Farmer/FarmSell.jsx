@@ -15,7 +15,6 @@ function Box({ crop }) {
         <label>
           <input type="radio" name="crop" value={crop.name} />
           {' ' + crop.name}
-          {' ' + crop.name}
         </label>
       </div>
     </div>
@@ -32,21 +31,9 @@ function Details({ crops, setSelectedCrop, handleInputChange }) {
             className={styles['box-crop']}
             onClick={() => setSelectedCrop(crop)}
           >
-          <div
-            key={index}
-            className={styles['box-crop']}
-            onClick={() => setSelectedCrop(crop)}
-          >
             <img src={crop.imageUrl} alt={crop.name} />
             <div className={styles['radio-button']}>
               <label>
-                <input
-                  type="radio"
-                  name="crop"
-                  value={crop.name}
-                  onChange={() => setSelectedCrop(crop)}
-                />
-                {' ' + crop.name}
                 <input
                   type="radio"
                   name="crop"
@@ -114,26 +101,10 @@ function Details({ crops, setSelectedCrop, handleInputChange }) {
               onChange={handleInputChange}
               required
             />
-            <input
-              type="text"
-              id="items"
-              name="items"
-              placeholder="Enter items"
-              onChange={handleInputChange}
-              required
-            />
           </div>
 
           <div className={styles['form-group']}>
             <label htmlFor="location">Location of Farm</label>
-            <input
-              type="text"
-              id="location"
-              name="location"
-              placeholder="Enter location"
-              onChange={handleInputChange}
-              required
-            />
             <input
               type="text"
               id="location"
@@ -154,26 +125,10 @@ function Details({ crops, setSelectedCrop, handleInputChange }) {
               onChange={handleInputChange}
               required
             />
-            <input
-              type="text"
-              id="district"
-              name="district"
-              placeholder="Enter district"
-              onChange={handleInputChange}
-              required
-            />
           </div>
 
           <div className={styles['form-group']}>
             <label htmlFor="state">State</label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              placeholder="Enter state"
-              onChange={handleInputChange}
-              required
-            />
             <input
               type="text"
               id="state"
@@ -239,27 +194,6 @@ function Search({ searchQuery, setSearchQuery, handleSearch }) {
                 strokeWidth="1.5"
                 strokeLinejoin="round"
               />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width={24}
-              height={24}
-              color={'#000000'}
-              fill={'none'}
-            >
-              <path
-                d="M17.5 17.5L22 22"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-              />
             </svg>
           </button>
         </div>
@@ -281,7 +215,6 @@ function FarmSell() {
     district: '',
     state: '',
     pincode: '',
-    pincode: '',
   });
 
   const { currentUser } = useAuth(); // Get the current user from AuthContext
@@ -290,8 +223,6 @@ function FarmSell() {
     const filtered = cropData.crops.filter((crop) =>
       crop.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    const rest = cropData.crops.filter(
-      (crop) => !crop.name.toLowerCase().includes(searchQuery.toLowerCase())
     const rest = cropData.crops.filter(
       (crop) => !crop.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
