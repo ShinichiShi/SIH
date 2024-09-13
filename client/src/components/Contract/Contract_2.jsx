@@ -1,9 +1,7 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Web3 from 'web3';
 // import { Alert, AlertDescription, AlertTitle, AlertDialog, AlertDialogAction } from '@/components/ui/alert';
 import MultiAgriConnect from '../../contractAddress/MultiAgriConnect.json';
-
-
 
 const MultiAgriConnectInteract = () => {
   const [web3, setWeb3] = useState(null);
@@ -27,10 +25,13 @@ const MultiAgriConnectInteract = () => {
           setWeb3(web3Instance);
           const accounts = await web3Instance.eth.getAccounts();
           setAccount(accounts[0]);
-          const contractInstance = new web3Instance.eth.Contract(MultiAgriConnect.abi, MultiAgriConnect.networks[5777].address);
+          const contractInstance = new web3Instance.eth.Contract(
+            MultiAgriConnect.abi,
+            MultiAgriConnect.networks[5777].address
+          );
           setContract(contractInstance);
         } catch (error) {
-          console.error("User denied account access", error);
+          console.error('User denied account access', error);
         }
       } else {
         console.log('Please install MetaMask!');
@@ -42,87 +43,103 @@ const MultiAgriConnectInteract = () => {
   useEffect(() => {
     const getContractCount = async () => {
       if (contract) {
-        console.log(contract.methods)
+        console.log(contract.methods);
         const count = await contract.methods.contractCount().call();
         setContractCount(count);
       }
     };
     getContractCount();
-    console.log(contractCount)
-  }, [contract]);
+    console.log(contractCount);
+  });
 
   const handleCreateContract = async () => {
     try {
-      const result = await contract.methods.createContract(
-        farmerAddress,
-        contractDetails,
-        web3.utils.toWei(totalAmount, 'ether'),
-        web3.utils.toWei(installmentAmount, 'ether')
-      ).send({ from: account });
-      const newContractId = result.events.ContractCreated.returnValues.contractId;
-      console.log(result.events.ContractCreated.returnValues)
+      const result = await contract.methods
+        .createContract(
+          farmerAddress,
+          contractDetails,
+          web3.utils.toWei(totalAmount, 'ether'),
+          web3.utils.toWei(installmentAmount, 'ether')
+        )
+        .send({ from: account });
+      const newContractId =
+        result.events.ContractCreated.returnValues.contractId;
+      console.log(result.events.ContractCreated.returnValues);
       alert(`Contract created with ID: ${newContractId}`);
     } catch (error) {
-      console.error("Error creating contract:", error);
+      console.error('Error creating contract:', error);
     }
   };
 
   const handleGetContractDetails = async () => {
     try {
-      const details = await contract.methods.getContractDetails(selectedContractId).call();
+      const details = await contract.methods
+        .getContractDetails(selectedContractId)
+        .call();
       setContractInfo({
         farmer: details.farmer,
         buyer: details.buyer,
         contractDetails: details.contractDetails,
         isSigned: details.isSigned,
         totalAmount: web3.utils.fromWei(details.totalAmount, 'ether'),
-        installmentAmount: web3.utils.fromWei(details.installmentAmount, 'ether'),
+        installmentAmount: web3.utils.fromWei(
+          details.installmentAmount,
+          'ether'
+        ),
         installmentsRemaining: details.installmentsRemaining,
         // nextPaymentDue: new Date(details.nextPaymentDue * 1000).toLocaleString()
       });
     } catch (error) {
-      console.error("Error getting contract details:", error);
+      console.error('Error getting contract details:', error);
     }
   };
 
   const handleGetPaymentsMade = async () => {
     try {
-      const payments = await contract.methods.paymentsMade(selectedContractId, account).call();
+      const payments = await contract.methods
+        .paymentsMade(selectedContractId, account)
+        .call();
       setPaymentsMade(web3.utils.fromWei(payments, 'ether'));
     } catch (error) {
-      console.error("Error getting payments made:", error);
+      console.error('Error getting payments made:', error);
     }
   };
 
-  
   const handleSignContract = async () => {
     try {
-      await contract.methods.signContract(selectedContractId).send({ from: account });
+      await contract.methods
+        .signContract(selectedContractId)
+        .send({ from: account });
       alert(`Contract with ID ${selectedContractId} has been signed.`);
     } catch (error) {
-      console.error("Error signing contract:", error);
+      console.error('Error signing contract:', error);
     }
   };
 
   const handleMakePayment = async () => {
     try {
-      await contract.methods.makePayment(selectedContractId).send({ from: account, value: web3.utils.toWei(installmentAmount, 'ether') });
-      alert(`Payment of ${installmentAmount} ETH made for contract with ID ${selectedContractId}.`);
+      await contract.methods
+        .makePayment(selectedContractId)
+        .send({
+          from: account,
+          value: web3.utils.toWei(installmentAmount, 'ether'),
+        });
+      alert(
+        `Payment of ${installmentAmount} ETH made for contract with ID ${selectedContractId}.`
+      );
     } catch (error) {
-      console.error("Error making payment:", error);
+      console.error('Error making payment:', error);
     }
   };
 
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">MultiAgriConnect Interaction</h1>
-      
       {/* <Alert className="mb-4">
         <AlertTitle>Contract Count: {contractCount}</AlertTitle> */}
-        Contract Count: {contractCount}
-        {/* <AlertDescription>Total number of contracts created</AlertDescription>
+      Contract Count: {contractCount}
+      {/* <AlertDescription>Total number of contracts created</AlertDescription>
       </Alert> */}
-
       <div className="mb-4">
         <h2 className="text-xl font-semibold mb-2">Create Contract</h2>
         <input
@@ -155,13 +172,11 @@ const MultiAgriConnectInteract = () => {
         />
         <button
           onClick={handleCreateContract}
-
           className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600"
         >
           Create Contract
         </button>
       </div>
-
       <div className="mb-4">
         <h2 className="text-xl font-semibold mb-2">Get Contract Details</h2>
         <input
@@ -190,7 +205,6 @@ const MultiAgriConnectInteract = () => {
           </div>
         )}
       </div>
-
       <div>
         <h2 className="text-xl font-semibold mb-2">Get Payments Made</h2>
         <input
@@ -229,20 +243,19 @@ const MultiAgriConnectInteract = () => {
           open={showSignContractDialog}
           onClose={() => setShowSignContractDialog(false)}
         > */}
-          {/* <AlertDescription> */}
-            Are you sure you want to sign the contract with ID {selectedContractId}?
-          {/* </AlertDescription> */}
-          {/* <AlertDialogAction> */}
-            <button
-              onClick={handleSignContract}
-              className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              Sign
-            </button>
-          {/* </AlertDialogAction> */}
+        {/* <AlertDescription> */}
+        Are you sure you want to sign the contract with ID {selectedContractId}?
+        {/* </AlertDescription> */}
+        {/* <AlertDialogAction> */}
+        <button
+          onClick={handleSignContract}
+          className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600"
+        >
+          Sign
+        </button>
+        {/* </AlertDialogAction> */}
         {/* </AlertDialog> */}
       </div>
-
       <div className="mb-4">
         <h2 className="text-xl font-semibold mb-2">Make Payment</h2>
         <input
@@ -269,18 +282,21 @@ const MultiAgriConnectInteract = () => {
           open={showMakePaymentDialog}
           onClose={() => setShowMakePaymentDialog(false)}
         > */}
-          <b>Make Payment</b>
-          {/* <AlertDescription> */}
-            <p>Are you sure you want to make a payment of {installmentAmount} ETH for the contract with ID {selectedContractId}?</p>
-          {/* </AlertDescription> */}
-          {/* <AlertDialogAction> */}
-            <button
-              onClick={handleMakePayment}
-              className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              Make Payment
-            </button>
-          {/* </AlertDialogAction> */}
+        <b>Make Payment</b>
+        {/* <AlertDescription> */}
+        <p>
+          Are you sure you want to make a payment of {installmentAmount} ETH for
+          the contract with ID {selectedContractId}?
+        </p>
+        {/* </AlertDescription> */}
+        {/* <AlertDialogAction> */}
+        <button
+          onClick={handleMakePayment}
+          className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600"
+        >
+          Make Payment
+        </button>
+        {/* </AlertDialogAction> */}
         {/* </AlertDialog> */}
       </div>
     </div>

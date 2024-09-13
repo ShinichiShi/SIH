@@ -9696,9 +9696,7 @@
   "ast": {
     "absolutePath": "project:/contracts/MultiAgriConnect.sol",
     "exportedSymbols": {
-      "MultiAgriConnect": [
-        320
-      ]
+      "MultiAgriConnect": [320]
     },
     "id": 321,
     "license": "MIT",
@@ -9706,15 +9704,7 @@
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.5",
-          ".0",
-          "<",
-          "0.9",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.5", ".0", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:31:0"
       },
@@ -9726,9 +9716,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 320,
-        "linearizedBaseContracts": [
-          320
-        ],
+        "linearizedBaseContracts": [320],
         "name": "MultiAgriConnect",
         "nameLocation": "74:16:0",
         "nodeType": "ContractDefinition",
@@ -10003,9 +9991,7 @@
                 "pathNode": {
                   "id": 20,
                   "name": "ContractDetails",
-                  "nameLocations": [
-                    "389:15:0"
-                  ],
+                  "nameLocations": ["389:15:0"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 18,
                   "src": "389:15:0"
@@ -10400,9 +10386,7 @@
                   "src": "980:15:0"
                 },
                 {
-                  "assignments": [
-                    69
-                  ],
+                  "assignments": [69],
                   "declarations": [
                     {
                       "constant": false,
@@ -10425,9 +10409,7 @@
                         "pathNode": {
                           "id": 67,
                           "name": "ContractDetails",
-                          "nameLocations": [
-                            "1005:15:0"
-                          ],
+                          "nameLocations": ["1005:15:0"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 18,
                           "src": "1005:15:0"
@@ -11311,9 +11293,7 @@
               "src": "1641:339:0",
               "statements": [
                 {
-                  "assignments": [
-                    143
-                  ],
+                  "assignments": [143],
                   "declarations": [
                     {
                       "constant": false,
@@ -11336,9 +11316,7 @@
                         "pathNode": {
                           "id": 141,
                           "name": "ContractDetails",
-                          "nameLocations": [
-                            "1651:15:0"
-                          ],
+                          "nameLocations": ["1651:15:0"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 18,
                           "src": "1651:15:0"
@@ -11471,10 +11449,7 @@
                       "id": 148,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "1724:7:0",
                       "typeDescriptions": {
@@ -11609,10 +11584,7 @@
                       "id": 155,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "1797:7:0",
                       "typeDescriptions": {
@@ -11820,9 +11792,7 @@
               "src": "2043:795:0",
               "statements": [
                 {
-                  "assignments": [
-                    182
-                  ],
+                  "assignments": [182],
                   "declarations": [
                     {
                       "constant": false,
@@ -11845,9 +11815,7 @@
                         "pathNode": {
                           "id": 180,
                           "name": "ContractDetails",
-                          "nameLocations": [
-                            "2053:15:0"
-                          ],
+                          "nameLocations": ["2053:15:0"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 18,
                           "src": "2053:15:0"
@@ -11965,10 +11933,7 @@
                       "id": 187,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "2125:7:0",
                       "typeDescriptions": {
@@ -12103,10 +12068,7 @@
                       "id": 193,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "2192:7:0",
                       "typeDescriptions": {
@@ -12241,10 +12203,7 @@
                       "id": 202,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "2280:7:0",
                       "typeDescriptions": {
@@ -13120,9 +13079,7 @@
               "src": "3164:436:0",
               "statements": [
                 {
-                  "assignments": [
-                    295
-                  ],
+                  "assignments": [295],
                   "declarations": [
                     {
                       "constant": false,
@@ -13145,9 +13102,7 @@
                         "pathNode": {
                           "id": 293,
                           "name": "ContractDetails",
-                          "nameLocations": [
-                            "3174:15:0"
-                          ],
+                          "nameLocations": ["3174:15:0"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 18,
                           "src": "3174:15:0"

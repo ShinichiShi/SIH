@@ -1,21 +1,19 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap');
 
-
-*{
+* {
   margin: 0;
   padding: 0;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body{
+body {
   /* overflow-x: hidden; */
 }
-.headerfd{
+.headerfd {
   height: 17vh;
   background-color: green;
   border: none;
 }
-.navp{
+.navp {
   height: 70%;
   background-color: #fff;
   /* display: flex;
@@ -26,26 +24,26 @@ body{
   align-items: center;
   border: 0.5px solid rgb(159, 159, 159);
 }
-.navp h1{
+.navp h1 {
   font-size: 42px;
   /* padding: 20px; */
-  color: #00B207;
+  color: #00b207;
 }
-.h1nav{
+.h1nav {
   display: flex;
   padding: 20px;
   /* justify-content: center; */
 }
-#h1e{
+#h1e {
   color: black;
 }
 /* h1{
   display: flex;
 } */
-.search-nav{
+.search-nav {
   width: 450px;
   height: 33px;
-  background-color: #00B207;
+  background-color: #00b207;
   color: white;
   display: flex;
   align-items: center;
@@ -55,23 +53,23 @@ body{
   box-shadow: 2px 2px 2px rgba(8, 0, 0, 0.4);
   font-size: 15px;
 }
-.search-nav input{
+.search-nav input {
   width: 370px;
   height: 32px;
   border-radius: 0.25rem;
   outline: none;
   border: 2px solid white;
 }
-.profileicon{
+.profileicon {
   display: flex;
   align-items: center;
   font-weight: bold;
   cursor: pointer;
 }
-.profileicon:hover{
-  color: #00B207;
+.profileicon:hover {
+  color: #00b207;
 }
-.navs{
+.navs {
   height: 30%;
   /* border: 0.5px solid rgb(159, 159, 159); */
   background-color: white;
@@ -80,9 +78,9 @@ body{
   /* justify-content: center; */
   position: relative;
 }
-.navs ul{
+.navs ul {
   height: 100%;
-  list-style-type:none;
+  list-style-type: none;
   /* flex-grow: 1; */
   display: flex;
   align-items: center;
@@ -96,52 +94,54 @@ body{
   top: 0;
   cursor: pointer;
 }
-.navs ul li:hover{
+.navs ul li:hover {
   /* background-color: #1fe726;
   border :1px solid #1fe726; */
-  text-decoration: underline #00B207;
+  text-decoration: underline #00b207;
   text-decoration-thickness: 3px;
   border-radius: 0.5rem;
   /* padding: 0px 4px; */
 }
 
-
-.search-box{
-  height:8vh;
+.search-box {
+  height: 8vh;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 250px;
   border: 0.5px solid rgb(159, 159, 159);
 }
-.search-box-div{
+.search-box-div {
   display: flex;
   /* align-items: center; */
   gap: 5px;
   /* border: 1px solid; */
-} 
-.search-box-div p{
+}
+.search-box-div p {
   font-size: 20px;
   text-align: center;
 }
 .search-bar {
-  border-radius: 50%; 
-  width: 40px; 
-  height: 40px; 
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   background-color: #1fe726;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: width 0.4s ease, border-radius 0.4s ease, padding 0.4s ease; 
+  transition:
+    width 0.4s ease,
+    border-radius 0.4s ease,
+    padding 0.4s ease;
   overflow: hidden;
-  position: relative; 
+  position: relative;
 }
-.search-bar svg{
+.search-bar svg {
   filter: invert(100%);
 }
 
 .search-bar:hover {
-  width: 300px; 
+  width: 300px;
   border-radius: 20px;
   padding: 2px 15px;
   background-color: white;
@@ -155,8 +155,8 @@ body{
   font-size: 16px;
   font-weight: 100;
   outline: none;
-  width: 100%; 
-  opacity: 0; 
+  width: 100%;
+  opacity: 0;
   transition: opacity 0.4s ease;
 }
 
@@ -167,20 +167,23 @@ body{
 .search-bar svg {
   width: 24px;
   height: 24px;
-  transition: transform 0.4s ease, position 0.4s ease, right 0.4s ease; 
-  position: absolute; 
+  transition:
+    transform 0.4s ease,
+    position 0.4s ease,
+    right 0.4s ease;
+  position: absolute;
   right: 10px;
   top: 50%;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
   cursor: pointer;
 }
 
 .search-bar:hover svg {
-  right: 10px; 
-  transform: translateY(-50%) scale(1.0);
+  right: 10px;
+  transform: translateY(-50%) scale(1);
   filter: invert(0%);
 }
-.container-p{
+.container-p {
   height: 80vh;
   background-color: white;
   /* overflow-y: scroll; */
@@ -190,20 +193,20 @@ body{
   padding-top: 10px;
   overflow: scroll;
 }
-.container-p h1{
+.container-p h1 {
   text-align: center;
   font-size: 32px;
 }
-.container-s{
+.container-s {
   height: 75vh;
   background-color: white;
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 50px;
-  place-items: center; 
+  place-items: center;
   gap: 30px;
 }
-.box-primary{
+.box-primary {
   width: 550px;
   height: 200px;
   background-color: rgb(248, 248, 248);
@@ -213,12 +216,12 @@ body{
   box-shadow: 3px 3px 3px rgba(8, 0, 0, 0.6);
   /* align-items: center; */
 }
-.primary-details{
+.primary-details {
   width: 70%;
   font-size: 16px;
   /* padding: 30px;
   line-height: 25px; */
-  display: flex; 
+  display: flex;
   flex-direction: column;
   /* align-items: center; */
   justify-content: center;
@@ -227,27 +230,27 @@ body{
   /* border: 1px solid; */
   /* line-height: 20px; */
 }
-.primary-btn{
+.primary-btn {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.primary-btn button{
+.primary-btn button {
   /* padding: 8px; */
   height: 50px;
   width: 80px;
   border: none;
-  background-color: #00B207;
+  background-color: #00b207;
   color: white;
   border-radius: 0.25rem;
-  border:1px solid #00B207;
+  border: 1px solid #00b207;
   font-size: 14px;
   /* outline: none; */
   box-shadow: none;
 }
-.primary-btn button:hover{
+.primary-btn button:hover {
   background-color: white;
-  color: #00B207;
+  color: #00b207;
 }
 ::-webkit-scrollbar {
   width: 8px;
@@ -336,7 +339,7 @@ body{
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -375,14 +378,14 @@ body{
   background-color: white;
   border: none;
   cursor: pointer;
-  padding:1px 3px;
+  padding: 1px 3px;
   width: 30px;
   outline: none;
   box-shadow: none;
   border-radius: 0.1rem;
 }
 
-.crossbtn button:hover{
+.crossbtn button:hover {
   background-color: red;
   color: white;
 }
@@ -392,7 +395,7 @@ body{
   padding: 5px 20px;
   /* line-height: 15px; */
 }
-.sec-details p{
+.sec-details p {
   padding-top: 3px;
   font-size: 18px;
 }

@@ -184,13 +184,11 @@ export default function Profilesetup() {
     <>
     <Navbar />
     <div className={styles.pfp}>
-    <div className={styles.litem}>
-            <nav>
-              <a>
-                Registration Form
-              </a>
-            </nav>
-        </div>
+      <div className={styles.litem}>
+        <nav>
+          <a>Registration Form</a>
+        </nav>
+      </div>
       <div className={styles.cc}>
         {/* <div className={styles.litem}>
           <nav

@@ -5,17 +5,17 @@
   background-color: #f1f1f1;
   border-radius: 8px;
 }
-.pfp{
+.pfp {
   display: flex;
   gap: 3vw;
 }
 .form-container h2 {
   text-align: center;
-  color: #4CAF50;
+  color: #4caf50;
 }
 
-.needs-validation{
-  width:60%;
+.needs-validation {
+  width: 60%;
 }
 
 .form-group {
@@ -66,7 +66,7 @@
 }
 
 .required:after {
-  content: " *";
+  content: ' *';
   color: red;
 }
 
@@ -80,32 +80,29 @@
   }
 }
 
-
-.asads{
-  display:flex;
-  
+.asads {
+  display: flex;
 }
 
-.asa{
-  display:flex;
+.asa {
+  display: flex;
 }
 
-
-*{
+* {
   /* font-family: "Teko", sans-serif;
 font-optical-sizing: auto;
 font-weight: 300;
 font-style: normal; */
 }
 
-.pdtext{
+.pdtext {
   font-size: xx-large;
   text-decoration: underline;
   margin-bottom: 20px;
-  margin-top:10px;
+  margin-top: 10px;
 }
-.litem>nav{
-  height:10vh;
+.litem > nav {
+  height: 10vh;
   width: 200px;
   background-color:#00B207;
   margin-top:10px;
@@ -116,278 +113,269 @@ font-style: normal; */
 
 }
 
-.cc{
-  display:flex;
+.cc {
+  display: flex;
   justify-content: space-around;
-  
 }
 
-.Firstline{
-  width:75%;
-  display:flex;
-  justify-content: flex-start;
-  
-  
-}
-
-.secondline{
-  display:flex;
+.Firstline {
+  width: 75%;
+  display: flex;
   justify-content: flex-start;
 }
 
-.pln{
-  display:flex;
+.secondline {
+  display: flex;
   justify-content: flex-start;
 }
 
-.bfl1{
-display:flex;
-justify-content: flex-start;
+.pln {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.bfl2{
-display:flex;
-justify-content: flex-start;
-
+.bfl1 {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.bfl3{
-display:flex;
-justify-content: flex-start;
+.bfl2 {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.ss{
-display:flex;
+.bfl3 {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.pd{
-width:1200px;
-
-margin-left:80px;
+.ss {
+  display: flex;
 }
 
-.fname111 input{
-width: 400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.pd {
+  width: 1200px;
 
+  margin-left: 80px;
 }
 
-.lname111 input{
-width: 400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
-
+.fname111 input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.lname111{
-margin-left:10%;
+.lname111 input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.dob{
-margin-left:10%;
+.lname111 {
+  margin-left: 10%;
 }
 
-.gender select{
-width: 400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.dob {
+  margin-left: 10%;
 }
 
-.dob input{
-width: 400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.gender select {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.selst{
-width: 200px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.dob input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.seld{
-width: 200px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
-}
-.selsd{
-width: 200px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
-}
-.sela{
-
-width: 200px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.selst {
+  width: 200px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.pincode input{
-width: 400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box; 
-border: 2px solid green;
-border-radius: 4px;
+.seld {
+  width: 200px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
+}
+.selsd {
+  width: 200px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
+}
+.sela {
+  width: 200px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.pit select{
-width: 400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
-}
-.pinn{
-padding-left:8%;
-}
-.pinn input{
-width: 400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.pincode input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.add textarea{
-width: 75%;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.pit select {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
+}
+.pinn {
+  padding-left: 8%;
+}
+.pinn input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.sa{
-display:flex;
+.add textarea {
+  width: 75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.sa111{
-margin-left:3%;
-}
-.sd111{
-margin-left:3%;
-}
-.sss111{
-margin-left:3%;
+.sa {
+  display: flex;
 }
 
-.bs{
-margin-left:6%;
-
+.sa111 {
+  margin-left: 3%;
+}
+.sd111 {
+  margin-left: 3%;
+}
+.sss111 {
+  margin-left: 3%;
 }
 
-.ifsc input{
-width:400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
-}
-.accname input{
-width:400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.bs {
+  margin-left: 6%;
 }
 
-.bn input{
-width:400px;padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.ifsc input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
+}
+.accname input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.accname{
-margin-left:8%;
+.bn input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.bba{
-margin-left:8%;
+.accname {
+  margin-left: 8%;
 }
 
-.baccn{
-margin-left:8%;
+.bba {
+  margin-left: 8%;
 }
 
-.baccn input{
-width:400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
-
+.baccn {
+  margin-left: 8%;
 }
 
-.bbn input{
-width:400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.baccn input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.bba input{
-width:400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.bbn input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.img111 input{
-width:400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.bba input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.img112 input{
-width:400px;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-border: 2px solid green;
-border-radius: 4px;
+.img111 input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
 }
 
-.pig{
+.img112 input {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid green;
+  border-radius: 4px;
+}
 
-margin-left:6%;
+.pig {
+  margin-left: 6%;
 }

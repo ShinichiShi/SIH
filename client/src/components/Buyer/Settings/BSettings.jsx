@@ -16,7 +16,7 @@ export default function BSettings() {
                   setChoice('profile');
                 }}
               >
-                <span>Profile</span>  
+                <span>Profile</span>
               </div>
               <div
                 className={`p-3 text-gray-700 rounded-lg flex items-center cursor-pointer space-x-2 ${choice === 'payment' ? 'bg-green-200 font-bold' : ''}`}
@@ -26,7 +26,6 @@ export default function BSettings() {
               >
                 <span>Payment Credentials</span>
               </div>
-              
             </div>
           </div>
 

@@ -237,7 +237,7 @@ const loadContacts = async (currentUserID, userType)=>{
     console.error("Error fetching contacts:", error);
     return {};
   }
-}
+};
 
 const loadMessage = async (currentRoomID)=>{
   console.log(`fetching messages from ${currentRoomID}`);

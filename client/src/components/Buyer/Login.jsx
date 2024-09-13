@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import styles from './signup.module.css'; // Import the CSS Module
-import Navi from './Navi'
+import Navi from './Navi';
 import { toast, ToastContainer } from 'react-toastify';
 import img from '../../assets/bgimg.jpeg';
 
@@ -27,15 +27,15 @@ const Login = () => {
     }
   };
 
-  
-
   return (
     <>
       <div className={styles.mainvg}>
         <div className={styles.bgimg}>
           <img src={img} alt="" />
           <div className={styles.fade}>
-            <div className={styles.headervg}><Navi/></div>
+            <div className={styles.headervg}>
+              <Navi />
+            </div>
             <div className={styles.boxvg}>
               <div className={styles.containervg}>
                 <div className={styles.heading}>
@@ -57,18 +57,25 @@ const Login = () => {
                     className={styles.i1}
                   />
                   <div className={styles.btn}>
-                    <button onClick={signinUser} className={styles.bt1}>Login</button>
+                    <button onClick={signinUser} className={styles.bt1}>
+                      Login
+                    </button>
                   </div>
                   <p className={styles.p1}>
                     Don&apos;t have an account?{' '}
-                    <a onClick={() => navigate('/Signup')} className={styles.a1}>Register</a>
+                    <a
+                      onClick={() => navigate('/Signup')}
+                      className={styles.a1}
+                    >
+                      Register
+                    </a>
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     </>
   );

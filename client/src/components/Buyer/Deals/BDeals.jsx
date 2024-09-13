@@ -1,4 +1,4 @@
-import BDealsSection from "./BDealsSection";
+import BDealsSection from './BDealsSection';
 function BDeals() {
   return (
     <div className="flex px-4 py-6">
@@ -73,7 +73,7 @@ function BDeals() {
             <span className="px-2 py-1 bg-gray-200 rounded">Healthy</span>
             <span className="px-2 py-1 bg-gray-200 rounded">Discount</span>
           </div>
-        </div>        
+        </div>
       </aside>
 
       {/* Deals Section */}
@@ -95,10 +95,10 @@ function BDeals() {
 
         {/* Product Grid */}
         <div className="flex flex-col gap-3">
-        <BDealsSection/>
-        <BDealsSection/>
-        <BDealsSection/>
-        <BDealsSection/>
+          <BDealsSection />
+          <BDealsSection />
+          <BDealsSection />
+          <BDealsSection />
         </div>
         {/* Pagination */}
         {/* <div className="flex justify-center mt-6">

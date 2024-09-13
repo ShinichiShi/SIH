@@ -8,7 +8,6 @@ body {
   text-transform: uppercase;
   font-weight: 500;
   font-family: 'Teko', sans-serif;
-
 }
 
 .navbar-light .navbar-brand {
@@ -24,7 +23,8 @@ body {
   color: green;
 }
 
-.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
   color: #000;
 }
 
@@ -32,7 +32,8 @@ body {
   color: #000;
 }
 
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
   color: green;
 }
 
@@ -52,7 +53,7 @@ body {
 }
 
 .navbar-light .navbar-toggler {
-  color: #FFF;
+  color: #fff;
   border-color: transparent;
   background: green;
 }
@@ -64,10 +65,10 @@ body {
 
 .dropdown-item {
   color: #333;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
-.dropdown-item:hover, 
+.dropdown-item:hover,
 .dropdown-item:focus {
   background-color: #ff9900;
   color: #fff;
@@ -80,7 +81,6 @@ body {
 }
 
 .carousel-caption {
-  
   bottom: 0;
   z-index: 2;
   text-align: left;
@@ -117,7 +117,8 @@ body {
   width: 700px;
 }
 
-.carousel-control-prev-icon, .carousel-control-next-icon {
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
   height: 80px;
   width: 80px;
   outline: black;
@@ -129,13 +130,11 @@ body {
 }
 
 .carousel-control-next-icon:after {
-  
   font-size: 55px;
   color: #fff;
 }
 
 .carousel-control-prev-icon:after {
-  
   font-size: 55px;
   color: #fff;
 }
@@ -146,80 +145,81 @@ body {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .navbar-nav {
-      text-align: center;
+    text-align: center;
   }
 
   .navbar-collapse {
-      background: green;
+    background: green;
   }
 
   .carousel-caption {
-      bottom: 370px;
+    bottom: 370px;
   }
 
   .carousel-caption p {
-      width: 100%;
+    width: 100%;
   }
 
   .navbar-collapse .nav-link {
-      color: #fff !important;
+    color: #fff !important;
   }
 
   .carousel-caption {
-      bottom: 0;
-      text-align: center;
+    bottom: 0;
+    text-align: center;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .navbar-nav {
-      text-align: center;
+    text-align: center;
   }
 
   .navbar-collapse {
-      background: green;
+    background: green;
   }
 
   .navbar-collapse .nav-link {
-      color: #fff !important;
+    color: #fff !important;
   }
 
   .carousel-caption {
-      bottom: 0;
-      text-align: center;
+    bottom: 0;
+    text-align: center;
   }
 
   .carousel-caption h5 {
-      font-size: 17px;
+    font-size: 17px;
   }
 
   .carousel-caption p {
-      width: 100%;
-      line-height: 1.6;
-      font-size: 12px;
+    width: 100%;
+    line-height: 1.6;
+    font-size: 12px;
   }
 
   .banner-info .btn {
-      padding: 0 15px;
-      font-size: 20px;
+    padding: 0 15px;
+    font-size: 20px;
   }
 
   .imgBox .img-fluid {
-      max-width: 80%;
-      height: auto;
+    max-width: 80%;
+    height: auto;
   }
 
-  .carousel-control-prev-icon, .carousel-control-next-icon {
-      height: 50px;
-      width: 50px;
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    height: 50px;
+    width: 50px;
   }
 
   .carousel-control-next-icon:after {
-      font-size: 30px;
+    font-size: 30px;
   }
 
   .carousel-control-prev-icon:after {
-      font-size: 30px;
+    font-size: 30px;
   }
 }
 
@@ -227,15 +227,12 @@ body {
   position: relative;
   top: 140px;
   left: 35px;
-  
-  
 }
 
 .imgBox1 {
   position: relative;
   top: 140px;
   left: 35px;
-  
 }
 
 .central-section {
@@ -271,12 +268,14 @@ body {
   font-family: 'Teko', sans-serif;
 }
 
-.how-it-works, .cta-section {
+.how-it-works,
+.cta-section {
   padding: 4rem 2rem;
   text-align: center;
 }
 
-.how-it-works h2, .cta-section h2 {
+.how-it-works h2,
+.cta-section h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
   font-family: 'Teko', sans-serif;
@@ -310,7 +309,7 @@ footer {
 }
 
 .logo {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: x-large;
   color: #44a544;
@@ -354,9 +353,8 @@ footer {
   color: #333;
 }
 
-.dropdown-item:hover, .dropdown-item:focus {
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #ff9900;
   color: #fff;
 }
-
-

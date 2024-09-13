@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { auth } from '../../../firebase';
-import { Navigate, useNavigate } from 'react-router-dom';
-import Navi from './Navi'
+import { useNavigate } from 'react-router-dom';
+import Navi from './Navi';
 import styles from './signup.module.css'; // Import the CSS Module
-import { FcGoogle } from "react-icons/fc";
+import { FcGoogle } from 'react-icons/fc';
 import { toast, ToastContainer } from 'react-toastify';
 import img from '../../assets/bgimg.jpeg';
 import {
@@ -11,7 +11,6 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -21,9 +20,9 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const signupWithGoogle = () => {
-    signInWithPopup(auth, googleProvider).then((e) => {
-      toast.success('Welcome')
-      navigate('/buyer');  
+    signInWithPopup(auth, googleProvider).then(() => {
+      toast.success('Welcome');
+      navigate('/buyer');
     });
   };
 
@@ -31,7 +30,7 @@ export default function Signup() {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password).then(() => {
-       toast.success('Welcome');
+        toast.success('Welcome');
         navigate('/buyer');
         const user = auth.currentUser;
         console.log(user);
@@ -41,14 +40,13 @@ export default function Signup() {
     }
   };
 
-
   return (
     <div className={styles.mainvg}>
       <div className={styles.bgimg}>
         <img src={img} alt="" />
         <div className={styles.fade}>
           <div className={styles.headervg}>
-            <Navi/>
+            <Navi />
           </div>
           <div className={styles.boxvg}>
             <div className={styles.containervg}>
@@ -77,7 +75,9 @@ export default function Signup() {
                   </button>
                 </div>
                 <div className={styles.btn}>
-                  <button onClick={create} className={styles.bt1}>Create Account</button>
+                  <button onClick={create} className={styles.bt1}>
+                    Create Account
+                  </button>
                 </div>
                 <p className={styles.p1}>
                   Already have an account?{' '}
@@ -90,7 +90,7 @@ export default function Signup() {
           </div>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './components/context/Authcontext';
@@ -18,25 +17,24 @@ import FESignup from './components/Farmer/FESignup';
 import FELogin from './components/Farmer/FELogin';
 import LandingPage from './components/LandingPage/trial';
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <AuthProvider >
+  <AuthProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/buyer" element={<Dashboard />} />
-        <Route path="/*" element={<NotFoundPage/>}/>
-        <Route path="/chat" element={<Chat/>}/>
-        <Route path="/fsignup" element={<FSignup/>}/>
-        <Route path="/flogin" element={<FLogin/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/farmerdashboard" element={<FDashboard/>}/>
-        <Route path="/profilesetup" element={<Profilesetup/>}/>
-        <Route path="/farmsell" element={<FarmSell/>}/>
+        <Route path="/*" element={<NotFoundPage />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/fsignup" element={<FSignup />} />
+        <Route path="/flogin" element={<FLogin />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/farmerdashboard" element={<FDashboard />} />
+        <Route path="/profilesetup" element={<Profilesetup />} />
+        <Route path="/farmsell" element={<FarmSell />} />
         <Route path="/contract" element={<MultiAgriConnectInteract />} />
         <Route path="/farmersignup" element={<FESignup />} />
         <Route path="/farmerlogin" element={<FELogin />} />
       </Routes>
     </BrowserRouter>
-    </AuthProvider>
-
+  </AuthProvider>
 );
