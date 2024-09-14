@@ -7,6 +7,7 @@ import { AuthContext } from '../context/Authcontext';
 import { useNavigate } from 'react-router-dom';
 import { LuUserCircle2 } from "react-icons/lu";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { AudioRecorder } from 'react-audio-voice-recorder';
 import { MdCall } from "react-icons/md";
 import { IoVideocam } from "react-icons/io5";
 import { IoMdMore } from "react-icons/io";
@@ -30,6 +31,7 @@ export default function Chat() {
   const navigate = useNavigate();
   const [currperson, setperson] = useState();
   const [loading, setLoading] = useState(true);
+  const [lang, setLang] = useState("kannada");
 
   const chatDisplayRef = useRef(null);  // Ref to chat display container
   const bottomRef = useRef(null);       // Ref to the last message to scroll into view
@@ -226,7 +228,28 @@ export default function Chat() {
               value={message}
               onChange={handleChange}
             />
-            <Recorder />
+            <div>
+              <AudioRecorder
+                onRecordingComplete={(blob)=>handleAudioUpload(blob, lang)} //sending POST request
+                audioTrackConstraints={{
+                  noiseSuppression: true,
+                  echoCancellation: true,
+                  // autoGainControl,
+                  // channelCount,
+                  // deviceId,
+                  // groupId,
+                  // sampleRate,
+                  // sampleSize,
+                }}
+                onNotAllowedOrFound={(err) => console.table(err)}
+                downloadOnSavePress={false}
+                downloadFileExtension="webm"
+                mediaRecorderOptions={{
+                  audioBitsPerSecond: 128000,
+                }}
+                showVisualizer={true}
+              />
+            </div>
             <button onClick={handleClick}>Send</button>
           </div>
         </div>
@@ -294,4 +317,25 @@ const loadMessage = async (currentRoomID) => {
     console.error("Error fetching messages: ", error);
   }
 
+}
+
+const handleAudioUpload = async (blob, lang) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(blob);
+  reader.onloadend = async () => {
+    const base64data = reader.result.split(',')[1];  // Extract Base64 part
+
+    const response = await fetch(`http://localhost:${SERVER_PORT}/chat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',  // Send JSON data
+      },
+      body: JSON.stringify({
+        audio: base64data,
+        mimeType: blob.type,
+        lang: lang,
+      }),
+    });
+    console.log(response.json().then((result => { console.log(result.transcription) })));
+  }
 }

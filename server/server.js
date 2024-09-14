@@ -5,6 +5,7 @@ const http = require('http');
 const cors = require('cors');
 const app = express();
 const {Server} = require('socket.io');
+const {handleAudio} = require("./audioHandler");
 
 const SERVER_PORT = process.env.SERVER_PORT;
 const CLIENT_PORT = process.env.CLIENT_PORT;
@@ -14,6 +15,9 @@ const server = http.createServer(app);
 
 //middleware
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// app.use(express.raw({ type: 'audio/wav', limit: '10mb' }));
 
 //routings
 app.get('/states', (req, res) => {
@@ -40,6 +44,7 @@ app.get('/areas/:state/:district/:subdistrict', (req, res) => {
   const areas = states[state][district][subdistrict] || [];
   res.json(areas);
 });
+app.post('/chat', handleAudio);
 
 //socket.io connections
 const io = new Server(server, {
@@ -49,6 +54,8 @@ const io = new Server(server, {
   }
 
 })
+
+
 io.on("connection", (socket)=>{
   console.log(socket.id);
 
@@ -72,3 +79,4 @@ io.on("connection", (socket)=>{
 server.listen(SERVER_PORT, () => {
   console.log(`Server is running on http://localhost:${SERVER_PORT}`);
 });
+
