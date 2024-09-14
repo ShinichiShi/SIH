@@ -52,9 +52,20 @@ const io = new Server(server, {
 io.on("connection", (socket)=>{
   console.log(socket.id);
 
-  socket.on("send-message", (data)=>{
-    console.log('sending message');
-    socket.broadcast.emit("recieve-message", data.message);
+  socket.on('join-room', (room)=>{
+    console.log(`${socket.id} joined ${room}`);
+    socket.emit("joined-room", room);
+    socket.join(room);
+  })
+  socket.on('leave-room', (room)=>{
+    console.log(`${socket.id} left ${room}`);
+    socket.emit("left-room", room);
+    socket.leave(room);
+  })
+
+
+  socket.on('send-message', (data)=>{
+    socket.to(data.room).emit("recieve-message", data);
   })
 })
 
