@@ -49,5 +49,14 @@ const handleAudio = async (req, res) => {
     }
 };
 
+const translate = async (req,res)=>{
+    console.log("translating ")
+    const {text, preffered_lang, text_lang} = req.body;
+    const prompt = `Translate the text '${text}' from ${text_lang} to ${preffered_lang}, and provide only the translated text as the output.`;
+    const result = await model.generateContent([prompt]);
+    console.log("translated incoming message : ", result.response.text());
+    res.json({message : result.response.text()});
+}
 
-module.exports = {handleAudio};
+
+module.exports = {handleAudio, translate};
