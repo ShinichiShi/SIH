@@ -6,7 +6,7 @@ import { signOut } from 'firebase/auth';
 import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/auth_context';
 
 function ProfileIcon() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

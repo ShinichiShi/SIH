@@ -3,7 +3,7 @@ import styles from './profilesetup.module.css'; // Import the CSS module
 
 import { db } from '../../../firebase';
 import { setDoc,doc } from 'firebase/firestore';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/auth_context';
 
 import Navbar from '../Farmer/FarmNav';
 

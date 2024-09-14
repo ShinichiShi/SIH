@@ -5,7 +5,7 @@ import BNavbar from './BNavbar';
 import BSettings from './Settings/BSettings';
 import BDeals from './Deals/BDeals';
 import BContract from './Contract/BContract';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/auth_context';
 function Dashboard() {
   const navigateRoute = useNavigate();
   const [navigate, setNavigate] = useState('settings');
@@ -19,7 +19,7 @@ function Dashboard() {
 
   const handleNavigate = (key) => {
     setNavigate(key);
-  };  
+  };
   return (
     <>
       <BHeader />

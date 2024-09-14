@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/auth_context';
 import { db } from '../../../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import { doc, getDoc, setDoc } from 'firebase/firestore';

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Web3 from 'web3';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/auth_context';
 import { db } from '../../../../firebase';
 import MultiAgriConnect from '../../../contractAddress/MultiAgriConnect.json';
 import { ToastContainer, toast } from 'react-toastify';

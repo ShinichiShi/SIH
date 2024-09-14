@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './components/context/Authcontext';
+import { AuthProvider } from './components/context/auth_context';
 
 import Dashboard from './components/Buyer/BDashboard';
 import Signup from './components/Buyer/Signup';

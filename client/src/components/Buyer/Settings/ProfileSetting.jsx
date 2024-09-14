@@ -7,7 +7,7 @@ import {
 } from 'firebase/auth';
 import { db } from '../../../../firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/auth_context';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,8 +19,8 @@ export default function ProfileSetting() {
     email: '',
     phone: '',
     photoUrl: '',
-    uid:'',
-    userType:'buyer',
+    uid: '',
+    userType: 'buyer',
   });
 
   const [address, setAddress] = useState({
@@ -49,8 +49,8 @@ export default function ProfileSetting() {
             email: data.profile.email || '',
             phone: data.profile.phone || '',
             photoUrl: data.profile.photoUrl || '',
-            uid:data.profile.uid || currentUser.uid,
-            userType:'buyer',
+            uid: data.profile.uid || currentUser.uid,
+            userType: 'buyer',
           });
           setAddress({
             addr1: data.address.addr1 || '',
@@ -69,8 +69,8 @@ export default function ProfileSetting() {
             email: '',
             phone: '',
             photoUrl: '',
-            uid:currentUser.uid,
-            userType:'buyer',
+            uid: currentUser.uid,
+            userType: 'buyer',
           });
           setAddress({
             addr1: '',

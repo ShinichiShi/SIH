@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase';
-import { AuthContext } from '../context/Authcontext';
+import { AuthContext } from '../context/auth_context';
 
 export default function Chat() {
   //current user context
