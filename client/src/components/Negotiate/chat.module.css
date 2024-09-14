@@ -87,10 +87,10 @@
     font-size: 20px;
     background-color: rgb(228, 226, 226);
     height: 85vh;
-    z-index: -1;
+    /* z-index: -1; */
     text-align: center;
     overflow-y: scroll;
-    height: 70vh; /* Adjust based on layout */
+    height: 80vh; /* Adjust based on layout */
     padding: 10px;
 }
 .send{
