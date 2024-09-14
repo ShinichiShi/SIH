@@ -12,6 +12,7 @@ import { IoVideocam } from "react-icons/io5";
 import { IoMdMore } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { object } from 'prop-types';
+import Recorder from './Recorder';
 
 
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
@@ -200,6 +201,7 @@ export default function Chat() {
             placeholder="Send a message"
             onChange={handleChange}
           />
+          <Recorder/>
           <button onClick={handleClick}>Send</button>
         </div>
       </div>
