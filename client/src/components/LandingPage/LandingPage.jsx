@@ -50,7 +50,7 @@ export default function LandingPage() {
       <nav className="navbar">
         <div className="navbar-logo">
           <div className="navbar-brand">
-            <strong><span style={{color: 'green'}}>AGRI</span>CONNECT</strong>
+            <strong><span style={{color: 'green'}}>KRISHI</span> SEVA</strong>
           </div>
         </div>
         <div className="navbar-menu">
@@ -106,7 +106,7 @@ export default function LandingPage() {
       {/* Central Section */}
       <section className="central-section">
         <h2 style={{ fontFamily: 'Poppins, sans-serif', color: 'green' }}>
-          Why Choose AgriConnect?
+          Why Choose KrishiSeva?
         </h2>
         <div className="features">
           <div className="feature">
@@ -144,7 +144,7 @@ export default function LandingPage() {
 
       {/* How It Works Section */}
       <section className="how-it-works">
-        <h2>How AgriConnect Works: A Simple 3-Step Process</h2>
+        <h2>How KrishiSeva Works: A Simple 3-Step Process</h2>
         <ol>
           <li><strong>Sign Up & Create Your Profile:</strong> Farmers and buyers can easily sign up and create a profile tailored to their needs.</li>
           <li><strong>Connect & Negotiate:</strong> Use our platform to discover potential partners and establish secure contracts.</li>
@@ -155,13 +155,13 @@ export default function LandingPage() {
       {/* Call to Action Section */}
       <section className="cta-section">
         <h2>Join a Growing Community of Successful Farmers and Buyers</h2>
-        <p>Already trusted by hundreds of farmers and buyers across the region, AgriConnect is transforming the agricultural landscape.</p>
-        <a href="#" className="button">Start Your Journey with AgriConnect Today</a>
+        <p>Already trusted by hundreds of farmers and buyers across the region, KrishiSeva is transforming the agricultural landscape.</p>
+        <a href="#" className="button">Start Your Journey with KrishiSeva Today</a>
       </section>
 
       {/* Footer */}
       <footer>
-        <p>&copy; 2024 AgriConnect. All rights reserved.</p>
+        <p>&copy; 2024 KrishiSeva. All rights reserved.</p>
       </footer>
     </>
   );

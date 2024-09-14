@@ -8,10 +8,10 @@ export default function Navi() {
     <div className={styles.navi}>
       <div className={styles.brand} onClick={() => navigate('/')}>
         <div className={styles.first}>
-          <h1>Agri</h1>
+          <h1>Krishi</h1>
         </div>
         <div className={styles.second}>
-          <h1>Connect</h1>
+          <h1>Seva</h1>
         </div>
       </div>
       <div className={styles.right}>

@@ -11,7 +11,7 @@ export default function Navbar() {
       >
         <div className="container">
           <a className="navbar-brand" href="#">
-            <span>Agri</span>Connect
+            <span>Krishi</span>Seva
           </a>
           <button
             className="navbar-toggler"

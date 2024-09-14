@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div>
       <footer>
-        <p>&copy; 2024 AgriConnect. All rights reserved.</p>
+        <p>&copy; 2024 KrishiSeva. All rights reserved.</p>
       </footer>
     </div>
   );
