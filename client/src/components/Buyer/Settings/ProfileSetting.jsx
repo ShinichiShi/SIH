@@ -19,6 +19,8 @@ export default function ProfileSetting() {
     email: '',
     phone: '',
     photoUrl: '',
+    uid:currentUser.uid,
+    userType:'buyer',
   });
 
   const [address, setAddress] = useState({
@@ -47,6 +49,8 @@ export default function ProfileSetting() {
             email: data.profile.email || '',
             phone: data.profile.phone || '',
             photoUrl: data.profile.photoUrl || '',
+            uid:data.profile.uid || currentUser.uid,
+            userType:'buyer',
           });
           setAddress({
             addr1: data.address.addr1 || '',
@@ -65,6 +69,8 @@ export default function ProfileSetting() {
             email: '',
             phone: '',
             photoUrl: '',
+            uid:currentUser.uid,
+            userType:'buyer',
           });
           setAddress({
             addr1: '',

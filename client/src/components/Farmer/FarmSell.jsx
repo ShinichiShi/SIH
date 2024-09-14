@@ -259,6 +259,7 @@ function FarmSell() {
       district: formData.district,
       state: formData.state,
       pincode: formData.pincode,
+      
     };
   
     try {

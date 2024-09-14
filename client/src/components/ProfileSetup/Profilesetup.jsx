@@ -2,7 +2,7 @@ import { useState, useEffect,useContext } from 'react';
 import styles from './profilesetup.module.css'; // Import the CSS module
 
 import { db } from '../../../firebase';
-import { addDoc, collection,setDoc,doc } from 'firebase/firestore';
+import { setDoc,doc } from 'firebase/firestore';
 import { AuthContext } from '../context/AuthContext';
 
 import Navbar from '../Farmer/FarmNav';
@@ -176,6 +176,8 @@ export default function Profilesetup() {
           district: selectedDistrict,
           subdistrict: selectedSubdistrict,
           area: areas.length > 0 ? areas[0] : '',
+          uid:currentUser.uid,
+          userType:'farmer',
         });
         alert('Data submitted successfully!');
       } catch (error) {

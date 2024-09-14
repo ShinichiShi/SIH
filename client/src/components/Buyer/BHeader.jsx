@@ -38,7 +38,7 @@ function BHeader() {
     <div className="h-20 font-sans">
       <div className="bg-white h-full shadow flex w-full">
         <div className=" w-full flex justify-between items-center  px-4">
-          <div className="text-green-500 text-2xl font-bold">KrishSeva</div>
+          <div className="text-green-500 text-2xl font-bold">KrishiSeva</div>
 
           <div>
             <div className="flex items-center justify-center gap-4">
