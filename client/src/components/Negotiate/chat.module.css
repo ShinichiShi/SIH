@@ -103,7 +103,7 @@
 }
 .send>textarea{
     padding: 4px;
-    width: 55vw;
+    width: 35vw;
     height: 6vh;
     color: black;
     font-size: 18px;
@@ -112,6 +112,7 @@
     text-align: center;
     overflow-y: auto;
     border-radius: 10px;
+    resize: none;
 }
 .send>button{
     /* border-radius:10px; */
