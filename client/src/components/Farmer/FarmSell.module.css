@@ -6,8 +6,11 @@
 body {
   /* overflow-x: hidden; */
 }
+.divbody{
+  background-color: white;
+}
 .headfs {
-  height: 17vh;
+  height: 140px;
   background-color: green;
   border: 1px solid #ccc;
 }
@@ -102,6 +105,7 @@ body {
   font-weight: 600;
   text-align: center;
 }
+
 .navs ul li:hover{
   /* background-color: #1fe726;
   border :1px solid #1fe726; */
@@ -130,6 +134,7 @@ body {
   justify-content: center;
   gap: 250px;
   border: 0.5px solid rgb(159, 159, 159);
+  background-color: white;
 }
 .search-box-div {
   display: flex;
@@ -210,7 +215,7 @@ body {
   height: 75vh;
   background-color: white;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   /* margin: 15px; */
   padding-top: 15px;
   justify-items: center;
@@ -233,7 +238,7 @@ body {
   box-shadow: 2px 2px 2px rgba(8, 0, 0, 0.4);
 }
 .box-crop img {
-  width: 90%;
+  width: 100%;
   height: 80%;
   /* justify-self: center; */
   border-radius: 0.3rem;
@@ -254,8 +259,9 @@ body {
 }
 
 .box-crop input[type='radio']:checked {
-  background-color: #00b207;
-  border-color: #00b207;
+  background: linear-gradient(to left top, #a25fff, #7b9afe, #11cbbb, #25fc4c);
+border-color: yellowgreen;
+
 }
 /* ````````````````````````````````````````````````` */
 .formbox {

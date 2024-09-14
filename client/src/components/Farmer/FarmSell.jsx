@@ -294,7 +294,7 @@ function FarmSell() {
   };
 
   return (
-    <>
+    <div className={styles.divbody}>
       <Navbar />
       <Search
         searchQuery={searchQuery}
@@ -312,7 +312,7 @@ function FarmSell() {
         </button>
       </div>
       <ToastContainer />
-    </>
+    </div>
   );
 }
 
