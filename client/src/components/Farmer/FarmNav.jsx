@@ -1,46 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from './FarmSell.module.css'; // Assuming you're using CSS Modules
-import { toast,ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { auth } from '../../../firebase';
 import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-
-// function Searchsvg() {
-//   return (
-//     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={20} height={20} color={"#fff"} fill={"none"}>
-//       <path d="M17.5 17.5L22 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-//       <path d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-//     </svg>
-//   );
-// }
-
-
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../../firebase';
+import { AuthContext } from '../context/AuthContext';
 
 function ProfileIcon() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to manage dropdown visibility
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userName, setUserName] = useState('');
+  const { currentUser } = useContext(AuthContext);
 
-  // Toggle the dropdown visibility
+  useEffect(() => {
+    const fetchUserName = async () => {
+      if (currentUser) {
+        try {
+          const farmerDocRef = doc(db, 'farmers', currentUser.uid);
+          const farmerDoc = await getDoc(farmerDocRef);
+          if (farmerDoc.exists()) {
+            const data = farmerDoc.data();
+            setUserName(`${data.firstname} ${data.lastname}`);
+          }
+        } catch (error) {
+          console.error('error fetching user data:', error);
+        }
+      }
+    };
+    fetchUserName();
+  }, [currentUser]);
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   const navigate = useNavigate();
+
   const handleLogout = async () => {
-    console.log("enter")
     try {
       await signOut(auth);
-      console.log('hello')
-      toast.success("Logging Out")
+      toast.success('Logging Out');
       setTimeout(() => {
         navigate('/flogin');
       }, 1000);
-      // navigate('/flogin'); 
     } catch (error) {
       toast.error('Error signing out:', error);
     }
   };
-
-
 
   return (
     <div className={styles.profileicon}>
@@ -55,7 +62,7 @@ function ProfileIcon() {
       {/* Dropdown Menu */}
       {isDropdownOpen && (
         <div className={styles.dropdown}>
-          <p className={styles.username}>Arvind Kumar</p> {/* Display user's name */}
+          <p className={styles.username}>{`Hi ${userName || 'User'}`}</p>
           <button className={styles.settingsButton} onClick={() => navigate('/profilesetup')}>
             Settings
           </button>
@@ -68,9 +75,21 @@ function ProfileIcon() {
   );
 }
 
-
 function Navbar() {
-    const navigate = useNavigate();
+  const [activeItem, setActiveItem] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation(); // Get the current route
+
+  // Update active item when route changes
+  useEffect(() => {
+    setActiveItem(location.pathname);
+  }, [location]);
+
+  const handleNavClick = (path) => {
+    setActiveItem(path);
+    navigate(path);
+  };
+
   return (
     <header className={styles.headfs}>
       <div className={styles.navp}>
@@ -78,19 +97,34 @@ function Navbar() {
           <h1>Agri</h1>
           <h1 id={styles.h1e}>Connect</h1>
         </div>
-        {/* <div className={styles['search-nav']}>
-          <input type="text" placeholder="Search" />
-          <Searchsvg />
-          Search
-        </div> */}
         <ProfileIcon />
       </div>
       <div className={styles.navs}>
         <ul>
-          <li onClick={() => navigate('/farmerdashboard')}>Home</li>
-          <li onClick={() => navigate('/farmsell')}>Sell crops</li>
-          <li>Notifications</li>
-          <li>Contact</li>
+          <li
+            className={activeItem === '/farmerdashboard' ? styles.activeNavItem : ''}
+            onClick={() => handleNavClick('/farmerdashboard')}
+          >
+            Home
+          </li>
+          <li
+            className={activeItem === '/farmsell' ? styles.activeNavItem : ''}
+            onClick={() => handleNavClick('/farmsell')}
+          >
+            Sell crops
+          </li>
+          <li
+            className={activeItem === '/notifications' ? styles.activeNavItem : ''}
+            onClick={() => handleNavClick('/notifications')}
+          >
+            Notifications
+          </li>
+          {/* <li
+            className={activeItem === '/contact' ? styles.activeNavItem : ''}
+            onClick={() => handleNavClick('/contact')}
+          >
+            Contact
+          </li> */}
         </ul>
       </div>
       <ToastContainer />

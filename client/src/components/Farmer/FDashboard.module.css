@@ -240,7 +240,8 @@ body {
   height: 50px;
   width: 80px;
   border: none;
-  background-color: #00b207;
+    /* background-color: #00B207; */
+    background: linear-gradient(to left top, #00B207, #1fe726);
   color: white;
   border-radius: 0.25rem;
   border: 1px solid #00b207;
@@ -425,6 +426,7 @@ body {
 
 .contract-btn button:hover {
   background-color: darkgreen;
+  
 }
 
 /* ```````````````````````````````secimg`````````````````````````` */

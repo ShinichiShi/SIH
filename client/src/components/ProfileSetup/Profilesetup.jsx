@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import styles from './profilesetup.module.css'; // Import the CSS module
 
 import { db } from '../../../firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection,setDoc,doc } from 'firebase/firestore';
+import { AuthContext } from '../context/AuthContext';
 
 import Navbar from '../Farmer/FarmNav';
 
 export default function Profilesetup() {
+  const { currentUser } = useContext(AuthContext);  // Get currentUser from AuthContext
   const port = import.meta.env.VITE_PORT;
+
   const [imagePreview1, setImagePreview1] = useState(null);
   const [imagePreview2, setImagePreview2] = useState(null);
 
@@ -39,7 +42,7 @@ export default function Profilesetup() {
       .then((response) => response.json())
       .then((data) => setStates(data));
   }, [port]);
-
+  
   const handleStateChange = (e) => {
     const state = e.target.value;
     setSelectedState(state);
@@ -51,7 +54,7 @@ export default function Profilesetup() {
         setAreas([]);
       });
   };
-
+  
   const handleDistrictChange = (e) => {
     const district = e.target.value;
     setSelectedDistrict(district);
@@ -62,7 +65,7 @@ export default function Profilesetup() {
         setAreas([]);
       });
   };
-
+  
   const handleSubdistrictChange = (e) => {
     const subdistrict = e.target.value;
     setSelectedSubdistrict(subdistrict);
@@ -72,8 +75,7 @@ export default function Profilesetup() {
       .then((response) => response.json())
       .then((data) => setAreas(data));
   };
-
-  const userCollectionRef = collection(db, 'farmers');
+  
 
   // Image handling
   const handleImageChange1 = (event) => {
@@ -150,33 +152,36 @@ export default function Profilesetup() {
       return;
     }
 
-    try {
-      await addDoc(userCollectionRef, {
-        firstname: firstname.toUpperCase(),
-        lastname: lastname.toUpperCase(),
-        gender,
-        dob,
-        address: address.toUpperCase(),
-        pincode: parseInt(pincode, 10),
-        photoidtype,
-        photoidnumber: parseInt(photoidnumber, 10),
-        ifsc: ifsc.toUpperCase(),
-        accountnumber: parseInt(accountnumber, 10),
-        bankname: bankname.toUpperCase(),
-        branchname: branchname.toUpperCase(),
-        branchaddress: branchaddress.toUpperCase(),
-        accountname: accountname.toUpperCase(),
-        passbookImage: imagePreview1,
-        idProofImage: imagePreview2,
-        state: selectedState,
-        district: selectedDistrict,
-        subdistrict: selectedSubdistrict,
-        area: areas.length > 0 ? areas[0] : '',
-      });
-      alert('Data submitted successfully!');
-    } catch (error) {
-      console.error('Error submitting data:', error);
-      alert('Error submitting data. Please try again.');
+    if (currentUser) {
+      const farmerDocRef = doc(db, 'farmers', currentUser.uid); // Reference doc using currentUser.uid
+      try {
+        await setDoc(farmerDocRef, {
+          firstname: firstname.toUpperCase(),
+          lastname: lastname.toUpperCase(),
+          gender,
+          dob,
+          address: address.toUpperCase(),
+          pincode: parseInt(pincode, 10),
+          photoidtype,
+          photoidnumber: parseInt(photoidnumber, 10),
+          ifsc: ifsc.toUpperCase(),
+          accountnumber: parseInt(accountnumber, 10),
+          bankname: bankname.toUpperCase(),
+          branchname: branchname.toUpperCase(),
+          branchaddress: branchaddress.toUpperCase(),
+          accountname: accountname.toUpperCase(),
+          passbookImage: imagePreview1,
+          idProofImage: imagePreview2,
+          state: selectedState,
+          district: selectedDistrict,
+          subdistrict: selectedSubdistrict,
+          area: areas.length > 0 ? areas[0] : '',
+        });
+        alert('Data submitted successfully!');
+      } catch (error) {
+        console.error('Error submitting data:', error);
+        alert('Error submitting data. Please try again.');
+      }
     }
   };
 

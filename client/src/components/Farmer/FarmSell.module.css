@@ -74,7 +74,7 @@ body {
     display: flex;
     align-items: center;
   }
-  .navs ul{
+  /* .navs ul{
     display: flex;
     align-items: center;
     list-style-type:none;
@@ -83,14 +83,44 @@ body {
     font-size: 19px;
     font-weight: 600;
     text-align: center;
-  }
-  .navs ul li:hover{
+  } */
+  /* .navs ul li:hover{
     /* background-color: #1fe726;
     border :1px solid #1fe726; */
-  text-decoration: underline #00b207;
+  /* text-decoration: underline #00b207;
   text-decoration-thickness: 3px;
-  border-radius: 0.5rem;
+  border-radius: 0.5rem; */
   /* padding: 0px 4px; */
+
+.navs ul{
+  display: flex;
+  align-items: center;
+  list-style-type:none;
+  gap: 55px;
+  margin-left: 50px;
+  font-size: 19px;
+  font-weight: 600;
+  text-align: center;
+}
+.navs ul li:hover{
+  /* background-color: #1fe726;
+  border :1px solid #1fe726; */
+  /* text-decoration: underline #00B207; */
+  /* text-decoration-thickness: 3px; */
+  /* border-radius: 0.5rem; */
+  /* padding: 0px 4px; */
+  background-color: #00B207;
+  color: white;
+  border-radius: 0.25rem;
+  padding: 3px 15px;
+
+}
+.activeNavItem {
+  background-color: #00B207;
+  color: white;
+  border-radius: 0.25rem;
+  padding: 3px 15px;
+
 }
 
 .search-box {
