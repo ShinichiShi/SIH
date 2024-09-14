@@ -83,12 +83,15 @@
     display: flex;
     flex-direction: column;
     padding: 40px;
+    gap: 10px;
     font-size: 20px;
     background-color: rgb(228, 226, 226);
     height: 85vh;
     z-index: -1;
     text-align: center;
     overflow-y: scroll;
+    height: 70vh; /* Adjust based on layout */
+    padding: 10px;
 }
 .send{
     display: flex;
@@ -117,3 +120,23 @@
     text-align: center;
     border-radius: 10px;
 }
+
+.mess {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+    word-wrap: break-word;
+  }
+
+  .sent {
+    background-color: #DCF8C6; /* Light green background for sent messages */
+    align-self: flex-end;
+    text-align: right;
+  }
+
+  .received {
+    background-color: #FFFFFF; /* White background for received messages */
+    align-self: flex-start;
+    text-align: left;
+  }
