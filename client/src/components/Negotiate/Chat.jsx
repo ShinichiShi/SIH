@@ -25,88 +25,110 @@ export default function Chat() {
   const [prevRoomID, setPrevRoomID] = useState(null);
   const [userType, setUserType] = useState('buyers');
   const [contacts, setContacts] = useState(null);
-  const [message,setmessage]=useState();
-  const[messages, setMessages] = useState();
+  const [message, setmessage] = useState();
+  const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
-  const [currperson,setperson]=useState();
+  const [currperson, setperson] = useState();
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    if(!currentUser){
+  const chatDisplayRef = useRef(null);  // Ref to chat display container
+  const bottomRef = useRef(null);       // Ref to the last message to scroll into view
+
+  useEffect(() => {
+    if (!currentUser) {
       return;
     }
     //establish new socket connection
     const newSocket = io.connect(`http://localhost:${SERVER_PORT}`);
     setSocket(newSocket);
 
-    loadContacts(currentUser.uid, userType).then((result)=>{
+    loadContacts(currentUser.uid, userType).then((result) => {
       setContacts(result);
       setLoading(false);
     })
 
-    console.log("current user id ", currentUser.uid);
+    // console.log("current user id ", currentUser.uid);
 
     return () => {
-      console.log("disconnected");
+      // console.log("disconnected");
       newSocket.disconnect();
     };
-  },[currentUser])
+  }, [currentUser])
 
-  useEffect(()=>{
-    if(contacts!=null){
+  useEffect(() => {
+    if (contacts != null) {
       // console.log("contacts ", contacts);
     }
-  },[contacts])
+  }, [contacts])
 
-  useEffect(()=>{
+  useEffect(() => {
 
     //monitor events
-    if(socket){
+    if (socket) {
       socket.on("connect", () => {
-        console.log("current socket ID:", socket.id); // Now it's guaranteed to be defined
+        // console.log("current socket ID:", socket.id); // Now it's guaranteed to be defined
       });
-      socket.on("recieve-message", (received_message) => {
-        console.log("recieved message ", received_message.message, " from room ,", received_message.room);
-        setMessages((prevMessages) => [...prevMessages, received_message]);
+      socket.on("recieve-message", (data) => {
+        // console.log(data);
+        const newMessage = { user: data.user, text: data.text, room : data.room };
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
       });
-      socket.on("joined-room", (room)=>{
-        console.log(`${socket.id} joined room ${room}`);
+      socket.on("joined-room", (room) => {
+        // console.log(`${socket.id} joined room ${room}`);
       })
-      socket.on("left-room", (room)=>{
-        console.log(`${socket.id} left room ${room}`);
+      socket.on("left-room", (room) => {
+        // console.log(`${socket.id} left room ${room}`);
       })
     }
-    return ()=>{
-      if(socket){
+    return () => {
+      if (socket) {
         socket.off("connect");
         socket.off("recieve-message");
         socket.off("joined-room");
         socket.off("left-room");
       }
     }
-  }, [socket])
+  }, [socket, messages])
 
-  useEffect(()=>{
+  useEffect(() => {
     //switch rooms/contacts
-      if(socket){
-        switchRooms(socket, prevRoomID, currentRoomID);
-        loadMessage(currentRoomID).then((result)=>{setMessages(result)});
-      }
+    if (socket) {
+      switchRooms(socket, prevRoomID, currentRoomID);
+      loadMessage(currentRoomID).then((result) => { setMessages(result) });
+    }
   }, [currentRoomID])
 
-  useEffect(()=>{
-    console.log(messages);
-
+  useEffect(() => {
+    // console.log("messages array updated");
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    }    
   }, [messages])
 
 
-  const handleClick = async ()=>{
-    //broadcast message 
-    await socket.emit("send-message", {message : `message from ${socket.id}`, room:currentRoomID});
+  const handleClick = async (event) => {
+    if (message.trim()){
+      if(currentRoomID){
+        // Optimistically add the message to the messages state
+        const newMessage = { user: currentUser.uid, text: message, room : currentRoomID };
+    
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        // Clear input
+        event.target.value="";
+        setmessage('');  
+        // Emit the message to the server
+        await socket.emit("send-message", newMessage);
+        // console.log("Sent message:", message);
+    
+        // Upload message to Firebase
+        uploadMessage(currentRoomID, message, currentUser.uid);      
+      }else{
+        console.log("select room");
+      }
+    }
 
-    //upload message to database
-    uploadMessage(currentRoomID,message,currentUser.uid);
-  }
+  };
+  
   const handleChange = (event) => {
     setmessage(event.target.value);
   };
@@ -120,67 +142,48 @@ export default function Chat() {
   }
 
   return (
-  <div className={styles.chitchat}>
-    <div className={styles.chatui}>
-      <div className={styles.cntlist}>
-        <div className={styles.profileinfo}>
-          <a onClick={()=>navigate()}><IoArrowBackOutline /></a>
-          <h1>Chats</h1>
+    <div className={styles.chitchat}>
+      <div className={styles.chatui}>
+        <div className={styles.cntlist}>
+          <div className={styles.profileinfo}>
+            <a onClick={() => navigate()}><IoArrowBackOutline /></a>
+            <h1>Chats</h1>
+          </div>
+          <div className={styles.list}>
+            {Object.keys(contacts).map((key) => {
+              const contact = contacts[key];
+              return (
+                <button
+                  key={key}
+                  onClick={() => {
+                    // loadMessage(contact.roomID)
+                    setPrevRoomID(currentRoomID);
+                    setRoomID(contact.roomID);
+                    setperson(`${contact.farmer_name}`)
+                  }}
+                  style={{ marginBottom: '10px', cursor: 'pointer', textAlign: 'center' }}
+                  className={styles.cnt1}
+                >
+                  <LuUserCircle2 />
+                  <span>{contact.farmer_name}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-        <div className={styles.list}>
-          {/* <div className={styles.cnt1}>
-            <LuUserCircle2 />
-            <span>lavi</span>
-          </div>
-          <div className={styles.cnt1}>
-          <LuUserCircle2 />
-            <span>supreeth</span>
-          </div>
-          <div className={styles.cnt1}>
-            <LuUserCircle2 />
-            <span>dilip</span>
-          </div>
-          <div className={styles.cnt1}>
-            <LuUserCircle2 />
-            <span>isha</span>
-          </div>
-          <div className={styles.cnt1}>
-            <LuUserCircle2 />
-            <span>samyak</span>
-          </div> */}
-         {Object.keys(contacts).map((key) => {
-            const contact = contacts[key];
-            return (
-              <button
-                key={key}
-                onClick={() => {
-                  // loadMessage(contact.roomID)
-                  setPrevRoomID(currentRoomID);
-                  setRoomID(contact.roomID);
-                  setperson(`${contact.farmer_name}`)}}
-                style={{ marginBottom: '10px', cursor: 'pointer',textAlign:'center' }}
-                className={styles.cnt1}
-              >
-                <LuUserCircle2 />
-                <span>{contact.farmer_name}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <div className={styles.chat}>
-        <div className={styles.clientpfp}>
-          <span style={{display:'flex',gap:'15px'}}>
-            <span style={{position:'relative',top:'1vh'}}><LuUserCircle2 /></span>
-            {currperson}
+        <div className={styles.chat}>
+          <div className={styles.clientpfp}>
+            <span style={{ display: 'flex', gap: '15px' }}>
+              <span style={{ position: 'relative', top: '1vh' }}><LuUserCircle2 /></span>
+              {currperson}
             </span>
-          <div className={styles.icons}>
-          <MdCall />
-          <IoVideocam />
-          <IoMdMore />
+            <div className={styles.icons}>
+              <MdCall />
+              <IoVideocam />
+              <IoMdMore />
+            </div>
           </div>
-        </div>
-        <div className={styles.display}>
+          <div className={styles.display} ref={chatDisplayRef}>
             {messages && messages.length > 0 ? (
               messages.map((msg, index) => (
                 <div
@@ -193,46 +196,47 @@ export default function Chat() {
             ) : (
               <div>No messages yet.</div>
             )}
+            <div ref={bottomRef} />  {/* Scroll target */}
           </div>
-        <div className={styles.send}>
-          <textarea
-            name="negotiate"
-            id="chat"
-            placeholder="Send a message"
-            onChange={handleChange}
-          />
-          <Recorder/>
-          <button onClick={handleClick}>Send</button>
+          <div className={styles.send}>
+            <textarea
+              name="negotiate"
+              id="chat"
+              placeholder="Send a message"
+              onChange={handleChange}
+            />
+            <Recorder />
+            <button onClick={handleClick}>Send</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }
 
-const switchRooms = async (socket, prevRoomID, currentRoomID)=>{
+const switchRooms = async (socket, prevRoomID, currentRoomID) => {
   await socket.emit('leave-room', prevRoomID)
   await socket.emit('join-room', currentRoomID);
 }
 
-const uploadMessage = async (currentRoomID,mess,userId)=>{
-  if(currentRoomID){
+const uploadMessage = async (currentRoomID, mess, userId) => {
+  if (currentRoomID) {
     try {
       await addDoc(collection(db, 'chats', `${currentRoomID}`, 'messages'), {
         message: `${mess}`,
         timeStamp: new Date(),
-        // user: currentUser.uid,
-        user:`${userId}`
-      }).then(console.log("message sent"));
+        user: `${userId}`
+      })
+      // .then(console.log("message sent"));
     } catch (error) {
       console.error("Error uploading message:", error);
-    }    
-  }else{
+    }
+  } else {
     console.log("select room");
   }
 }
 
-const loadContacts = async (currentUserID, userType)=>{
+const loadContacts = async (currentUserID, userType) => {
   try {
     const userDocRef = doc(db, userType, currentUserID);
     const userDoc = await getDoc(userDocRef);
@@ -249,18 +253,18 @@ const loadContacts = async (currentUserID, userType)=>{
   }
 };
 
-const loadMessage = async (currentRoomID)=>{
-  console.log(`fetching messages from ${currentRoomID}`);
+const loadMessage = async (currentRoomID) => {
+  // console.log(`fetching messages from ${currentRoomID}`);
   try {
     const messagesCollectionRef = collection(db, "chats", `${currentRoomID}`, "messages");
     const q = query(messagesCollectionRef, orderBy('timeStamp', 'asc'));
 
     const querySnapshot = await getDocs(q);
-    const fetchedMessages = querySnapshot.docs.map(doc=>{
+    const fetchedMessages = querySnapshot.docs.map(doc => {
       const data = doc.data();
-      return{
-        user:data.user,
-        text:data.message
+      return {
+        user: data.user,
+        text: data.message
       }
     })
     // console.log(fetchedMessages);
@@ -268,5 +272,5 @@ const loadMessage = async (currentRoomID)=>{
   } catch (error) {
     console.error("Error fetching messages: ", error);
   }
-  
+
 }
