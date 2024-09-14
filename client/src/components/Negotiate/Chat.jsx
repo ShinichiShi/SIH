@@ -79,14 +79,14 @@ export default function Chat() {
       socket.on('connect', () => {
         // console.log("current socket ID:", socket.id); // Now it's guaranteed to be defined
       });
-      socket.on('recieve-message', (data) => {
+      socket.on("recieve-message", (data)=>{
         // console.log(data);
-        const newMessage = {
-          user: data.user,
-          text: data.text,
-          room: data.room,
-        };
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        const recieved_message = { user: data.user, text: data.text, room : data.room, lang : data.lang };
+        console.log(recieved_message.lang);
+        // if(recieved_message.lang!=lang){
+        // }
+        translate(recieved_message, lang, setMessages)
+        // setMessages((prevMessages) => [...prevMessages, recieved_message]);
       });
       socket.on('joined-room', (room) => {
         // console.log(`${socket.id} joined room ${room}`);
@@ -126,12 +126,8 @@ export default function Chat() {
     if (message.trim()) {
       if (currentRoomID) {
         // Optimistically add the message to the messages state
-        const newMessage = {
-          user: currentUser.uid,
-          text: message,
-          room: currentRoomID,
-        };
-
+        const newMessage = { user: currentUser.uid, text: message, room : currentRoomID, lang : lang };
+    
         setMessages((prevMessages) => [...prevMessages, newMessage]);
         // Clear input
 
@@ -369,7 +365,7 @@ const handleAudioUpload = async (blob, lang, setmessage) => {
   reader.onloadend = async () => {
     const base64data = reader.result.split(',')[1]; // Extract Base64 part
 
-    const response = await fetch(`http://localhost:${SERVER_PORT}/chat`, {
+    const response = await fetch(`http://localhost:${SERVER_PORT}/chat/audioUpload`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Send JSON data
@@ -385,4 +381,25 @@ const handleAudioUpload = async (blob, lang, setmessage) => {
     })
     
   }
+}
+
+const translate = async (recieved_message, preffered_lang, setMessages) => {
+  console.log("translating message");
+  const response = await fetch(`http://localhost:${SERVER_PORT}/chat/translate`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',  // Ensure correct content type
+    },
+    body: JSON.stringify({
+      text: recieved_message.text,
+      // preffered_lang: preffered_lang,
+      preffered_lang: 'hindi', //testing purposes
+      text_lang: recieved_message.text_lang,
+    }),
+  });
+  response.json().then((result) => {
+    recieved_message.text = result.message;
+    console.log(recieved_message);
+    setMessages((prevMessages) => [...prevMessages, recieved_message]);
+  })
 }
