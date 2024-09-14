@@ -1,0 +1,277 @@
+
+*{
+    margin:0;
+    padding:0;
+    
+}
+img{
+  height: 15vh;
+  margin-left: 3vw;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f7f5eb;
+    
+}
+/* carousel*/
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+  height:500px;
+}
+
+.carousel-slide {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f7f5eb; /* Background color */
+  
+}
+
+.right img{
+  height:225px;
+  width:200px;
+  
+}
+
+.left {
+  width:50%;
+  padding-top:100px;
+}
+
+.right{
+  width:50%;
+  padding-top:100px;
+}
+
+.left p{
+  font-size:24px;
+}
+
+.btnii{
+  background-color:#006400;
+  color:white;
+}
+
+
+
+
+
+
+
+
+
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  transition: 0.6s ease;
+  z-index: 10;
+}
+
+.next {
+  right: 0;
+}
+
+.prev {
+  left: 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-content{
+  display:flex;
+  justify-content: flex-start;
+
+}
+
+
+/* Navigation buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.prev{
+  left: 0;
+  background-color:#006400;
+  border-radius:100%;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+  background-color:#006400;
+  border-radius:100%;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.carousel-item img{
+  border-radius: 10%;
+  width:fit-content;
+}
+
+.imggg{
+  border-radius: 10%;
+}
+
+  
+
+/* CSS for header */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f7f5eb;
+    
+    
+  }
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: x-large;
+    
+  }
+  
+  .navbar-menu {
+    position: relative;
+    display: inline-block;
+    
+    
+  }
+  .navbar-menu button {
+    background-color: #006400;
+    color:#f7f5eb;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+   
+  }
+  .navbar-menu-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .navbar-menu-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .navbar-menu-content a:hover {
+    background-color: #ddd;
+  }
+  .navbar-menu:hover .navbar-menu-content {
+    display: block;
+  }
+/* Sticky Navbar */
+
+  
+
+  
+  /*this is typed*/
+
+.central-section {
+    padding: 4rem 2rem;
+    background: rgb(217, 241, 217);
+    text-align: center;
+
+}
+
+.central-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature {
+    flex: 1;
+    margin: 1rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.how-it-works, .cta-section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.how-it-works h2, .cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.how-it-works ol {
+    list-style: decimal inside;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.how-it-works li {
+    margin-bottom: 1rem;
+}
+
+footer {
+    background: #006400;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}

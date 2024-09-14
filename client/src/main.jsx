@@ -15,7 +15,7 @@ import FarmSell from './components/Farmer/FarmSell';
 import MultiAgriConnectInteract from './components/Contract/Contract_2';
 import FESignup from './components/Farmer/FESignup';
 import FELogin from './components/Farmer/FELogin';
-import LandingPage from './components/LandingPage/trial';
+import LandingPage from './components/LandingPage/LandingPage';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <BrowserRouter>
