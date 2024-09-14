@@ -12,7 +12,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    /* line-height: 1.6; */
     color: #333;
     background-color: #f7f5eb;
     
@@ -45,13 +45,14 @@ body {
 
 .right img{
   height:225px;
-  width:200px;
+  /* width:200px; */
   
 }
 
 .left {
-  width:50%;
-  padding-top:100px;
+  width: 50%;
+    padding-top: 45px;
+    padding-left: 40px;
 }
 
 .right{
@@ -64,8 +65,17 @@ body {
 }
 
 .btnii{
+  margin-top: 20px;
   background-color:#006400;
   color:white;
+  padding: 20px 10px;
+  width: 200px;
+  font-size: 20px;
+  border-radius: 0.5rem;
+}
+
+.btnii:hover{
+  background-color: #097c09;
 }
 
 
@@ -116,7 +126,8 @@ body {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  width: auto;
+  width: 55px
+  ;
   padding: 16px;
   margin-top: -22px;
   color: white;
@@ -217,7 +228,7 @@ body {
 
 .central-section {
     padding: 4rem 2rem;
-    background: rgb(217, 241, 217);
+    background: #eef3d2;
     text-align: center;
 
 }
@@ -249,13 +260,26 @@ body {
 }
 
 .how-it-works, .cta-section {
-    padding: 4rem 2rem;
+    padding: 4rem 1rem;
     text-align: center;
 }
+/* .how-it-works{
+  margin-top: 100px;
+} */
+.cta-section{
+  /* margin-bottom: 2rem; */
+  margin: 0;
+  padding: 0;
+  padding-bottom: 20px;
+}
 
-.how-it-works h2, .cta-section h2 {
-    font-size: 2rem;
+.how-it-works h2{
+    font-size: 32px;
     margin-bottom: 2rem;
+}
+.cta-section h2 {
+  font-size: 32px;
+  margin-bottom: 2rem;
 }
 
 .how-it-works ol {
@@ -267,11 +291,29 @@ body {
 
 .how-it-works li {
     margin-bottom: 1rem;
+    font-size: 18px;
 }
-
+.cta-section p{
+  font-size: 18px;
+}
+.howCta{
+  /* display: flex;
+  flex-direction: column;
+  gap: 10px; */
+}
 footer {
     background: #006400;
     color: #fff;
     padding: 1rem;
     text-align: center;
+}
+
+/* ````````````````````````````````````````````````` */
+
+.h1cap{
+  font-size: 35px;
+  font-weight: 600;
+}
+.pcap{
+  font-size: 22px;
 }

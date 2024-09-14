@@ -8,6 +8,9 @@
 body {
   /* overflow-x: hidden; */
 }
+.dashbody{
+  background-color: white;
+}
 .headerfd {
   height: 17vh;
   background-color: green;
@@ -110,6 +113,7 @@ body {
   justify-content: center;
   gap: 250px;
   border: 0.5px solid rgb(159, 159, 159);
+  background-color: white;
 }
 .search-box-div {
   display: flex;
@@ -218,7 +222,7 @@ body {
 }
 .primary-details {
   width: 70%;
-  font-size: 16px;
+  font-size: 22px;
   /* padding: 30px;
   line-height: 25px; */
   display: flex;
@@ -229,6 +233,7 @@ body {
   gap: 10px;
   /* border: 1px solid; */
   /* line-height: 20px; */
+  text-transform: capitalize;
 }
 .primary-btn {
   display: flex;
@@ -250,7 +255,7 @@ body {
   box-shadow: none;
 }
 .primary-btn button:hover {
-  background-color: white;
+  background: white;
   color: #00b207;
 }
 ::-webkit-scrollbar {
@@ -442,4 +447,7 @@ body {
   border-radius: 7rem;
   border: 0.5px solid #ccc;
   filter: opacity(0.8);
+}
+.emu{
+  overflow: hidden;
 }

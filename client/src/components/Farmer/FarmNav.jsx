@@ -119,6 +119,12 @@ function Navbar() {
           >
             Notifications
           </li>
+          <li
+            className={activeItem === '/chat' ? styles.activeNavItem : ''}
+            onClick={() => navigate('/chat', { state: { userType:'farmer'} })}
+          >
+            Chats
+          </li>
           {/* <li
             className={activeItem === '/contact' ? styles.activeNavItem : ''}
             onClick={() => handleNavClick('/contact')}

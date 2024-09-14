@@ -75,8 +75,8 @@ export default function LandingPage() {
               
                 
                   <div className="left">
-                  <h1>{slide.caption}</h1>
-                  <p>{slide.description}</p>
+                  <h1 className='h1cap'>{slide.caption}</h1>
+                  <p className='pcap'>{slide.description}</p>
                   <button className="btnii" onClick={()=>{navigate(slide.link)}}>{slide.button}</button>
                   </div>
                 
@@ -145,6 +145,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
+      <div className="howCta">
       <section className="how-it-works">
         <h2>How KrishiSeva Works: A Simple 3-Step Process</h2>
         <ol>
@@ -160,6 +161,7 @@ export default function LandingPage() {
         <p>Already trusted by hundreds of farmers and buyers across the region, KrishiSeva is transforming the agricultural landscape.</p>
         <a href="#" className="button">Start Your Journey with KrishiSeva Today</a>
       </section>
+      </div>
 
       {/* Footer */}
       <footer>

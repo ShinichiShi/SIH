@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase';  // Import your firebase configuration
 import Navbar from './FarmNav';
-
+import { useAuth } from '../context/auth_context';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -11,9 +12,9 @@ function Box({ data, showSecondaryBox }) {
   return (
     <div className={styles['box-primary']}>
       <div className={styles['primary-details']}>
-        <p>Name: {data.profile?.displayName || 'N/A'} {data.profile?.lname || ''}</p>
-        <p>Contact Name: {data.displayName || 'N/A'} </p>
+        <p>{data.profile?.displayName || 'N/A'} {data.profile?.lname || ''}</p>
         <p>Phone: {data.profile?.phone || 'N/A'}</p>
+        <p className={styles.emu}>Email : {data.profile?.email || 'N/A'}</p>
         <p>State: {data.address?.state || 'N/A'}</p>
       </div>
       <div className={styles['primary-btn']}>
@@ -25,6 +26,10 @@ function Box({ data, showSecondaryBox }) {
 
 
 function Secondarybox({ data, hideSecondaryBox }) {
+
+  const {currentUser} = useAuth();
+  const navigate = useNavigate();
+
   return (
     <div className={styles['box-sec']}>
       <h3>Details:</h3>
@@ -46,7 +51,7 @@ function Secondarybox({ data, hideSecondaryBox }) {
         <p>Bank: {data.bank?.bank_name || 'N/A'}</p>
 
         <div className={styles.contractBtn}>
-          <button>Make a Deal</button>
+          <button onClick={() => navigate('/chat', { state: { uid: data.profile?.uid, userType: 'farmer' } })}>Negotiate</button>
         </div>
       </div>
     </div>
@@ -173,11 +178,11 @@ function FDashboard() {
   const [searchQuery,setSearchQuery] = useState('');
 
   return (
-    <>
+    <div className={styles.dashbody}>
       <Navbar />
       <Search handleSearch={(e) => setSearchQuery(e.target.value)} />
       <MainBox searchQuery={searchQuery} />
-    </>
+    </div>
   );
 }
 
