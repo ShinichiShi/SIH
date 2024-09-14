@@ -114,7 +114,7 @@ export default function Chat() {
     
         setMessages((prevMessages) => [...prevMessages, newMessage]);
         // Clear input
-        event.target.value="";
+        
         setmessage('');  
         // Emit the message to the server
         await socket.emit("send-message", newMessage);
@@ -203,6 +203,7 @@ export default function Chat() {
               name="negotiate"
               id="chat"
               placeholder="Send a message"
+              value={message}
               onChange={handleChange}
             />
             <Recorder />
