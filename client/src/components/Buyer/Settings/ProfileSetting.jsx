@@ -19,7 +19,7 @@ export default function ProfileSetting() {
     email: '',
     phone: '',
     photoUrl: '',
-    uid:currentUser.uid,
+    uid:'',
     userType:'buyer',
   });
 
