@@ -146,7 +146,16 @@ export default function Chat() {
       <div className={styles.chatui}>
         <div className={styles.cntlist}>
           <div className={styles.profileinfo}>
-            <a onClick={() => navigate()}><IoArrowBackOutline /></a>
+            <a onClick={() => {
+               if(userType=="farmer")
+                {
+                  navigate('/farmerdashboard')
+                }
+                else
+                {
+                  navigate('/buyer')
+                }
+            }}><IoArrowBackOutline /></a>
             <h1>Chats</h1>
           </div>
           <div className={styles.list}>
@@ -178,9 +187,20 @@ export default function Chat() {
               {currperson}
             </span>
             <div className={styles.icons}>
-              <MdCall />
+              {/* <MdCall />
               <IoVideocam />
-              <IoMdMore />
+              <IoMdMore /> */}
+              <button className={styles.mkc} onClick={()=>{
+                if(userType=="farmer")
+                {
+                  navigate('/farmerdashboard')
+                }
+                else
+                {
+                  navigate('/buyer')
+                }
+              }} style={{ display: (!currperson)? 'none' : 'flex'}}>Make Contract</button>
+
             </div>
           </div>
           <div className={styles.display} ref={chatDisplayRef}>
@@ -194,11 +214,11 @@ export default function Chat() {
                 </div>
               ))
             ) : (
-              <div>No messages yet.</div>
+              <div>.....Select Contact.....</div>
             )}
             <div ref={bottomRef} />  {/* Scroll target */}
           </div>
-          <div className={styles.send}>
+          <div className={styles.send} style={{ display: (!currperson)? 'none' : 'flex',backgroundColor:(!currperson)? 'rgb(228, 226, 226)':'whitesmoke'}}>
             <textarea
               name="negotiate"
               id="chat"
