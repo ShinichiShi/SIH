@@ -19,7 +19,7 @@ function Dashboard() {
 
   const handleNavigate = (key) => {
     setNavigate(key);
-  };
+  };  
   return (
     <>
       <BHeader />

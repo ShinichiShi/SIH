@@ -14,12 +14,14 @@ import { IoMdMore } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { object } from 'prop-types';
 import Recorder from './Recorder';
-
+// import { useLocation } from 'react-router-dom';
 
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
 
 export default function Chat() {
-
+ // const location = useLocation();
+  // const { uid, userType } = location.state;
+  // console.log(uid, userType); 
   const { currentUser } = useContext(AuthContext);
   const [socket, setSocket] = useState(null);
   const [currentRoomID, setRoomID] = useState(null);

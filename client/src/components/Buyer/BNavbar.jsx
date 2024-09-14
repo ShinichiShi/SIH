@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 export default function BNavbar({ handleNavigate, navigate }) {
+  const navigateChat = useNavigate();
+
   return (
     <nav className="bg-white border-t">
       <div className=" mx-auto flex justify-between items-center px-4 py-3">
@@ -37,7 +40,11 @@ export default function BNavbar({ handleNavigate, navigate }) {
           </li>
           <li
             className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'chat' ? 'bg-green-300' : ''} hover:bg-green-200`}
-            onClick={() => handleNavigate('chats')}
+            onClick={() => {
+              navigateChat('/chat',{
+                state: { userType: 'buyer' }, 
+            })
+          }}
           >
             Chats
           </li>

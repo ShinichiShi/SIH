@@ -82,8 +82,10 @@ export default function BDealsSection({ deal }) {
         <button
           className="px-4 py-2 bg-green-500 text-white rounded-lg flex items-center gap-2 hover:bg-green-600"
           onClick={() => {
-            navigate(`/chat?${deal.id}`);
-          }}
+            navigate('/chat',{
+              state: { uid: deal.id, userType: 'buyer' }, 
+          })
+        }}
         >
           <IoChatbubblesSharp />
           Negotiate
@@ -98,9 +100,9 @@ BDealsSection.propTypes = {
   deal: PropTypes.shape({
     cropName: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    quantity: PropTypes.number.isRequired,
-    landArea: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
+    quantity: PropTypes.string.isRequired,
+    landArea: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
     items: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     pincode: PropTypes.string.isRequired,
