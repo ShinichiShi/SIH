@@ -83,7 +83,7 @@ export default function BDealsSection({ deal }) {
           className="px-4 py-2 bg-green-500 text-white rounded-lg flex items-center gap-2 hover:bg-green-600"
           onClick={() => {
             navigate('/chat',{
-              state: { uid: deal.id, userType: 'buyer' }, 
+              state: { uid: deal.id, userType: 'buyers' }, 
           })
         }}
         >

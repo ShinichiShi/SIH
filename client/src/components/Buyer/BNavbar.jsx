@@ -42,7 +42,7 @@ export default function BNavbar({ handleNavigate, navigate }) {
             className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'chat' ? 'bg-green-300' : ''} hover:bg-green-200`}
             onClick={() => {
               navigateChat('/chat',{
-                state: { userType: 'buyer' }, 
+                state: { userType: 'buyers' }, 
             })
           }}
           >
