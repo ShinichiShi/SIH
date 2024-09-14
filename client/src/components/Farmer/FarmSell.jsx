@@ -3,7 +3,7 @@ import cropData from './cropsData.json';
 import { useState } from 'react';
 import { collection, addDoc, doc,setDoc} from 'firebase/firestore';
 import { db } from '../../../firebase';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/auth_context';
 import { ToastContainer, toast } from 'react-toastify';
 import Navbar from './FarmNav';
 
