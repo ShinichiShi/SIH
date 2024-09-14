@@ -11,6 +11,7 @@ import { MdCall } from "react-icons/md";
 import { IoVideocam } from "react-icons/io5";
 import { IoMdMore } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
+import { object } from 'prop-types';
 
 
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
@@ -65,7 +66,7 @@ export default function Chat() {
       });
       socket.on("recieve-message", (received_message) => {
         console.log("recieved message ", received_message.message, " from room ,", received_message.room);
-        
+        setMessages((prevMessages) => [...prevMessages, received_message]);
       });
       socket.on("joined-room", (room)=>{
         console.log(`${socket.id} joined room ${room}`);
@@ -94,6 +95,7 @@ export default function Chat() {
 
   useEffect(()=>{
     console.log(messages);
+
   }, [messages])
 
 
@@ -178,13 +180,19 @@ export default function Chat() {
           </div>
         </div>
         <div className={styles.display}>
-          <div className={styles.mess}>
-            {/* <span>message 1</span> */}
+            {messages && messages.length > 0 ? (
+              messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`${styles.mess} ${msg.user === currentUser.uid ? styles.sent : styles.received}`}
+                >
+                  <span>{msg.text}</span>
+                </div>
+              ))
+            ) : (
+              <div>No messages yet.</div>
+            )}
           </div>
-          <div className={styles.mess}>
-            {/* <span>message 2</span> */}
-          </div>
-        </div>
         <div className={styles.send}>
           <textarea
             name="negotiate"
