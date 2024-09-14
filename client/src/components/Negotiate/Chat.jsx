@@ -266,9 +266,10 @@ export default function Chat() {
               value={message}
               onChange={handleChange}
             />
+            {/* audioRecorder component */}
             <div>
               <AudioRecorder
-                onRecordingComplete={(blob) => handleAudioUpload(blob, lang)} //sending POST request
+                onRecordingComplete={(blob)=>handleAudioUpload(blob, lang, setmessage)} //sending POST request
                 audioTrackConstraints={{
                   noiseSuppression: true,
                   echoCancellation: true,
@@ -357,11 +358,12 @@ const loadMessage = async (currentRoomID) => {
     // console.log(fetchedMessages);
     return fetchedMessages;
   } catch (error) {
-    console.error('Error fetching messages: ', error);
+    console.error("Error fetching messages: ", error);
   }
-};
 
-const handleAudioUpload = async (blob, lang) => {
+}
+
+const handleAudioUpload = async (blob, lang, setmessage) => {
   const reader = new FileReader();
   reader.readAsDataURL(blob);
   reader.onloadend = async () => {
@@ -378,10 +380,9 @@ const handleAudioUpload = async (blob, lang) => {
         lang: lang,
       }),
     });
-    console.log(
-      response.json().then((result) => {
-        console.log(result.transcription);
-      })
-    );
-  };
-};
+    response.json().then((result)=>{
+      setmessage(result.transcription);
+    })
+    
+  }
+}
