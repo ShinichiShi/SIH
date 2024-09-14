@@ -94,8 +94,8 @@ function Navbar() {
     <header className={styles.headfs}>
       <div className={styles.navp}>
         <div className={styles.h1nav}>
-          <h1>Agri</h1>
-          <h1 id={styles.h1e}>Connect</h1>
+          <h1>Krishi</h1>
+          <h1 id={styles.h1e}>Seva</h1>
         </div>
         <ProfileIcon />
       </div>
