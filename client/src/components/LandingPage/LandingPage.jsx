@@ -23,12 +23,14 @@ export default function LandingPage() {
       caption: 'Secure Your Income, Grow with Confidence',
       description: 'Connect directly with reliable buyers, negotiate contracts, and ensure timely payments.',
       button:'Signup as a farmer',
+      link:'/fsignup'
     },
     {
       image: `${img2}`,
       caption: 'Source Quality Produce, Hassle-Free',
       description: 'Find trusted farmers, negotiate prices, and secure your supply chain with ease.',
       button:'Signup as a buyer',
+      link:'/signup'
     },
   ];
 
@@ -75,7 +77,7 @@ export default function LandingPage() {
                   <div className="left">
                   <h1>{slide.caption}</h1>
                   <p>{slide.description}</p>
-                  <button className="btnii">{slide.button}</button>
+                  <button className="btnii" onClick={()=>{navigate(slide.link)}}>{slide.button}</button>
                   </div>
                 
                 <div className="right">
