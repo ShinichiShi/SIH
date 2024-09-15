@@ -45,6 +45,7 @@ export default function Chat() {
 
   const chatDisplayRef = useRef(null); // Ref to chat display container
   const bottomRef = useRef(null); // Ref to the last message to scroll into view
+  // console.log(userType);
 
   useEffect(() => {
     if (!currentUser) {
@@ -188,7 +189,7 @@ export default function Chat() {
                     // loadMessage(contact.roomID)
                     setPrevRoomID(currentRoomID);
                     setRoomID(contact.roomID);
-                    setperson(`${contact.farmer_name}`);
+                    setperson(`${contact.name}`);
                   }}
                   style={{
                     marginBottom: '10px',
@@ -198,7 +199,7 @@ export default function Chat() {
                   className={styles.cnt1}
                 >
                   <LuUserCircle2 />
-                  <span>{contact.farmer_name}</span>
+                  <span>{contact.name}</span>
                 </button>
               );
             })}
@@ -219,9 +220,13 @@ export default function Chat() {
               <button
                 className={styles.mkc}
                 onClick={() => {
-                  navigate('/buyer')
+                  if (userType == 'farmer') {
+                    navigate('/farmerdashboard');
+                  } else {
+                    navigate('/buyer');
+                  }
                 }}
-                style={{ display: currperson==='farmer' ? 'none' : 'flex' }}
+                style={{ display: !currperson ? 'none' : 'flex' }}
               >
                 Make Contract
               </button>
@@ -312,9 +317,12 @@ const uploadMessage = async (currentRoomID, mess, userId) => {
 };
 
 const loadContacts = async (currentUserID, userType) => {
+  const u_type = (userType=='buyers')?('buyers'):('farmers');
   try {
-    const userDocRef = doc(db, userType, currentUserID);
+    const userDocRef = doc(db, u_type, currentUserID);
+    console.log("ref : ", userDocRef);
     const userDoc = await getDoc(userDocRef);
+    console.log(userDoc.data());
     if (userDoc.exists()) {
       const userData = userDoc.data();
       return userData.Contacts || {};
