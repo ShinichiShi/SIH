@@ -21,7 +21,7 @@ body {
     align-items: center;
     justify-content: space-between; */
     display: grid;
-    grid-template-columns: 3.5fr 0.4fr;
+    grid-template-columns: 3.5fr 0.4fr 0.4fr;
     align-items: center;
     border: 0.5px solid rgb(159, 159, 159);
   }
@@ -237,6 +237,10 @@ body {
   border-radius: 0.3rem;
   box-shadow: 2px 2px 2px rgba(8, 0, 0, 0.4);
 }
+.box-crop:hover{
+  box-shadow: 4px 4px 4px rgba(61, 161, 31, 0.4);
+
+}
 .box-crop img {
   width: 100%;
   height: 80%;
@@ -405,4 +409,6 @@ border-color: yellowgreen;
     color: #00B207;
   }
   /* ``````````````````````````````````````   */
-  
+  .rad{
+    display: none;
+  }

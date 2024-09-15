@@ -65,14 +65,16 @@
 .chat{
     display: flex;
     flex-direction: column;
-    background-color: rgb(228, 226, 226);
+    background-color: #fefefe;
+    border: 1px solid rgba(128, 128, 128, 0.267);
 }
 .clientpfp{
     height:7.4vh;
     width: 76vw;
     text-align: center;
     padding: 8px;
-    background-color: whitesmoke;
+    background-color: #fefefe;
+    border: 1px solid rgba(128, 128, 128, 0.267);
     font-size: 25px;
     display: flex;
     justify-content: space-between;
@@ -106,6 +108,7 @@
     overflow-y: scroll;
     height: 80vh; /* Adjust based on layout */
     padding: 10px;
+    background-image: url('https://i.pinimg.com/564x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg');
 }
 .send{
     display: flex;
@@ -127,6 +130,7 @@
     overflow-y: auto;
     border-radius: 10px;
     resize: none;
+    border: 0.25px solid rgba(128, 128, 128, 0.267);
 }
 .send>button {
     /* border-radius:10px; */

@@ -1,49 +1,43 @@
 import styles from './FarmSell.module.css';
 import cropData from './cropsData.json';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { collection, addDoc, doc,setDoc} from 'firebase/firestore';
 import { db } from '../../../firebase';
 import { useAuth } from '../context/auth_context';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './FarmNav';
 
-function Box({ crop }) {
+function Box({ crop, onCropSelect }) {
   return (
-    <div className={styles['box-crop']}>
+    <div className={styles['box-crop']} onClick={() => onCropSelect(crop)}>
       <img src={crop.imageUrl} alt={crop.name} />
       <div className={styles['radio-button']}>
         <label>
-          <input type="radio" name="crop" value={crop.name} />
+          <input
+            type="radio"
+            name="crop"
+            value={crop.name}
+            className={styles.rad}
+            checked={false} // Remove the checked attribute to avoid radio button interference
+            onChange={() => onCropSelect(crop)} // Update crop selection on radio button change
+          />
           {' ' + crop.name}
         </label>
       </div>
     </div>
   );
 }
-
 function Details({ crops, setSelectedCrop, handleInputChange }) {
   return (
     <div className={styles['details-box']}>
       <div className={styles['image-box']}>
         {crops.map((crop, index) => (
-          <div
+          <Box
             key={index}
-            className={styles['box-crop']}
-            onClick={() => setSelectedCrop(crop)}
-          >
-            <img src={crop.imageUrl} alt={crop.name} />
-            <div className={styles['radio-button']}>
-              <label>
-                <input
-                  type="radio"
-                  name="crop"
-                  value={crop.name}
-                  onChange={() => setSelectedCrop(crop)}
-                />
-                {' ' + crop.name}
-              </label>
-            </div>
-          </div>
+            crop={crop}
+            onCropSelect={setSelectedCrop}
+          />
         ))}
       </div>
       <div className={styles.formbox}>
@@ -203,6 +197,15 @@ function Search({ searchQuery, setSearchQuery, handleSearch }) {
 }
 
 function FarmSell() {
+
+  const {currentUser} = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(currentUser === null){
+      navigate('/abc');
+    }
+  },[currentUser,navigate]);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredCrops, setFilteredCrops] = useState(cropData.crops);
   const [selectedCrop, setSelectedCrop] = useState(null);
@@ -217,7 +220,7 @@ function FarmSell() {
     pincode: '',
   });
 
-  const { currentUser } = useAuth(); // Get the current user from AuthContext
+  // const { currentUser } = useAuth();
 
   const handleSearch = () => {
     const filtered = cropData.crops.filter((crop) =>

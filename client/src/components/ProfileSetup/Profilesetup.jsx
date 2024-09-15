@@ -4,12 +4,21 @@ import styles from './profilesetup.module.css'; // Import the CSS module
 import { db } from '../../../firebase';
 import { setDoc,doc } from 'firebase/firestore';
 import { AuthContext } from '../context/auth_context';
+import { useNavigate } from 'react-router-dom';
 
 import Navbar from '../Farmer/FarmNav';
 
 export default function Profilesetup() {
   const { currentUser } = useContext(AuthContext);  // Get currentUser from AuthContext
   const port = import.meta.env.VITE_PORT;
+  // const {currentUser} = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(currentUser === null){
+      navigate('/abc');
+    }
+  },[currentUser,navigate]);
+
 
   const [imagePreview1, setImagePreview1] = useState(null);
   const [imagePreview2, setImagePreview2] = useState(null);

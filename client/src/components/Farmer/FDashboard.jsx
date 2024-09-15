@@ -176,6 +176,13 @@ function Search({handleSearch}) {
 
 function FDashboard() {
   const [searchQuery,setSearchQuery] = useState('');
+  const {currentUser} = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(currentUser === null){
+      navigate('/abc');
+    }
+  },[currentUser,navigate]);
 
   return (
     <div className={styles.dashbody}>
