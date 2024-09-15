@@ -39,7 +39,7 @@ const FELogin = () => {
             <div className={styles.boxvg}>
               <div className={styles.containervg}>
                 <div className={styles.heading}>
-                  <h1>Login</h1>
+                  <h1>Login as Farmer</h1>
                 </div>
                 <div className={styles.formvg}>
                   <input

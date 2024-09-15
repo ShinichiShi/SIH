@@ -219,13 +219,9 @@ export default function Chat() {
               <button
                 className={styles.mkc}
                 onClick={() => {
-                  if (userType == 'farmer') {
-                    navigate('/farmerdashboard');
-                  } else {
-                    navigate('/buyer');
-                  }
+                  navigate('/buyer')
                 }}
-                style={{ display: !currperson ? 'none' : 'flex' }}
+                style={{ display: currperson==='farmer' ? 'none' : 'flex' }}
               >
                 Make Contract
               </button>
