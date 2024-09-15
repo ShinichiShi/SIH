@@ -20,14 +20,16 @@ export default function LandingPage() {
   const slides = [
     {
       image: `${img1}`,
-      caption: 'Secure Your Income, Grow with Confidence',
+      caption1: 'SECURE YOUR INCOME', 
+      caption2:'GROW WITH CONFIDENCE',
       description: 'Connect directly with reliable buyers, negotiate contracts, and ensure timely payments.',
       button:'Signup as a farmer',
       link:'/fsignup'
     },
     {
       image: `${img2}`,
-      caption: 'Source Quality Produce, Hassle-Free',
+      caption1: ' SOURCE QUALITY PRODUCE',
+      caption2:'HASSLE-FREE',
       description: 'Find trusted farmers, negotiate prices, and secure your supply chain with ease.',
       button:'Signup as a buyer',
       link:'/signup'
@@ -49,9 +51,10 @@ export default function LandingPage() {
 
   return (
     <>
+    <div className="hi font-['Teko']">
       <nav className="navbar">
         <div className="navbar-logo">
-          <div className="navbar-brand">
+          <div className="navbar-brand ">
             <strong><span style={{color: 'green'}}>KRISHI</span> SEVA</strong>
           </div>
         </div>
@@ -75,7 +78,8 @@ export default function LandingPage() {
               
                 
                   <div className="left">
-                  <h1 className='h1cap'>{slide.caption}</h1>
+                  <h1 className='h1cap'>{slide.caption1}</h1>
+                  <h1 className='h1cap'>{slide.caption2}</h1>
                   <p className='pcap'>{slide.description}</p>
                   <button className="btnii" onClick={()=>{navigate(slide.link)}}>{slide.button}</button>
                   </div>
@@ -108,7 +112,7 @@ export default function LandingPage() {
       {/* Central Section */}
       <section className="central-section">
         <h2 style={{ fontFamily: 'Poppins, sans-serif', color: 'green' }}>
-          Why Choose KrishiSeva?
+          WHY CHOOSE KRISHISEVA?
         </h2>
         <div className="features">
           <div className="feature">
@@ -167,6 +171,7 @@ export default function LandingPage() {
       <footer>
         <p>&copy; 2024 KrishiSeva. All rights reserved.</p>
       </footer>
+      </div>
     </>
   );
 }
