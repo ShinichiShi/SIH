@@ -12,27 +12,35 @@ function Download({ formData }) {
     doc.text('BILATERAL CONTRACT AGREEMENT', 50, 20);
     doc.text(`THIS AGREEMENT made on this ${formData.date}`, 20, 40);
     doc.text(
-      `between ${formData.buyerName} with id ${formData.buyerId}  (hereafter described as the Buyer/Investor)`,
+      `between ${formData.buyerName} with id ${formData.buyerId}`,
       20,
       50
     );
-
     doc.text(
-      `AND ${formData.farmerName} with id ${formData.farmerId} (hereafter described as the Farmer).`,
+      `(hereafter described as the Buyer/Investor)`,
       20,
       60
     );
-
+    doc.text(
+      `AND ${formData.farmerName} with id ${formData.farmerId} (hereafter described as the Farmer).`,
+      20,
+      70
+    );
+    doc.text(
+      `(hereafter described as the Farmer).`,
+      20,
+      80
+    );
     doc.text(
       `WHEREAS the Buyer/Investor is interested in the promotion of quality ${formData.crop}`,
       20,
-      70
+      90
     );
     doc.text(`in ${formData.location}.`, 20, 80);
     doc.text(
       `AND WHEREAS the Farmer/Cooperative/Association requires assistance in growing ${formData.crop}`,
       20,
-      90
+      100
     );
 
     doc.text(

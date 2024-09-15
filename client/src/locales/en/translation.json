@@ -79,10 +79,10 @@
   "not_available": "Not available",
   "generate_contract": "Generate Contract",
   "contract_status": "Contract Status",
-
+  "crops": "Crops",
   "fill_contract_details": "Fill Contract Details",
   "date": "Date",
-  
+  "home":"Home",
   "crop_being_harvested": "Crop being harvested",
   "total_amount_to_be_paid": "Total amount to be paid",
   "amount_to_be_paid_in_each_installment": "Amount to be paid in each installment",

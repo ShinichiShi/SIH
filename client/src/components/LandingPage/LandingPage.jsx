@@ -8,7 +8,7 @@ import img4 from '../../assets/reshot-icon-laptop.svg'
 import img5 from '../../assets/reshot-icon-envelope.svg'
 import img6 from '../../assets/reshot-icon-calendar.svg'
 import img7 from '../../assets/etoe.svg'
-
+import GoogleTranslateWidget from '../GoogleTranslateWidget'
 export default function LandingPage() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => {
@@ -58,12 +58,18 @@ export default function LandingPage() {
             <strong><span style={{color: 'green'}}>KRISHI</span> SEVA</strong>
           </div>
         </div>
-        <div className="navbar-menu">
+        <div className="navbar-menu flex flex-col">
+          <div>
+          <GoogleTranslateWidget />
+          </div>
+          <div>
           <button><strong>Login/signup</strong></button>
           <div className="navbar-menu-content">
             <a onClick={()=>navigate('/fsignup')}>Farmer</a>
             <a onClick={()=>navigate('/signup')}>Buyer</a>
           </div>
+          </div>
+         
         </div>
       </nav>
 

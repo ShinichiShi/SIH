@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext,useRef } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import styles from './FarmSell.module.css'; // Assuming you're using CSS Modules
 import { toast, ToastContainer } from 'react-toastify';
 import { auth } from '../../../firebase';
@@ -10,7 +10,7 @@ import { AuthContext } from '../context/auth_context';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDropdown, IoIosArrowDropup } from 'react-icons/io';
 import { MdOutlineTranslate } from 'react-icons/md';
-
+import GoogleTranslateWidget from '../GoogleTranslateWidget';
 
 
 function ProfileIcon() {
@@ -126,7 +126,10 @@ function Navbar() {
           <h1>Krishi</h1>
           <h1 id={styles.h1e}>Seva</h1>
         </div>
-        <div ref={dropdownRef} className="relative">
+        <div ref={dropdownRef} className="relative flex">
+          <div>
+              <GoogleTranslateWidget />
+          </div>
                 <div
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   className="cursor-pointer flex items-center justify-center gap-2 hover:bg-slate-300 p-2 rounded"

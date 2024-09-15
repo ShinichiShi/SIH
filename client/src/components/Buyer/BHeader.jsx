@@ -6,7 +6,7 @@ import { auth } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-
+import GoogleTranslateWidget from '../GoogleTranslateWidget';
 function BHeader() {
   const { i18n } = useTranslation();
   const { t } = useTranslation();
@@ -56,6 +56,9 @@ function BHeader() {
           <h1>{t('header.welcome')}</h1>
           <div>
             <div className="flex items-center justify-center gap-4">
+              <div>
+                <GoogleTranslateWidget />
+              </div>
               <div ref={dropdownRef} className="relative">
                 <div
                   onClick={() => setDropdownOpen(!dropdownOpen)}
