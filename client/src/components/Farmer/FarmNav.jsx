@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext,useRef } from 'react';
 import styles from './FarmSell.module.css'; // Assuming you're using CSS Modules
 import { toast, ToastContainer } from 'react-toastify';
 import { auth } from '../../../firebase';
@@ -7,6 +7,11 @@ import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocati
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import { AuthContext } from '../context/auth_context';
+import { useTranslation } from 'react-i18next';
+import { IoIosArrowDropdown, IoIosArrowDropup } from 'react-icons/io';
+import { MdOutlineTranslate } from 'react-icons/md';
+
+
 
 function ProfileIcon() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -49,6 +54,7 @@ function ProfileIcon() {
     }
   };
 
+  
   return (
     <div className={styles.profileicon}>
       <div onClick={toggleDropdown} className={styles.profilebutton}>
@@ -90,6 +96,29 @@ function Navbar() {
     navigate(path);
   };
 
+  const { i18n } = useTranslation();
+  const { t } = useTranslation();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [language, setLanguage] = useState('Eng');
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    // const cachedLanguage = localStorage.getItem('language') || i18n.language;
+    // setLanguage(cachedLanguage === 'en' ? 'Eng' : cachedLanguage === 'kn' ? 'ಕನ್ನಡ' : 'हिंदी');
+    // i18n.changeLanguage(cachedLanguage); // Apply cached language if it exists
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  // }, [dropdownRef,i18n]);
+  }, [dropdownRef]);
+
+
   return (
     <header className={styles.headfs}>
       <div className={styles.navp}>
@@ -97,6 +126,40 @@ function Navbar() {
           <h1>Krishi</h1>
           <h1 id={styles.h1e}>Seva</h1>
         </div>
+        <div ref={dropdownRef} className="relative">
+                <div
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="cursor-pointer flex items-center justify-center gap-2 hover:bg-slate-300 p-2 rounded"
+                >
+                  <MdOutlineTranslate />
+                  {language}
+                  {dropdownOpen ? <IoIosArrowDropdown /> : <IoIosArrowDropup />}
+                </div>
+                {dropdownOpen && (
+                  <div className="absolute left-0 mt-2 w-24 bg-white border rounded shadow-md">
+                    <ul className="py-1">
+                      <li
+                        className="px-4 py-2 hover:bg-slate-100 cursor-pointer"
+                        // onClick={() => changeLanguage('en')}
+                      >
+                        English
+                      </li>
+                      <li
+                        className="px-4 py-2 hover:bg-slate-100 cursor-pointer"
+                        // onClick={() => changeLanguage('kn')}
+                      >
+                        ಕನ್ನಡ
+                      </li>
+                      <li
+                        className="px-4 py-2 hover:bg-slate-100 cursor-pointer"
+                        // onClick={() => changeLanguage('hi')}
+                      >
+                        हिंदी
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
         <ProfileIcon />
       </div>
       <div className={styles.navs}>
