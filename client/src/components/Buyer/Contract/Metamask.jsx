@@ -6,6 +6,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { AuthContext } from '../../context/auth_context';
 import { db } from '../../../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export default function Metamask({ formData }) {
   const { currentUser } = useContext(AuthContext);
@@ -13,6 +14,7 @@ export default function Metamask({ formData }) {
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState('');
   const [currentId, setCurrentId] = useState(0);
+  const { t } = useTranslation(); // Initialize translation function
 
   useEffect(() => {
     const initWeb3 = async () => {
@@ -183,25 +185,24 @@ export default function Metamask({ formData }) {
 
   return (
     <div className="p-4">
-      Connected Metamask Address : {account}
+      {t('connected_metamask_address', { account })}
       <div className="mb-4">
-        <h2 className="text-xl font-semibold mb-2">Create Contract</h2>
+        <h2 className="text-xl font-semibold mb-2">{t('create_contract')}</h2>
         <button
           onClick={handleCreateContract}
           className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600"
         >
-          Create Contract Block
+          {t('create_contract_button')}
         </button>
       </div>
       <div className="mb-4">
-        <h2 className="text-xl font-semibold mb-2">Sign Contract</h2>
-        {/* Are you sure you want to sign the contract with ID {currentId}? */}
-        Are you sure you want to sign the contract ?
+        <h2 className="text-xl font-semibold mb-2">{t('sign_contract')}</h2>
+        <p>{t('sign_contract_confirmation')}</p>
         <button
           onClick={handleSignContract}
           className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600"
         >
-          Sign
+          {t('sign_button')}
         </button>
       </div>
       <ToastContainer />

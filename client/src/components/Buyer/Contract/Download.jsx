@@ -1,6 +1,10 @@
 import jsPDF from 'jspdf';
 import PropTypes from 'prop-types';
+
+import { useTranslation } from 'react-i18next';
 function Download({ formData }) {
+  const { t } = useTranslation(); // Initialize translation function
+
   const generatePDF = () => {
     const doc = new jsPDF();
 
@@ -66,14 +70,14 @@ function Download({ formData }) {
 
   return (
     <div className="max-w-md mx-auto p-8 bg-white shadow-md rounded-md mt-10">
-      <h2 className="text-2xl font-bold mb-4">Download Contract PDF here</h2>
+      <h2 className="text-2xl font-bold mb-4">{t('download_contract_pdf')}</h2>
       <button
         type="button"
         className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
         onClick={generatePDF}
       >
-        Generate PDF
-      </button>
+        {t('generate_pdf')}
+        </button>
     </div>
   );
 }

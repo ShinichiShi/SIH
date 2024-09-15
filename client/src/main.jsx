@@ -16,6 +16,7 @@ import MultiAgriConnectInteract from './components/Contract/Contract_2';
 import FESignup from './components/Farmer/FESignup';
 import FELogin from './components/Farmer/FELogin';
 import LandingPage from './components/LandingPage/LandingPage';
+import './i18n';  // Import the i18n configuration
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <BrowserRouter>

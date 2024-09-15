@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function BNavbar({ handleNavigate, navigate }) {
   const navigateChat = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <nav className="bg-white border-t">
@@ -12,32 +14,22 @@ export default function BNavbar({ handleNavigate, navigate }) {
             className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'deals' ? 'bg-green-300' : ''} hover:bg-green-200`}
             onClick={() => handleNavigate('deals')}
           >
-            Deals
+              {t('navbar.deals')}
           </li>
           <li
             className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'contract' ? 'bg-green-300' : ''} hover:bg-green-200`}
             onClick={() => handleNavigate('contract')}
           >
-            Contracts
+                        {t('navbar.contracts')}
+
           </li>
-          <li
-            className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'transactions' ? 'bg-green-300' : ''} hover:bg-green-200`}
-            onClick={() => handleNavigate('transactions')}
-          >
-            Transactions
-          </li>
-          <li
-            className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'notifications' ? 'bg-green-300' : ''} hover:bg-green-200`}
-            onClick={() => handleNavigate('notifications')}
-          >
-            Notifications
-          </li>
+                   
           <li
             className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'settings' ? 'bg-green-300' : ''} hover:bg-green-200`}
             onClick={() => handleNavigate('settings')}
           >
-            Settings
-          </li>
+            {t('navbar.settings')}
+            </li>
           <li
             className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'chat' ? 'bg-green-300' : ''} hover:bg-green-200`}
             onClick={() => {
@@ -46,7 +38,8 @@ export default function BNavbar({ handleNavigate, navigate }) {
             })
           }}
           >
-            Chats
+                        {t('navbar.chats')}
+
           </li>
         </ul>
       </div>

@@ -2,9 +2,11 @@ import { IoChatbubblesSharp } from 'react-icons/io5';
 import { FaLeaf } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function BDealsSection({ deal }) {
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Initialize translation function
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md flex gap-6">
@@ -21,7 +23,7 @@ export default function BDealsSection({ deal }) {
           </h2>
           <p className="text-gray-600 mb-1">
             <span className="font-medium">
-              <strong>Farmer&apos;s Name:</strong>
+              <strong>{t('farmers_name')}:</strong>
             </span>{' '}
             {deal.name}
           </p>
@@ -30,25 +32,25 @@ export default function BDealsSection({ deal }) {
           <div className="w-full">
             <p className="text-gray-600 mb-1">
               <span className="font-medium">
-                <strong> Quantity:</strong>
+                <strong> {t('quantity')}:</strong>
               </span>{' '}
               {deal.quantity} kg
             </p>
             <p className="text-gray-600 mb-1">
               <span className="font-medium">
-                <strong> Land Area:</strong>
+                <strong> {t('land_area')}:</strong>
               </span>{' '}
               {deal.landArea} sq.ft
             </p>
             <p className="text-gray-600 mb-1">
               <span className="font-medium">
-                <strong> Price:</strong>
+                <strong> {t('price')}:</strong>
               </span>{' '}
               ₹{deal.price} per kg
             </p>
             <p className="text-gray-600 mb-1">
               <span className="font-medium">
-                <strong> Items:</strong>
+                <strong> {t('items')}:</strong>
               </span>{' '}
               {deal.items}
             </p>
@@ -58,19 +60,19 @@ export default function BDealsSection({ deal }) {
           <div className="w-full">
             <p className="text-gray-600 mb-1">
               <span className="font-medium">
-                <strong> Location:</strong>
+                <strong> {t('location')}:</strong>
               </span>{' '}
               {deal.location}
             </p>
             <p className="text-gray-600 mb-1">
               <span className="font-medium">
-                <strong> Pincode:</strong>
+                <strong> {t('pincode')}:</strong>
               </span>{' '}
               {deal.pincode}
             </p>
             <p className="text-gray-600 mb-1">
               <span className="font-medium">
-                <strong> State:</strong>
+                <strong> {t('state')}:</strong>
               </span>{' '}
               {deal.state}
             </p>
@@ -88,7 +90,8 @@ export default function BDealsSection({ deal }) {
         }}
         >
           <IoChatbubblesSharp />
-          Negotiate
+          {t('negotiate')}
+
         </button>
       </div>
     </div>

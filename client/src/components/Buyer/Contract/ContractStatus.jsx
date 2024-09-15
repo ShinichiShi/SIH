@@ -6,8 +6,11 @@ import { AuthContext } from '../../context/auth_context';
 import { db } from '../../../../firebase';
 import MultiAgriConnect from '../../../contractAddress/MultiAgriConnect.json';
 import { ToastContainer, toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export default function ContractStatus({ contract }) {
+  const { t } = useTranslation(); // Initialize translation function
+
   const [showModal, setShowModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const [localContract, setLocalContract] = useState(contract);
@@ -80,17 +83,17 @@ export default function ContractStatus({ contract }) {
     } else if (typeof createdAt === 'string') {
       return new Date(createdAt).toLocaleDateString();
     }
-    return 'N/A';
+    return t('date_not_available');
   };
 
   const handleSignContract = async () => {
     if (!contractState || !account) {
-      toast.error('Web3 or contract not initialized');
+      toast.error(t('web3_or_contract_not_initialized'));
       return;
     }
 
     if (currentMetaUser !== contract.buyerId) {
-      toast.error('Log in through the appropriate MetaMask account');
+      toast.error(t('login_meta_account'));
       return;
     }
 
@@ -107,11 +110,11 @@ export default function ContractStatus({ contract }) {
       }));
 
       toast.success(
-        `Contract with ID ${contract.contractId} has been signed and updated in the database.`
+        t('contract_signed_and_updated', { contractId: contract.contractId })
       );
     } catch (error) {
       console.error('Error in handleSignContract:', error);
-      toast.error('Failed to sign contract. Please try again.');
+      toast.error(t('failed_to_sign_contract'));
     }
   };
 
@@ -122,7 +125,7 @@ export default function ContractStatus({ contract }) {
         .send({ from: account });
     } catch (error) {
       console.error('Error signing contract on blockchain:', error);
-      throw new Error('Failed to sign contract on blockchain');
+      throw new Error(t('failed_to_sign_contract_on_blockchain'));
     }
   };
 
@@ -132,7 +135,7 @@ export default function ContractStatus({ contract }) {
       const docSnap = await getDoc(buyerRef);
 
       if (!docSnap.exists()) {
-        throw new Error('Buyer profile not found');
+        throw new Error(t('buyer_profile_not_found'));
       }
 
       const existingContracts = docSnap.data().contracts || [];
@@ -146,18 +149,18 @@ export default function ContractStatus({ contract }) {
       await setDoc(buyerRef, { contracts: updatedContracts }, { merge: true });
     } catch (error) {
       console.error('Error updating contract status in Firebase:', error);
-      throw new Error('Failed to update contract status in database');
+      throw new Error(t('failed_to_update_contract_status'));
     }
   };
 
   const handleMakePayment = async () => {
     if (!contractState || !account || !web3) {
-      toast.error('Web3 or contract not initialized');
+      toast.error(t('web3_or_contract_not_initialized'));
       return;
     }
 
     if (currentMetaUser !== contract.buyerId) {
-      toast.error('Log in through the appropriate MetaMask account');
+      toast.error(t('login_meta_account'));
       return;
     }
 
@@ -198,7 +201,11 @@ export default function ContractStatus({ contract }) {
       }
 
       toast.success(
-        `Payment of ${contract.installmentAmt} ${contract.unit} made for contract with ID ${contract.contractId}.`
+        t('payment_made', {
+          amount: contract.installmentAmt,
+          unit: contract.unit,
+          contractId: contract.contractId,
+        })
       );
     } catch (error) {
       console.error('Error in handleMakePayment:', error);
@@ -225,7 +232,7 @@ export default function ContractStatus({ contract }) {
       });
     } catch (error) {
       console.error('Error making payment on blockchain:', error);
-      throw new Error('Failed to make payment on blockchain');
+      throw new Error(t('failed_to_make_payment_on_blockchain'));
     }
   };
 
@@ -252,7 +259,7 @@ export default function ContractStatus({ contract }) {
         'Error updating contract payment status in Firebase:',
         error
       );
-      throw new Error('Failed to update contract payment status in database');
+      throw new Error(t('failed_to_update_contract_payment_status'));
     }
   };
 
@@ -260,11 +267,17 @@ export default function ContractStatus({ contract }) {
     <div className="w-full">
       {/* Contract Row */}
       <div className="w-full h-12 bg-green-200 flex flex-row items-center px-4 mb-2">
-        <div className="flex-1 text-center">{contract.contractId || 'N/A'}</div>
-        <div className="flex-1 text-center">{contract.crop || 'N/A'}</div>
-        <div className="flex-1 text-center">{contract.farmerName || 'N/A'}</div>
         <div className="flex-1 text-center">
-          {localContract.status || 'N/A'}
+          {contract.contractId || t('not_available')}
+        </div>
+        <div className="flex-1 text-center">
+          {contract.crop || t('not_available')}
+        </div>
+        <div className="flex-1 text-center">
+          {contract.farmerName || t('not_available')}
+        </div>
+        <div className="flex-1 text-center">
+          {localContract.status || t('not_available')}
         </div>
         <div className="flex-1 text-center">
           {formatDate(contract.createdAt)}
@@ -273,7 +286,7 @@ export default function ContractStatus({ contract }) {
           className="flex-1 text-center text-green-800 cursor-pointer"
           onClick={() => setShowModal(true)}
         >
-          View Details
+          {t('view_details')}{' '}
         </div>
       </div>
 
@@ -283,56 +296,59 @@ export default function ContractStatus({ contract }) {
           <div className="absolute w-full inset-0 bg-black opacity-50"></div>
           <div className="bg-white p-6 w-full rounded-lg shadow-lg z-10">
             <div>
-              <strong>Contract ID:</strong> {contract.contractId || 'N/A'}
+              <strong>{t('contract_id')}:</strong>{' '}
+              {contract.contractId || 'N/A'}
             </div>
             <div>
-              <strong>Crop:</strong> {contract.crop || 'N/A'}
+              <strong>{t('crop')}:</strong> {contract.crop || 'N/A'}
             </div>
             <div>
-              <strong>Farmer Name:</strong> {contract.farmerName || 'N/A'}
+              <strong>{t('farmer_name')}:</strong>{' '}
+              {contract.farmerName || 'N/A'}
             </div>
             <div>
-              <strong>Farmer Id:</strong> {contract.farmerId || 'N/A'}
+              <strong>{t('farmer_name')}</strong> {contract.farmerId || 'N/A'}
             </div>
             <div>
-              <strong>Buyer Name:</strong> {contract.buyerName || 'N/A'}
+              <strong>{t('buyer_name')}:</strong> {contract.buyerName || 'N/A'}
             </div>
             <div>
-              <strong>Buyer Id:</strong> {contract.buyerId || 'N/A'}
+              <strong>{t('buyer_id')}:</strong> {contract.buyerId || 'N/A'}
             </div>
             <div>
-              <strong>Final Date:</strong> {contract.date || 'N/A'}
+              <strong>{t('final_date')}:</strong> {contract.date || 'N/A'}
             </div>
             <div>
-              <strong>Total Amount:</strong>{' '}
+              <strong>{t('total_amount')}:</strong>{' '}
               {contract.totalAmt + ' ' + contract.unit || 'N/A'}
             </div>
             <div>
-              <strong>Installment Amount:</strong>{' '}
+              <strong>{t('installment_amount')}:</strong>{' '}
               {contract.installmentAmt + ' ' + contract.unit || 'N/A'}
             </div>
             <div>
-              <strong>Location:</strong> {contract.location || 'N/A'}
+              <strong>{t('location')}:</strong> {contract.location || 'N/A'}
             </div>
             <div>
-              <strong>Status:</strong> {localContract.status || 'N/A'}
+              <strong>{t('status')}:</strong> {localContract.status || 'N/A'}
             </div>
             <div>
-              <strong>Created At:</strong> {formatDate(contract.createdAt)}
+              <strong>{t('created_at')}:</strong>{' '}
+              {formatDate(contract.createdAt)}
             </div>
             <div className="flex gap-2">
               <button
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
                 onClick={() => setShowModal(false)}
               >
-                Close
+                {t('close')}
               </button>
               {localContract.status === 'Created' && (
                 <button
                   className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
                   onClick={handleSignContract}
                 >
-                  Sign
+                  {t('sign_contract')}
                 </button>
               )}
               {localContract.status === 'Signed' && (
@@ -340,7 +356,7 @@ export default function ContractStatus({ contract }) {
                   className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
                   onClick={handleMakePayment}
                 >
-                  Make Payment
+                  {t('make_payment')}
                 </button>
               )}
             </div>

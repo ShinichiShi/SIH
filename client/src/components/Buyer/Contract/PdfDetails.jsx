@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const PdfDetails = ({ formData, handleChange }) => {
+  const { t } = useTranslation(); // Initialize translation function
+
   return (
     <div className="max-w-md mx-auto p-8 bg-white shadow-md rounded-md mt-10">
-      <h2 className="text-2xl font-bold mb-4">Fill Contract Details</h2>
+      <h2 className="text-2xl font-bold mb-4">{t('fill_contract_details')}</h2>
       <form className="space-y-4">
         <div>
-          <label className="block text-gray-700">Date: </label>
+          <label className="block text-gray-700">{t('date')}: </label>
           <input
             type="date"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -17,7 +20,7 @@ const PdfDetails = ({ formData, handleChange }) => {
         </div>
 
         <div>
-          <label>Farmer Name: </label>
+          <label>{t('farmer_name')}: </label>
           <input
             type="text"
             name="farmerName"
@@ -27,7 +30,7 @@ const PdfDetails = ({ formData, handleChange }) => {
           />
         </div>
         <div>
-          <label>Farmer ID: </label>
+          <label>{t('farmer_id')}: </label>
           <input
             type="text"
             name="farmerId"
@@ -37,7 +40,7 @@ const PdfDetails = ({ formData, handleChange }) => {
           />
         </div>
         <div>
-          <label>Crop Being Harvested: </label>
+          <label>{t('crop_being_harvested')}: </label>
           <input
             type="text"
             name="crop"
@@ -48,7 +51,7 @@ const PdfDetails = ({ formData, handleChange }) => {
         </div>
 
         <div className="flex gap-4 flex-col">
-          <label>Total Amount to Be Paid: </label>
+          <label>{t('total_amount_to_be_paid')}: </label>
           <input
             type="number"
             name="totalAmt"
@@ -56,7 +59,7 @@ const PdfDetails = ({ formData, handleChange }) => {
             value={formData.totalAmt}
             onChange={handleChange}
           />
-          <label>Amount to Be Paid in each Installment: </label>
+          <label>{t('amount_to_be_paid_in_each_installment')}: </label>
           <input
             type="number"
             name="installmentAmt"
@@ -71,16 +74,16 @@ const PdfDetails = ({ formData, handleChange }) => {
             value={formData.unit}
             onChange={handleChange}
           >
-            <option value="unit">Select Unit</option>
-            <option value="gwei">Gwei</option>
-            <option value="ether">Ether</option>
-            <option value="finney">Finney</option>
-            <option value="kether">Kether</option>
+            <option value="unit">{t('select_unit')}</option>
+            <option value="gwei">{t('gwei')}</option>
+            <option value="ether">{t('ether')}</option>
+            <option value="finney">{t('finney')}</option>
+            <option value="kether">{t('kether')}</option>
           </select>
         </div>
 
         <div>
-          <label className="block text-gray-700">Location: </label>
+          <label className="block text-gray-700">{t('location')}: </label>
           <input
             type="text"
             name="location"

@@ -3,11 +3,13 @@ import { db } from '../../../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import ReactLoading from 'react-loading';
+import { useTranslation } from 'react-i18next';
 
 function BDeals() {
   const [deals, setDeals] = useState([]);
   const [filteredDeals, setFilteredDeals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation(); // Initialize translation function
 
   // Filter States
   const [selectedState, setSelectedState] = useState('');
@@ -96,9 +98,9 @@ function BDeals() {
       <aside className="w-1/5 pr-4">
         {/* Filter by State */}
         <div className="mb-6">
-          <h2 className="font-bold text-lg mb-4">State</h2>
+          <h2 className="font-bold text-lg mb-4">{t('state')}</h2>
           <select className="px-4 py-2 border rounded" value={selectedState} onChange={handleStateChange}>
-            <option value="">All States</option>
+            <option value="">{t('all_states')}</option>
             <option value="Maharashtra">Maharashtra</option>
             <option value="Punjab">Punjab</option>
             <option value="Karnataka">Karnataka</option>
@@ -109,7 +111,7 @@ function BDeals() {
 
         {/* Price Range Filter */}
         <div className="mb-6">
-          <h2 className="font-bold text-lg mb-4">Price Range</h2>
+          <h2 className="font-bold text-lg mb-4">{t('price_range')}</h2>
           <input
             type="range"
             min="0"
@@ -118,12 +120,12 @@ function BDeals() {
             className="w-full"
             onChange={handlePriceRangeChange}
           />
-          <p className="mt-2">Up to ₹{priceRange[1]} per kg</p>
+          <p className="mt-2">{t('up_to')}  ₹{priceRange[1]} {t('per_kg')}</p>
         </div>
 
         {/* Land Area Filter */}
         <div className="mb-6">
-          <h2 className="font-bold text-lg mb-4">Land Area</h2>
+          <h2 className="font-bold text-lg mb-4">{t('land_area')}</h2>
           <input
             type="range"
             min="0"
@@ -132,12 +134,12 @@ function BDeals() {
             className="w-full"
             onChange={handleLandAreaRangeChange}
           />
-          <p className="mt-2">Up to {landAreaRange[1]} sq.ft</p>
+          <p className="mt-2">{t('up_to')} {landAreaRange[1]}  {t('sq_ft')}</p>
         </div>
 
         {/* Quantity Filter */}
         <div className="mb-6">
-          <h2 className="font-bold text-lg mb-4">Quantity</h2>
+          <h2 className="font-bold text-lg mb-4">{t('quantity')}</h2>
           <input
             type="range"
             min="0"
@@ -146,7 +148,7 @@ function BDeals() {
             className="w-full"
             onChange={handleQuantityRangeChange}
           />
-          <p className="mt-2">Up to {quantityRange[1]} kg</p>
+          <p className="mt-2">{t('up_to')}{quantityRange[1]} kg</p>
         </div>
 
         {/* Other filters (e.g., Rating) can go here */}
@@ -155,7 +157,7 @@ function BDeals() {
       {/* Deals Section */}
       <main className="w-3/4">
         {filteredDeals.length === 0 ? (
-          <p>No Deals found.</p>
+          <p>{t('no_deals_found')}.</p>
         ) : (
           <div className="w-full flex gap-2 flex-col">
             {filteredDeals.map((deal) => (

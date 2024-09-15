@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import GenerateContract from './GenerateContract';
 import ContractList from './ContractList';
+import { useTranslation } from 'react-i18next';
+
 export default function BContract() {
+  const { t } = useTranslation(); // Initialize translation function
+
   const [choice, setChoice] = useState('generate');
   return (
     <div className="w-full flex self-start gap-4 p-4">
@@ -13,7 +17,7 @@ export default function BContract() {
               setChoice('generate');
             }}
           >
-            <span>Generate Contract</span>
+            <span>{t('generate_contract')}</span>
           </div>
           <div
             className={`p-3 text-gray-700 rounded-lg flex items-center cursor-pointer space-x-2 ${choice === 'status' ? 'bg-green-200 font-bold' : ''}`}
@@ -21,7 +25,7 @@ export default function BContract() {
               setChoice('status');
             }}
           >
-            <span>Contract Status</span>
+            <span>{t('contract_status')}</span>
           </div>
         </div>
       </div>

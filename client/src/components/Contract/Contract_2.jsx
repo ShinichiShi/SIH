@@ -134,7 +134,7 @@ const MultiAgriConnectInteract = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">MultiAgriConnect Interaction</h1>
+      <h1 className="text-2xl font-bold mb-4">KrishiSeva Test contract Interaction</h1>
       {/* <Alert className="mb-4">
         <AlertTitle>Contract Count: {contractCount}</AlertTitle> */}
       Contract Count: {contractCount}
