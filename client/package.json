@@ -17,6 +17,8 @@
     "@metamask/detect-provider": "^2.0.0",
     "@react-pdf/renderer": "^3.4.4",
     "@shadcn/ui": "^0.0.4",
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.5.0",
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",

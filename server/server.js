@@ -3,9 +3,13 @@ require("dotenv").config({ path: './.env.local' });
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
-const app = express();
+
 const {Server} = require('socket.io');
 const {handleAudio, translate} = require("./audioHandler");
+const { handlePayment } = require("./handlePayement");
+
+const app = express();
+
 
 const SERVER_PORT = process.env.SERVER_PORT;
 const CLIENT_PORT = process.env.CLIENT_PORT;
@@ -44,6 +48,7 @@ app.get('/areas/:state/:district/:subdistrict', (req, res) => {
   const areas = states[state][district][subdistrict] || [];
   res.json(areas);
 });
+app.post("/create-checkout-session",handlePayment);
 app.post('/chat/audioUpload', handleAudio);
 app.post('/chat/translate', translate);
 

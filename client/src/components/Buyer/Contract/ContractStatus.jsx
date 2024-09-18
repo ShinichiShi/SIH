@@ -7,6 +7,11 @@ import { db } from '../../../../firebase';
 import MultiAgriConnect from '../../../contractAddress/MultiAgriConnect.json';
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISH_KEY); // Publishable Key from your Stripe dashboard
+const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
 
 export default function ContractStatus({ contract }) {
   const { t } = useTranslation(); // Initialize translation function
@@ -59,12 +64,12 @@ export default function ContractStatus({ contract }) {
     };
 
     // Initialize web3
-    initWeb3();
+    // initWeb3();
 
     // Listen for account changes
-    if (window.ethereum) {
-      window.ethereum.on('accountsChanged', handleAccountChange);
-    }
+    // if (window.ethereum) {
+    //   window.ethereum.on('accountsChanged', handleAccountChange);
+    // }
 
     // Cleanup event listener on unmount
     return () => {
@@ -263,6 +268,24 @@ export default function ContractStatus({ contract }) {
     }
   };
 
+  const makeStripePayment = async()=>{
+    console.log("stripe payment");
+    const response = await fetch(`http://localhost:${SERVER_PORT}/create-checkout-session`, {
+      method: 'POST',
+      headers : {
+        "Content-Type" : "application/json",
+      },
+      body : JSON.stringify({
+        product : contract.crop,
+        total_amount : contract.totalAmt,
+      })
+    });
+
+    const {id} = await response.json();
+    const stripe = await stripePromise;
+    stripe.redirectToCheckout({sessionId : id});
+  }
+
   return (
     <div className="w-full">
       {/* Contract Row */}
@@ -352,12 +375,14 @@ export default function ContractStatus({ contract }) {
                 </button>
               )}
               {localContract.status === 'Signed' && (
+                <Elements stripe={stripePromise}>
                 <button
                   className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-                  onClick={handleMakePayment}
+                  onClick={makeStripePayment}
                 >
                   {t('make_payment')}
                 </button>
+                </Elements>                
               )}
             </div>
           </div>
