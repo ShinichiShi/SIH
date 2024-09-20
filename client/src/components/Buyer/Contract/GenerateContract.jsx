@@ -105,7 +105,7 @@ export default function GenerateContract() {
         )}
         {steps[currentStep - 1] === 'Sign via Metamask' && (
           <>
-            <Metamask formData={formData} />
+            <Metamask formData={formData} setFormData={setFormData}/>
           </>
         )}
         {steps[currentStep - 1] === 'Download Pdf' && (

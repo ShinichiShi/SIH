@@ -9,34 +9,36 @@ function BDeals() {
   const [deals, setDeals] = useState([]);
   const [filteredDeals, setFilteredDeals] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t } = useTranslation(); // Initialize translation function
+  const { t } = useTranslation();
 
   // Filter States
   const [selectedState, setSelectedState] = useState('');
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [landAreaRange, setLandAreaRange] = useState([0, 5000]);
-  const [quantityRange, setQuantityRange] = useState([0, 1000]); // New quantity range state
+  const [quantityRange, setQuantityRange] = useState([0, 1000]);
 
   useEffect(() => {
     const fetchDeals = async () => {
       try {
-        const farmersCollectionRef = collection(db, 'farmers');
+        const farmersCollectionRef = collection(db, 'users');
         const querySnapshot = await getDocs(farmersCollectionRef);
 
         const contractsData = [];
         querySnapshot.forEach((doc) => {
           const farmerData = doc.data();
           if (farmerData.cropProduce) {
-            contractsData.push({
-              id: doc.id,
-              name: doc.data().firstname,
-              ...farmerData.cropProduce,
+            Object.keys(farmerData.cropProduce).forEach((cropName) => {
+              contractsData.push({
+                id: doc.id,
+                name: farmerData.firstname,
+                [cropName]: farmerData.cropProduce[cropName]
+              });
             });
           }
         });
 
         setDeals(contractsData);
-        setFilteredDeals(contractsData); // Initially, all deals
+        setFilteredDeals(contractsData);
       } catch (err) {
         console.error('Error fetching contracts:', err);
         alert('Failed to fetch contracts');
@@ -48,48 +50,50 @@ function BDeals() {
     fetchDeals();
   }, []);
 
-  // Filtering Logic
   useEffect(() => {
     const applyFilters = () => {
       const filtered = deals.filter((deal) => {
+        const cropName = Object.keys(deal).find(key => typeof deal[key] === 'object');
+        console.log(cropName)
+        if (!cropName) {
+          console.warn('No crop details found for deal:', deal);
+          return false;
+        }
+        const cropDetails = deal[cropName];
+
+        if (!cropDetails) {
+          console.warn('Crop details are undefined for deal:', deal);
+          return false;
+        }        
         const inPriceRange =
-          deal.price >= priceRange[0] && deal.price <= priceRange[1];
-        const inLandAreaRange =
-          deal.landArea >= landAreaRange[0] &&
-          deal.landArea <= landAreaRange[1];
+          parseInt(cropDetails.price) >= priceRange[0] && parseInt(cropDetails.price) <= priceRange[1];
+        const inLandAreaRange =//
+          parseInt(cropDetails.landArea) >= landAreaRange[0] && parseInt(cropDetails.landArea) <= landAreaRange[1];
         const inQuantityRange =
-          deal.quantity >= quantityRange[0] &&
-          deal.quantity <= quantityRange[1]; // New quantity filter
+          parseInt(cropDetails.quantity) >= quantityRange[0] && parseInt(cropDetails.quantity) <= quantityRange[1];
         const matchesState =
-          selectedState === '' || deal.state === selectedState;
-
-        return (
-          inPriceRange && inLandAreaRange && inQuantityRange && matchesState
-        );
+          selectedState === '' || (cropDetails.state && cropDetails.state.toUpperCase() === selectedState.toUpperCase());
+        console.log(inLandAreaRange)
+        return inPriceRange && inLandAreaRange && inQuantityRange && matchesState;
       });
-
+  
       setFilteredDeals(filtered);
     };
-
+  
     applyFilters();
-  }, [deals, selectedState, priceRange, landAreaRange, quantityRange]); // Added quantityRange to dependencies
-
-  // Handle state filter
+  }, [deals, selectedState, priceRange, landAreaRange, quantityRange]);
   const handleStateChange = (e) => {
     setSelectedState(e.target.value);
   };
 
-  // Handle price range filter
   const handlePriceRangeChange = (e) => {
     setPriceRange([0, parseInt(e.target.value, 10)]);
   };
 
-  // Handle land area filter
   const handleLandAreaRangeChange = (e) => {
     setLandAreaRange([0, parseInt(e.target.value, 10)]);
   };
 
-  // Handle quantity range filter
   const handleQuantityRangeChange = (e) => {
     setQuantityRange([0, parseInt(e.target.value, 10)]);
   };
@@ -97,12 +101,7 @@ function BDeals() {
   if (loading) {
     return (
       <div className="text-center py-4 flex items-center h-full justify-center">
-        <ReactLoading
-          type={'spinningBubbles'}
-          color={'#00b300'}
-          height={'5%'}
-          width={'5%'}
-        />
+        <ReactLoading type={'spinningBubbles'} color={'#00b300'} height={'5%'} width={'5%'} />
       </div>
     );
   }
@@ -172,12 +171,9 @@ function BDeals() {
             onChange={handleQuantityRangeChange}
           />
           <p className="mt-2">
-            {t('up_to')}
-            {quantityRange[1]} kg
+            {t('up_to')} {quantityRange[1]} kg
           </p>
         </div>
-
-        {/* Other filters (e.g., Rating) can go here */}
       </aside>
 
       {/* Deals Section */}

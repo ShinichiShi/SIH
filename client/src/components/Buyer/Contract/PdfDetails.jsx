@@ -30,7 +30,7 @@ const PdfDetails = ({ formData, handleChange }) => {
           />
         </div>
         <div>
-          <label>{t('farmer_id')}: </label>
+          <label>{t('farmer_id')} </label>
           <input
             type="text"
             name="farmerId"

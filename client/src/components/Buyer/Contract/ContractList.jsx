@@ -4,7 +4,7 @@ import { db } from '../../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import ContractStatus from './ContractStatus';
 import { useTranslation } from 'react-i18next';
-
+import ReactLoading from 'react-loading';
 const ContractList = () => {
   const [contracts, setContracts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ const ContractList = () => {
       }
 
       try {
-        const buyerRef = doc(db, 'buyers', currentUser.uid);
+        const buyerRef = doc(db, 'users', currentUser.uid);
         const docSnap = await getDoc(buyerRef);
 
         if (docSnap.exists()) {
@@ -42,7 +42,12 @@ const ContractList = () => {
   }, [currentUser,t]);
 
   if (loading) {
-    return <div className="text-center py-4">{t('loading_contracts')}....</div>;
+    return (
+      <div className="text-center py-4 flex items-center h-full justify-center">
+        <ReactLoading type={'spinningBubbles'} color={'#00b300'} height={'5%'} width={'5%'} />
+        Loading...
+      </div>
+    );
   }
 
   if (error) {

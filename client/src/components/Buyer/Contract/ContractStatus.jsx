@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import { FaCcStripe } from "react-icons/fa6";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISH_KEY); // Publishable Key from your Stripe dashboard
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
@@ -64,12 +65,12 @@ export default function ContractStatus({ contract }) {
     };
 
     // Initialize web3
-    // initWeb3();
+    initWeb3();
 
     // Listen for account changes
-    // if (window.ethereum) {
-    //   window.ethereum.on('accountsChanged', handleAccountChange);
-    // }
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', handleAccountChange);
+    }
 
     // Cleanup event listener on unmount
     return () => {
@@ -136,7 +137,7 @@ export default function ContractStatus({ contract }) {
 
   const updateContractStatusInFirebase = async (contractId) => {
     try {
-      const buyerRef = doc(db, 'buyers', currentUser.uid);
+      const buyerRef = doc(db, 'users', currentUser.uid);
       const docSnap = await getDoc(buyerRef);
 
       if (!docSnap.exists()) {
@@ -243,7 +244,7 @@ export default function ContractStatus({ contract }) {
 
   const updateContractPaymentInFirebase = async (contractId) => {
     try {
-      const buyerRef = doc(db, 'buyers', currentUser.uid);
+      const buyerRef = doc(db, 'users', currentUser.uid);
       const docSnap = await getDoc(buyerRef);
 
       if (!docSnap.exists()) {
@@ -319,11 +320,11 @@ export default function ContractStatus({ contract }) {
           <div className="absolute w-full inset-0 bg-black opacity-50"></div>
           <div className="bg-white p-6 w-full rounded-lg shadow-lg z-10">
             <div>
-              <strong>{t('contract_id')}:</strong>{' '}
+              <strong>{t('contract_id')}</strong>{' '}
               {contract.contractId || 'N/A'}
             </div>
             <div>
-              <strong>{t('crop')}:</strong> {contract.crop || 'N/A'}
+              <strong>{t('crop')}</strong> {contract.crop || 'N/A'}
             </div>
             <div>
               <strong>{t('farmer_name')}:</strong>{' '}
@@ -333,42 +334,42 @@ export default function ContractStatus({ contract }) {
               <strong>{t('farmer_name')}</strong> {contract.farmerId || 'N/A'}
             </div>
             <div>
-              <strong>{t('buyer_name')}:</strong> {contract.buyerName || 'N/A'}
+              <strong>{t('buyer_name')}</strong> {contract.buyerName || 'N/A'}
             </div>
             <div>
-              <strong>{t('buyer_id')}:</strong> {contract.buyerId || 'N/A'}
+              <strong>{t('buyer_id')}</strong> {contract.buyerId || 'N/A'}
             </div>
             <div>
               <strong>{t('final_date')}:</strong> {contract.date || 'N/A'}
             </div>
             <div>
-              <strong>{t('total_amount')}:</strong>{' '}
+              <strong>{t('total_amount')}</strong>{' '}
               {contract.totalAmt + ' ' + contract.unit || 'N/A'}
             </div>
             <div>
-              <strong>{t('installment_amount')}:</strong>{' '}
+              <strong>{t('installment_amount')}</strong>{' '}
               {contract.installmentAmt + ' ' + contract.unit || 'N/A'}
             </div>
             <div>
-              <strong>{t('location')}:</strong> {contract.location || 'N/A'}
+              <strong>{t('location')}</strong> {contract.location || 'N/A'}
             </div>
             <div>
-              <strong>{t('status')}:</strong> {localContract.status || 'N/A'}
+              <strong>{t('status')}</strong> {localContract.status || 'N/A'}
             </div>
             <div>
-              <strong>{t('created_at')}:</strong>{' '}
+              <strong>{t('created_at')}</strong>{' '}
               {formatDate(contract.createdAt)}
             </div>
             <div className="flex gap-2">
               <button
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 onClick={() => setShowModal(false)}
               >
                 {t('close')}
               </button>
               {localContract.status === 'Created' && (
                 <button
-                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded  hover:bg-blue-600"
                   onClick={handleSignContract}
                 >
                   {t('sign_contract')}
@@ -377,10 +378,12 @@ export default function ContractStatus({ contract }) {
               {localContract.status === 'Signed' && (
                 <Elements stripe={stripePromise}>
                 <button
-                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                  className="mt-4 px-4 py-2 bg-blue-500 flex items-center justify-center gap-2 text-white rounded hover:bg-blue-600 "
                   onClick={makeStripePayment}
                 >
-                  {t('make_payment')}
+                  <FaCcStripe />
+
+                  Make Payment
                 </button>
                 </Elements>                
               )}

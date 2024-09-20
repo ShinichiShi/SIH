@@ -18,11 +18,13 @@ function MainBox() {
   useEffect(() => {
     const fetchDealers = async () => {
       try {
-        const dealersCollection = collection(db, 'buyers');
-        const dealersSnapshot = await getDocs(dealersCollection);
-        const dealersList = dealersSnapshot.docs.map(doc => doc.data());
-        setDealers(dealersList);
-        setFilteredDealers(dealersList);
+        const usersCollection = collection(db, 'users');
+        const usersSnapshot = await getDocs(usersCollection);
+        const buyersList = usersSnapshot.docs
+          .map(doc => doc.data())
+          .filter(user => user.profile?.userType === "buyer");
+        setDealers(buyersList);
+        setFilteredDealers(buyersList);
       } catch (error) {
         console.error("Error fetching buyers data: ", error);
         alert('Failed to fetch buyers data');
@@ -30,10 +32,9 @@ function MainBox() {
         setLoading(false);
       }
     };
-
+  
     fetchDealers();
   }, []);
-
   useEffect(() => {
     const applyFilters = () => {
       const filtered = dealers.filter((dealer) => {

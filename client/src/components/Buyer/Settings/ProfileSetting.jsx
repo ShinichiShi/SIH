@@ -38,7 +38,7 @@ export default function ProfileSetting() {
   useEffect(() => {
     const fetchDetails = async () => {
       if (currentUser) {
-        const buyerRef = doc(db, 'buyers', currentUser.uid);
+        const buyerRef = doc(db, 'users', currentUser.uid);
         const docSnap = await getDoc(buyerRef);
         const data = docSnap.data(); // Get document data
 
@@ -118,7 +118,7 @@ export default function ProfileSetting() {
   // Save updated profile and address information to Firebase
   const handleSave = async () => {
     try {
-      const buyerRef = doc(db, 'buyers', currentUser.uid);
+      const buyerRef = doc(db, 'users', currentUser.uid);
       const docSnap = await getDoc(buyerRef);
       let photoUrl = profile.photoUrl;
       if (photo) {
@@ -315,6 +315,7 @@ export default function ProfileSetting() {
               className={`w-1/3 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.address ? '' : 'bg-slate-400'} `}
               disabled={!isEditable.address}
             >
+              <option value="N/A">Select</option>
               <option value="India">India</option>
             </select>
             <input

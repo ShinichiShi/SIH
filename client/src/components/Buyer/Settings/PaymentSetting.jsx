@@ -26,7 +26,7 @@ export default function PaymentSetting() {
   useEffect(() => {
     const fetchDetails = async () => {
       if (currentUser) {
-        const buyerRef = doc(db, 'buyers', currentUser.uid);
+        const buyerRef = doc(db, 'users', currentUser.uid);
         const docSnap = await getDoc(buyerRef);
         const data = docSnap.data();
         if (docSnap.exists()) {
@@ -53,7 +53,7 @@ export default function PaymentSetting() {
       return;
     }
     try {
-      const buyerRef = doc(db, 'buyers', currentUser.uid);
+      const buyerRef = doc(db, 'users', currentUser.uid);
 
       // Upload the signature file to Firebase Storage
       let signatureUrl = bank.signatureUrl;

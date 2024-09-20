@@ -8,80 +8,75 @@ import { db } from '../../../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-export default function Metamask({ formData }) {
+export default function Metamask({ formData, setFormData }) {
   const { currentUser } = useContext(AuthContext);
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState('');
   const [currentId, setCurrentId] = useState(0);
-  const { t } = useTranslation(); // Initialize translation function
+  const { t } = useTranslation();
 
   useEffect(() => {
     const initWeb3 = async () => {
       if (window.ethereum) {
         const web3Instance = new Web3(window.ethereum);
         try {
-          // Request account access
           await window.ethereum.request({ method: 'eth_requestAccounts' });
           setWeb3(web3Instance);
 
-          // Get accounts
           const accounts = await web3Instance.eth.getAccounts();
           setAccount(accounts[0]);
 
-          // Initialize the contract
           const contractInstance = new web3Instance.eth.Contract(
             MultiAgriConnect.abi,
             MultiAgriConnect.networks[5777].address
           );
           setContract(contractInstance);
 
-          // Set buyer details in formData
-          formData.buyerId = accounts[0];
+          setFormData(prevData => ({ ...prevData, buyerId: accounts[0] }));
+
+          // Fetch user data from Firestore if available
+          if (currentUser) {
+            const buyerRef = doc(db, 'users', currentUser.uid);
+            const docSnap = await getDoc(buyerRef);
+            const data = docSnap.data();
+            if (docSnap.exists()) {
+              setFormData(prevData => ({
+                ...prevData,
+                buyerName: `${data.profile.displayName} ${data.profile.lname}`
+              }));
+            }
+          }
         } catch (error) {
           toast.error('User denied account access', error.message);
         }
       } else {
         toast.error('Please install MetaMask!');
       }
-
-      // Fetch user data from Firestore if available
-      if (currentUser) {
-        const buyerRef = doc(db, 'buyers', currentUser.uid);
-        const docSnap = await getDoc(buyerRef);
-        const data = docSnap.data();
-        if (docSnap.exists()) {
-          formData.buyerName =
-            data.profile.displayName + ' ' + data.profile.lname;
-        }
-      }
     };
 
-    // Handle account changes and reload window
     const handleAccountChange = (accounts) => {
-      if (accounts.length > 0) {
+      if (accounts.length > 0 && accounts[0] !== account) {
         setAccount(accounts[0]);
-        window.location.reload(); // Reload the page when the account changes
-      } else {
+        setFormData(prevData => ({ ...prevData, buyerId: accounts[0] }));
+        toast.info('Account changed.');
+      } else if (accounts.length === 0) {
         toast.error('No account detected');
       }
     };
 
-    // Initialize web3
     initWeb3();
 
-    // Listen for account changes
     if (window.ethereum) {
       window.ethereum.on('accountsChanged', handleAccountChange);
     }
 
-    // Cleanup event listener on unmount
     return () => {
       if (window.ethereum) {
         window.ethereum.removeListener('accountsChanged', handleAccountChange);
       }
     };
-  }, [currentUser, formData, account]);
+  }, [currentUser, setFormData,account]);
 
   const handleCreateContract = async () => {
     try {
@@ -94,12 +89,10 @@ export default function Metamask({ formData }) {
         )
         .send({ from: account });
 
-      const newContractId =
-        result.events.ContractCreated.returnValues.contractId;
+      const newContractId = result.events.ContractCreated.returnValues.contractId;
       setCurrentId(newContractId);
-      console.log(result.events.ContractCreated.returnValues);
 
-      const buyerRef = doc(db, 'buyers', currentUser.uid);
+      const buyerRef = doc(db, 'users', currentUser.uid);
       const docSnap = await getDoc(buyerRef);
 
       if (!docSnap.exists()) {
@@ -126,12 +119,9 @@ export default function Metamask({ formData }) {
 
       const updatedContracts = [...existingContracts, newContract];
 
-      // Update Firestore with the new/updated contracts array
       await setDoc(
         buyerRef,
-        {
-          contracts: updatedContracts,
-        },
+        { contracts: updatedContracts },
         { merge: true }
       );
 
@@ -141,15 +131,12 @@ export default function Metamask({ formData }) {
       toast.error('Failed to create contract. Please try again.');
     }
   };
-  // const details = await contract.methods.getContractDetails(selectedContractId).call(); //        contractDetails: details.contractDetails,
 
   const handleSignContract = async () => {
     try {
-      // Sign the contract on the blockchain
       await contract.methods.signContract(currentId).send({ from: account });
 
-      // Update the contract status in Firebase
-      const buyerRef = doc(db, 'buyers', currentUser.uid);
+      const buyerRef = doc(db, 'users', currentUser.uid);
       const docSnap = await getDoc(buyerRef);
 
       if (!docSnap.exists()) {
@@ -158,25 +145,19 @@ export default function Metamask({ formData }) {
       }
 
       const existingContracts = docSnap.data().contracts || [];
-      const updatedContracts = existingContracts.map((contract) => {
-        if (contract.contractId === currentId.toString()) {
-          return { ...contract, status: 'Signed' };
-        }
-        return contract;
-      });
+      const updatedContracts = existingContracts.map((contract) => 
+        contract.contractId === currentId.toString() 
+          ? { ...contract, status: 'Signed' } 
+          : contract
+      );
 
-      // Update Firestore with the modified contracts array
       await setDoc(
         buyerRef,
-        {
-          contracts: updatedContracts,
-        },
+        { contracts: updatedContracts },
         { merge: true }
       );
 
-      toast.success(
-        `Contract with ID ${currentId} has been signed and updated in the database.`
-      );
+      toast.success(`Contract with ID ${currentId} has been signed and updated in the database.`);
     } catch (error) {
       console.error('Error signing contract:', error);
       toast.error('Failed to sign contract. Please try again.');
@@ -223,4 +204,5 @@ Metamask.propTypes = {
     location: PropTypes.string.isRequired,
     unit: PropTypes.string.isRequired,
   }),
+  setFormData: PropTypes.func.isRequired,
 };

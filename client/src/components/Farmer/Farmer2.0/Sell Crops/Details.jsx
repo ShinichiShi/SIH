@@ -1,4 +1,6 @@
 import styles from '../Sell Crops/FarmSell.module.css';
+import PropTypes from 'prop-types';
+
 function Box({ crop, onCropSelect }) {
   return (
     <div className={styles['box-crop']} onClick={() => onCropSelect(crop)}>
@@ -19,7 +21,14 @@ function Box({ crop, onCropSelect }) {
     </div>
   );
 }
-function Details({ crops, setSelectedCrop, handleInputChange }) {
+Box.propTypes = {
+  crop: PropTypes.shape({
+    imageUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  onCropSelect: PropTypes.func.isRequired,
+};
+function Details({ crops, setSelectedCrop }) {
     return (
       <div className={styles['details-box']}>
         <div className={styles['image-box']}>
@@ -34,4 +43,15 @@ function Details({ crops, setSelectedCrop, handleInputChange }) {
       </div>
     );
   }
+
+
+Details.propTypes = {
+  crops: PropTypes.arrayOf(
+    PropTypes.shape({
+      imageUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  setSelectedCrop: PropTypes.func.isRequired,
+};
 export default Details;  
