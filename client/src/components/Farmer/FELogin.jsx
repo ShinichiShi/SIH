@@ -19,7 +19,7 @@ const FELogin = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password).then(() => {
         toast.success('Welcome');
-        navigate('/farmerdashboard');
+        navigate('/farmer');
       });
     } catch (error) {
       // Handle errors here

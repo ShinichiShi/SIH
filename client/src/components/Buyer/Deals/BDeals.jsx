@@ -52,12 +52,20 @@ function BDeals() {
   useEffect(() => {
     const applyFilters = () => {
       const filtered = deals.filter((deal) => {
-        const inPriceRange = deal.price >= priceRange[0] && deal.price <= priceRange[1];
-        const inLandAreaRange = deal.landArea >= landAreaRange[0] && deal.landArea <= landAreaRange[1];
-        const inQuantityRange = deal.quantity >= quantityRange[0] && deal.quantity <= quantityRange[1]; // New quantity filter
-        const matchesState = selectedState === '' || deal.state === selectedState;
+        const inPriceRange =
+          deal.price >= priceRange[0] && deal.price <= priceRange[1];
+        const inLandAreaRange =
+          deal.landArea >= landAreaRange[0] &&
+          deal.landArea <= landAreaRange[1];
+        const inQuantityRange =
+          deal.quantity >= quantityRange[0] &&
+          deal.quantity <= quantityRange[1]; // New quantity filter
+        const matchesState =
+          selectedState === '' || deal.state === selectedState;
 
-        return inPriceRange && inLandAreaRange && inQuantityRange && matchesState;
+        return (
+          inPriceRange && inLandAreaRange && inQuantityRange && matchesState
+        );
       });
 
       setFilteredDeals(filtered);
@@ -87,9 +95,16 @@ function BDeals() {
   };
 
   if (loading) {
-    return <div className="text-center py-4 flex items-center h-full justify-center">
-          <ReactLoading type={"spinningBubbles"} color={"#00b300"} height={'5%'} width={'5%'} />
-    </div>;
+    return (
+      <div className="text-center py-4 flex items-center h-full justify-center">
+        <ReactLoading
+          type={'spinningBubbles'}
+          color={'#00b300'}
+          height={'5%'}
+          width={'5%'}
+        />
+      </div>
+    );
   }
 
   return (
@@ -99,7 +114,11 @@ function BDeals() {
         {/* Filter by State */}
         <div className="mb-6">
           <h2 className="font-bold text-lg mb-4">{t('state')}</h2>
-          <select className="px-4 py-2 border rounded" value={selectedState} onChange={handleStateChange}>
+          <select
+            className="px-4 py-2 border rounded"
+            value={selectedState}
+            onChange={handleStateChange}
+          >
             <option value="">{t('all_states')}</option>
             <option value="Maharashtra">Maharashtra</option>
             <option value="Punjab">Punjab</option>
@@ -120,7 +139,9 @@ function BDeals() {
             className="w-full"
             onChange={handlePriceRangeChange}
           />
-          <p className="mt-2">{t('up_to')}  ₹{priceRange[1]} {t('per_kg')}</p>
+          <p className="mt-2">
+            {t('up_to')} ₹{priceRange[1]} {t('per_kg')}
+          </p>
         </div>
 
         {/* Land Area Filter */}
@@ -134,7 +155,9 @@ function BDeals() {
             className="w-full"
             onChange={handleLandAreaRangeChange}
           />
-          <p className="mt-2">{t('up_to')} {landAreaRange[1]}  {t('sq_ft')}</p>
+          <p className="mt-2">
+            {t('up_to')} {landAreaRange[1]} {t('sq_ft')}
+          </p>
         </div>
 
         {/* Quantity Filter */}
@@ -148,7 +171,10 @@ function BDeals() {
             className="w-full"
             onChange={handleQuantityRangeChange}
           />
-          <p className="mt-2">{t('up_to')}{quantityRange[1]} kg</p>
+          <p className="mt-2">
+            {t('up_to')}
+            {quantityRange[1]} kg
+          </p>
         </div>
 
         {/* Other filters (e.g., Rating) can go here */}

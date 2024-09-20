@@ -6,16 +6,16 @@ import { setDoc,doc } from 'firebase/firestore';
 import { AuthContext } from '../context/auth_context';
 import { useNavigate } from 'react-router-dom';
 
-import Navbar from '../Farmer/FarmNav';
+import Navbar from '../Farmer/Farmer1.0/FarmNav';
 
 export default function Profilesetup() {
   const { currentUser } = useContext(AuthContext);  // Get currentUser from AuthContext
-  const port = import.meta.env.VITE_PORT;
+  const port = import.meta.env.VITE_SERVER_PORT;
   // const {currentUser} = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
     if(currentUser === null){
-      navigate('/abc');
+      navigate('/farmerlogin');
     }
   },[currentUser,navigate]);
 

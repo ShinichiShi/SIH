@@ -26,7 +26,6 @@ export default function FESignup() {
       navigate('/profilesetup');  
     });
   };
-
   const create = async (e) => {
     e.preventDefault();
     try {

@@ -18,7 +18,7 @@ const FLogin = () => {
     try {
       await signInWithPhoneNumber(auth, phno).then(() => {
         toast.success('Welcome');
-        navigate('/farmerdashboard');
+        navigate('/farmer');
       });
     } catch (error) {
       // Handle errors here
@@ -60,7 +60,7 @@ const FLogin = () => {
                 </div>
                 <p className={styles.p1}>
                   Don&apos;t have an account?{' '}
-                  <a onClick={() => navigate('/FSignup')} className={styles.a1}>
+                  <a onClick={() => navigate('/fsignup')} className={styles.a1}>
                     Register
                   </a>
                 </p>

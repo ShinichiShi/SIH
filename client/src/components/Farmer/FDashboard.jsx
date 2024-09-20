@@ -2,7 +2,7 @@ import styles from './FDashboard.module.css';
 import { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase';  // Import your firebase configuration
-import Navbar from './FarmNav';
+import Navbar from '../Farmer/Farmer1.0/FarmNav';
 import { useAuth } from '../context/auth_context';
 import { useNavigate } from 'react-router-dom';
 
@@ -178,11 +178,11 @@ function FDashboard() {
   const [searchQuery,setSearchQuery] = useState('');
   const {currentUser} = useAuth();
   const navigate = useNavigate();
-  useEffect(() => {
-    if(currentUser === null){
-      navigate('/abc');
-    }
-  },[currentUser,navigate]);
+  // useEffect(() => {
+  //   if(currentUser === null){
+  //     navigate('/abc');
+  //   }
+  // },[currentUser,navigate]);
 
   return (
     <div className={styles.dashbody}>
