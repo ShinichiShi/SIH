@@ -174,8 +174,7 @@ export default function ContractStatus({ contract }) {
       // Make payment on the blockchain
       await makePaymentOnBlockchain(
         contract.contractId,
-        contract.installmentAmt,
-        contract.unit
+        contract.installmentAmt
       );
 
       // Update the contract status in Firebase
@@ -183,7 +182,7 @@ export default function ContractStatus({ contract }) {
       const paymentsMade = await getPaymentsMade(contract.contractId);
 
       // Convert totalAmt and paymentsMade to Wei for accurate comparison
-      const totalAmtWei = web3.utils.toWei(contract.totalAmt, contract.unit);
+      const totalAmtWei = web3.utils.toWei(contract.totalAmt, 'wei');
       const paymentsMadeWei = web3.utils.toWei(
         paymentsMade.toString(),
         'ether'
@@ -209,7 +208,7 @@ export default function ContractStatus({ contract }) {
       toast.success(
         t('payment_made', {
           amount: contract.installmentAmt,
-          unit: contract.unit,
+          unit: 'wei',
           contractId: contract.contractId,
         })
       );
@@ -230,11 +229,11 @@ export default function ContractStatus({ contract }) {
       throw error;
     }
   };
-  const makePaymentOnBlockchain = async (contractId, amount, unit) => {
+  const makePaymentOnBlockchain = async (contractId, amount) => {
     try {
       await contractState.methods.makePayment(contractId).send({
         from: account,
-        value: web3.utils.toWei(amount, unit),
+        value: web3.utils.toWei(amount, 'wei'),
       });
     } catch (error) {
       console.error('Error making payment on blockchain:', error);
@@ -278,7 +277,7 @@ export default function ContractStatus({ contract }) {
       },
       body : JSON.stringify({
         product : contract.crop,
-        total_amount : contract.totalAmt,
+        total_amount : contract.installmentAmt,
       })
     });
 
@@ -292,7 +291,7 @@ export default function ContractStatus({ contract }) {
       {/* Contract Row */}
       <div className="w-full h-12 bg-green-200 flex flex-row items-center px-4 mb-2">
         <div className="flex-1 text-center">
-          {contract.contractId || t('not_available')}
+          #{contract.contractId || t('not_available')}
         </div>
         <div className="flex-1 text-center">
           {contract.crop || t('not_available')}
@@ -327,11 +326,11 @@ export default function ContractStatus({ contract }) {
               <strong>{t('crop')}</strong> {contract.crop || 'N/A'}
             </div>
             <div>
-              <strong>{t('farmer_name')}:</strong>{' '}
+              <strong>{t('farmer_name')}</strong>{' '}
               {contract.farmerName || 'N/A'}
             </div>
             <div>
-              <strong>{t('farmer_name')}</strong> {contract.farmerId || 'N/A'}
+              <strong>Farmer&apos;s id</strong> {contract.farmerId || 'N/A'}
             </div>
             <div>
               <strong>{t('buyer_name')}</strong> {contract.buyerName || 'N/A'}
@@ -340,18 +339,18 @@ export default function ContractStatus({ contract }) {
               <strong>{t('buyer_id')}</strong> {contract.buyerId || 'N/A'}
             </div>
             <div>
-              <strong>{t('final_date')}:</strong> {contract.date || 'N/A'}
+              <strong>{t('final_date')}</strong> {contract.date || 'N/A'}
             </div>
             <div>
               <strong>{t('total_amount')}</strong>{' '}
-              {contract.totalAmt + ' ' + contract.unit || 'N/A'}
+              {"Rs." + contract.totalAmt || 'N/A'}
             </div>
             <div>
               <strong>{t('installment_amount')}</strong>{' '}
-              {contract.installmentAmt + ' ' + contract.unit || 'N/A'}
+              {"Rs." + contract.installmentAmt || 'N/A'}
             </div>
             <div>
-              <strong>{t('location')}</strong> {contract.location || 'N/A'}
+              <strong>{t('location')}:</strong> {contract.location || 'N/A'}
             </div>
             <div>
               <strong>{t('status')}</strong> {localContract.status || 'N/A'}
@@ -404,10 +403,12 @@ ContractStatus.propTypes = {
     buyerName: PropTypes.string.isRequired,
     buyerId: PropTypes.string.isRequired,
     crop: PropTypes.string.isRequired,
-    totalAmt: PropTypes.string.isRequired,
+    totalAmt: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
     installmentAmt: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
-    unit: PropTypes.string.isRequired,
     contractId: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,

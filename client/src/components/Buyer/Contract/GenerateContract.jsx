@@ -3,6 +3,7 @@ import { MdDone } from 'react-icons/md';
 import PdfDetails from './PdfDetails';
 import Metamask from './Metamask';
 import Download from './Download';
+import { ToastContainer,toast } from 'react-toastify';
 export default function GenerateContract() {
   const [formData, setFormData] = useState({
     date: '',
@@ -14,8 +15,8 @@ export default function GenerateContract() {
     totalAmt: 0,
     installmentAmt: 0,
     location: '',
-    unit: 'wei',
   });
+  const [flag, setFlag] = useState(false)
   const [validationErrors, setValidationErrors] = useState({});
   const validateForm = () => {
     const errors = {};
@@ -34,7 +35,21 @@ export default function GenerateContract() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const handleGenerateNext = () => {
+    setFormData({
+      date: '',
+      farmerId: '',
+      buyerId: '',
+      buyerName: '',
+      farmerName: '',
+      crop: '',
+      totalAmt: 0,
+      installmentAmt: 0,
+      location: '',
+    });
+    setValidationErrors({})
+    setCurrentStep(1)
+  };
   const steps = ['Fill Details', 'Sign via Metamask', 'Download Pdf'];
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -48,7 +63,16 @@ export default function GenerateContract() {
         setValidationErrors(errors);
         alert('fill all details');
       }
-    } else if (currentStep < steps.length) {
+    } 
+    else if(currentStep == 2) {
+      if(flag!=true){
+        toast.error('Sign contract to proceed')
+      }
+      else {
+        setCurrentStep((prev) => prev + 1);
+      }
+    } 
+    else if (currentStep < steps.length) {
       setCurrentStep((prev) => prev + 1);
     }
   };
@@ -105,7 +129,7 @@ export default function GenerateContract() {
         )}
         {steps[currentStep - 1] === 'Sign via Metamask' && (
           <>
-            <Metamask formData={formData} setFormData={setFormData}/>
+            <Metamask formData={formData} setFormData={setFormData} setFlag={setFlag}/>
           </>
         )}
         {steps[currentStep - 1] === 'Download Pdf' && (
@@ -124,11 +148,16 @@ export default function GenerateContract() {
           </button>
           <button
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-            onClick={handleNext}
+            onClick={
+              currentStep === steps.length
+                ? handleGenerateNext 
+                : handleNext 
+            }
           >
             {currentStep === steps.length ? 'Generate Another' : 'Next'}
           </button>
         </div>
+        <ToastContainer/>
       </div>
     </>
   );

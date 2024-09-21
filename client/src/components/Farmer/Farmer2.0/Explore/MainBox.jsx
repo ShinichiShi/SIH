@@ -9,30 +9,29 @@ function MainBox() {
   const [dealers, setDealers] = useState([]);
   const [filteredDealers, setFilteredDealers] = useState([]);
   const [loading, setLoading] = useState(true);
-  
 
   // Filter States
-  const [selectedState , setSelectedState] = useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [cropSearch, setCropSearch] = useState('');
 
- 
   useEffect(() => {
     const fetchDealers = async () => {
       try {
         const usersCollection = collection(db, 'users');
         const usersSnapshot = await getDocs(usersCollection);
         const buyersList = usersSnapshot.docs
-          .map(doc => doc.data())
-          .filter(user => user.profile?.userType === "buyer");
+          .map((doc) => doc.data())
+          .filter((user) => user.profile?.userType === 'buyer');
         setDealers(buyersList);
         setFilteredDealers(buyersList);
       } catch (error) {
-        console.error("Error fetching buyers data: ", error);
+        console.error('Error fetching buyers data: ', error);
         alert('Failed to fetch buyers data');
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchDealers();
   }, []);
   useEffect(() => {
@@ -40,18 +39,27 @@ function MainBox() {
       const filtered = dealers.filter((dealer) => {
         const matchesState =
           selectedState === '' || dealer.address?.state === selectedState;
-        
-        return matchesState;
+        const matchesCrop =
+          cropSearch === '' ||
+          (dealer.profile?.crop &&
+            dealer.profile.crop
+              .toLowerCase()
+              .includes(cropSearch.toLowerCase()));
+
+        return matchesState && matchesCrop;
       });
 
       setFilteredDealers(filtered);
     };
 
     applyFilters();
-  }, [dealers, selectedState]);
+  }, [dealers, selectedState,cropSearch]);
 
   const handleStateChange = (e) => {
     setSelectedState(e.target.value);
+  };
+  const handleCropSearchChange = (e) => {
+    setCropSearch(e.target.value);
   }
 
   if (loading) {
@@ -67,8 +75,8 @@ function MainBox() {
     );
   }
 
-  return (
 
+  return (
     <div className="flex flex-col min-h-screen">
       <div className="flex px-4 py-6 flex-grow">
         {/* Sidebar Section */}
@@ -80,13 +88,23 @@ function MainBox() {
               value={selectedState}
               onChange={handleStateChange}
             >
-              <option value="">All States</option>
+              <option value="">All States</option>  
               <option value="Maharashtra">Maharashtra</option>
               <option value="Punjab">Punjab</option>
               <option value="Karnataka">Karnataka</option>
               <option value="Gujarat">Gujarat</option>
               <option value="Bihar">Bihar</option>
             </select>
+          </div>
+          <div className="mb-6">
+            <h2 className="font-bold text-lg mb-4">Search Crop</h2>
+            <input
+              type="text"
+              className="px-4 py-2 border rounded w-full"
+              value={cropSearch}
+              onChange={handleCropSearchChange}
+              placeholder="Enter crop name"
+            />
           </div>
         </aside>
 

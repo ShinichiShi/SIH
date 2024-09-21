@@ -67,7 +67,7 @@ const PdfDetails = ({ formData, handleChange }) => {
             value={formData.installmentAmt}
             onChange={handleChange}
           />
-          <select
+          {/* <select
             name="unit"
             id="unit"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -79,7 +79,7 @@ const PdfDetails = ({ formData, handleChange }) => {
             <option value="ether">{t('ether')}</option>
             <option value="finney">{t('finney')}</option>
             <option value="kether">{t('kether')}</option>
-          </select>
+          </select> */}
         </div>
 
         <div>
@@ -108,7 +108,6 @@ PdfDetails.propTypes = {
     installmentAmt: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
       .isRequired,
     location: PropTypes.string.isRequired,
-    unit: PropTypes.string.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
 };

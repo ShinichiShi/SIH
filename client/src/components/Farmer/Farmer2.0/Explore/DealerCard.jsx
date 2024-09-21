@@ -35,9 +35,15 @@ function DealerCard({ dealer }) {
               </p>
               <p className="text-gray-600 mb-1">
                 <span className="font-medium">
-                  <strong>Bank:</strong>
+                  <strong>Gender:</strong>
                 </span>{' '}
-                {dealer.bank?.bank_name || 'N/A'}
+                {dealer.profile?.gender || 'N/A'}
+              </p>
+              <p className="text-gray-600 mb-1">
+                <span className="font-medium">
+                  <strong>Crops:</strong>
+                </span>{' '}
+                {dealer.profile?.crop || 'N/A'}
               </p>
             </div>
   
@@ -47,6 +53,12 @@ function DealerCard({ dealer }) {
                   <strong>Address:</strong>
                 </span>{' '}
                 {dealer.address?.addr1 || 'N/A'}
+              </p>
+              <p className="text-gray-600 mb-1">
+                <span className="font-medium">
+                  <strong>Languages Known: </strong>
+                </span>{' '}
+                {dealer.profile?.languages || 'N/A'}
               </p>
               <p className="text-gray-600 mb-1">
                 <span className="font-medium">
@@ -88,6 +100,9 @@ function DealerCard({ dealer }) {
         phone: PropTypes.string,
         email: PropTypes.string,
         uid: PropTypes.string,
+        gender:PropTypes.string,
+        crop:PropTypes.string,
+        languages:PropTypes.string
       }),
       bank: PropTypes.shape({
         bank_name: PropTypes.string,

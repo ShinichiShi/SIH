@@ -30,7 +30,7 @@ function BDeals() {
             Object.keys(farmerData.cropProduce).forEach((cropName) => {
               contractsData.push({
                 id: doc.id,
-                name: farmerData.firstname,
+                name: farmerData.profile.firstname,
                 [cropName]: farmerData.cropProduce[cropName]
               });
             });
@@ -54,7 +54,6 @@ function BDeals() {
     const applyFilters = () => {
       const filtered = deals.filter((deal) => {
         const cropName = Object.keys(deal).find(key => typeof deal[key] === 'object');
-        console.log(cropName)
         if (!cropName) {
           console.warn('No crop details found for deal:', deal);
           return false;
@@ -73,7 +72,6 @@ function BDeals() {
           parseInt(cropDetails.quantity) >= quantityRange[0] && parseInt(cropDetails.quantity) <= quantityRange[1];
         const matchesState =
           selectedState === '' || (cropDetails.state && cropDetails.state.toUpperCase() === selectedState.toUpperCase());
-        console.log(inLandAreaRange)
         return inPriceRange && inLandAreaRange && inQuantityRange && matchesState;
       });
   

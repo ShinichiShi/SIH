@@ -8,7 +8,7 @@ import { db } from '../../../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-export default function Metamask({ formData, setFormData }) {
+export default function Metamask({ formData, setFormData, setFlag }) {
   const { currentUser } = useContext(AuthContext);
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
@@ -84,8 +84,8 @@ export default function Metamask({ formData, setFormData }) {
         .createContract(
           formData.farmerId,
           formData.crop,
-          web3.utils.toWei(formData.totalAmt.toString(), formData.unit),
-          web3.utils.toWei(formData.installmentAmt.toString(), formData.unit)
+          web3.utils.toWei(formData.totalAmt.toString(), 'wei'),
+          web3.utils.toWei(formData.installmentAmt.toString(), 'wei')
         )
         .send({ from: account });
 
@@ -108,7 +108,6 @@ export default function Metamask({ formData, setFormData }) {
         crop: formData.crop || 'Unknown',
         totalAmt: formData.totalAmt.toString() || '0',
         installmentAmt: formData.installmentAmt.toString() || '0',
-        unit: formData.unit || 'ether',
         status: 'Created',
         date: formData.date,
         buyerName: formData.buyerName,
@@ -124,7 +123,6 @@ export default function Metamask({ formData, setFormData }) {
         { contracts: updatedContracts },
         { merge: true }
       );
-
       toast.success(`Contract created with ID: ${newContractId}`);
     } catch (error) {
       console.error('Error creating contract:', error);
@@ -156,7 +154,7 @@ export default function Metamask({ formData, setFormData }) {
         { contracts: updatedContracts },
         { merge: true }
       );
-
+      setFlag(true);
       toast.success(`Contract with ID ${currentId} has been signed and updated in the database.`);
     } catch (error) {
       console.error('Error signing contract:', error);
@@ -202,7 +200,7 @@ Metamask.propTypes = {
     totalAmt: PropTypes.number.isRequired,
     installmentAmt: PropTypes.number.isRequired,
     location: PropTypes.string.isRequired,
-    unit: PropTypes.string.isRequired,
   }),
   setFormData: PropTypes.func.isRequired,
+  setFlag:PropTypes.func.isRequired
 };

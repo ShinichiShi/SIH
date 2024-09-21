@@ -23,7 +23,7 @@ export default function FESignup() {
   const signupWithGoogle = () => {
     signInWithPopup(auth, googleProvider).then((e) => {
       toast.success('Welcome')
-      navigate('/profilesetup');  
+      navigate('/farmer');  
     });
   };
   const create = async (e) => {

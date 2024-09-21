@@ -17,7 +17,10 @@ export default function ProfileSetting() {
     firstname: '',
     lastname: '',
     email: '',
+    gender: '',
+    crop:'',
     phone: '',
+    languages: '',
     photoUrl: '',
     uid: '',
     userType: 'buyer',
@@ -48,6 +51,9 @@ export default function ProfileSetting() {
             lastname: data.profile.lastname || '',
             email: data.profile.email || '',
             phone: data.profile.phone || '',
+            crop: data.profile.crop || '',
+            gender: data.profile.gender || '',
+            languages: data.profile.languages || '',
             photoUrl: data.profile.photoUrl || '',
             uid: data.profile.uid || currentUser.uid,
             userType: 'buyer',
@@ -68,6 +74,9 @@ export default function ProfileSetting() {
             lastname: '',
             email: '',
             phone: '',
+            gender: '',
+            crop:'',
+            languages: '',
             photoUrl: '',
             uid: currentUser.uid,
             userType: 'buyer',
@@ -192,7 +201,7 @@ export default function ProfileSetting() {
         <h2 className="text-xl font-semibold mb-4">Account Settings</h2>
         <div className="flex space-x-6">
           <div className="flex-grow space-y-4">
-            <div className="flex space-x-4">
+            <div className="flex space-x-2">
               <input
                 type="text"
                 name="firstname"
@@ -230,6 +239,39 @@ export default function ProfileSetting() {
               className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
               disabled={!isEditable.profile}
             />
+            <input
+              type="text"
+              name="languages"
+              value={profile.languages}
+              onChange={(e) => handleInputChange(e, setProfile)}
+              placeholder="Languages Known"
+              className={`w-full p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
+              disabled={!isEditable.profile}
+              required
+            />
+            <div className='flex space-x-2'>
+            <input
+              type="text"
+              name="crop"
+              value={profile.crop}
+              onChange={(e) => handleInputChange(e, setProfile)}
+              placeholder="Interested Crops"
+              className={`w-1/2 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
+              disabled={!isEditable.profile}
+            />
+            <select
+              name="gender"
+              value={profile.gender}
+              onChange={(e) => handleInputChange(e, setProfile)}
+              className={`w-1/2 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
+              disabled={!isEditable.profile}
+            >
+              <option value="N/A">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            </div>
+            
           </div>
           <div className="flex flex-col items-center space-y-4">
             <img
