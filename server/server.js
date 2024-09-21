@@ -48,6 +48,8 @@ app.get('/areas/:state/:district/:subdistrict', (req, res) => {
   const areas = states[state][district][subdistrict] || [];
   res.json(areas);
 });
+app.get("/success", (req,res)=>{res.send("success")});
+app.get("/cancel", (req,res)=>{res.send("cancel")});
 app.post("/create-checkout-session",handlePayment);
 app.post('/chat/audioUpload', handleAudio);
 app.post('/chat/translate', translate);
