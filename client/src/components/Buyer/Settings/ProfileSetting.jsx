@@ -14,8 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function ProfileSetting() {
   const { currentUser } = useContext(AuthContext);
   const [profile, setProfile] = useState({
-    displayName: '',
-    lname: '',
+    firstname: '',
+    lastname: '',
     email: '',
     phone: '',
     photoUrl: '',
@@ -44,8 +44,8 @@ export default function ProfileSetting() {
 
         if (docSnap.exists()) {
           setProfile({
-            displayName: data.profile.displayName || '',
-            lname: data.profile.lname || '',
+            firstname: data.profile.firstname || '',
+            lastname: data.profile.lastname || '',
             email: data.profile.email || '',
             phone: data.profile.phone || '',
             photoUrl: data.profile.photoUrl || '',
@@ -64,8 +64,8 @@ export default function ProfileSetting() {
           });
         } else {
           setProfile({
-            displayName: '',
-            lname: '',
+            firstname: '',
+            lastname: '',
             email: '',
             phone: '',
             photoUrl: '',
@@ -195,8 +195,8 @@ export default function ProfileSetting() {
             <div className="flex space-x-4">
               <input
                 type="text"
-                name="displayName"
-                value={profile.displayName}
+                name="firstname"
+                value={profile.firstname}
                 onChange={(e) => handleInputChange(e, setProfile)}
                 placeholder="First Name"
                 className={`w-1/2 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
@@ -204,8 +204,8 @@ export default function ProfileSetting() {
               />
               <input
                 type="text"
-                name="lname"
-                value={profile.lname}
+                name="lastname"
+                value={profile.lastname}
                 onChange={(e) => handleInputChange(e, setProfile)}
                 placeholder="Last Name"
                 className={`w-1/2 p-2 border border-gray-300 placeholder:text-black rounded ${isEditable.profile ? '' : 'bg-slate-400'} `}
