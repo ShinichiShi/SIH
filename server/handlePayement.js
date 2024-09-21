@@ -2,6 +2,7 @@ const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const CLIENT_PORT = process.env.CLIENT_PORT;
+const SERVER_PORT = process.env.SERVER_PORT;
 
 const handlePayment = async(req,res)=>{
     console.log(req.body);
@@ -20,8 +21,8 @@ const handlePayment = async(req,res)=>{
             quantity: 1,
           },
         ],
-        success_url: `http://localhost:${CLIENT_PORT}/chat`,
-        cancel_url: `http://localhost:${CLIENT_PORT}/login`,
+        success_url: `http://localhost:${SERVER_PORT}/success`,
+        cancel_url: `http://localhost:${SERVER_PORT}/cancel`,
       });
     
       res.json({ id: session.id });
