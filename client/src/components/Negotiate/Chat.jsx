@@ -6,9 +6,11 @@ import {
   collection,
   doc,
   getDoc,
+  onSnapshot,
   orderBy,
   query,
   getDocs,
+  setDoc,
 } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import { AuthContext } from '../context/auth_context';
@@ -16,25 +18,18 @@ import { useNavigate } from 'react-router-dom';
 import { LuUserCircle2 } from 'react-icons/lu';
 import { IoArrowBackOutline } from 'react-icons/io5';
 import { AudioRecorder } from 'react-audio-voice-recorder';
-import { MdCall } from 'react-icons/md';
-import { IoVideocam } from 'react-icons/io5';
-import { IoMdMore } from 'react-icons/io';
-import { FaPlus } from 'react-icons/fa6';
-import { object } from 'prop-types';
-import Recorder from './Recorder';
 import { useLocation } from 'react-router-dom';
 
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
 
 export default function Chat() {
   const location = useLocation();
-  const { uid, userType } = location.state;
+  const {uid} = location.state;
   // console.log(uid, userType);
   const { currentUser } = useContext(AuthContext);
   const [socket, setSocket] = useState(null);
   const [currentRoomID, setRoomID] = useState(null);
   const [prevRoomID, setPrevRoomID] = useState(null);
-  // const [userType, setUserType] = useState('buyers');
   const [contacts, setContacts] = useState(null);
   const [message, setmessage] = useState();
   const [messages, setMessages] = useState([]);
@@ -45,7 +40,6 @@ export default function Chat() {
 
   const chatDisplayRef = useRef(null); // Ref to chat display container
   const bottomRef = useRef(null); // Ref to the last message to scroll into view
-  // console.log(userType);
 
   useEffect(() => {
     if (!currentUser) {
@@ -55,15 +49,12 @@ export default function Chat() {
     const newSocket = io.connect(`http://localhost:${SERVER_PORT}`);
     setSocket(newSocket);
 
-    loadContacts(currentUser.uid, userType).then((result) => {
+    loadContacts(currentUser.uid, uid).then((result) => {
       setContacts(result);
       setLoading(false);
     });
 
-    // console.log("current user id ", currentUser.uid);
-
     return () => {
-      // console.log("disconnected");
       newSocket.disconnect();
     };
   }, [currentUser]);
@@ -78,16 +69,12 @@ export default function Chat() {
     //monitor events
     if (socket) {
       socket.on('connect', () => {
-        // console.log("current socket ID:", socket.id); // Now it's guaranteed to be defined
+        // console.log("current socket ID:", socket.id);
       });
       socket.on("recieve-message", (data)=>{
-        // console.log(data);
         const recieved_message = { user: data.user, text: data.text, room : data.room, lang : data.lang };
         console.log(recieved_message.lang);
-        // if(recieved_message.lang!=lang){
-        // }
         translate(recieved_message, lang, setMessages)
-        // setMessages((prevMessages) => [...prevMessages, recieved_message]);
       });
       socket.on('joined-room', (room) => {
         // console.log(`${socket.id} joined room ${room}`);
@@ -316,23 +303,43 @@ const uploadMessage = async (currentRoomID, mess, userId) => {
   }
 };
 
-const loadContacts = async (currentUserID, userType) => {
-  const u_type = (userType=='buyers')?('buyers'):('farmers');
-  try {
-    const userDocRef = doc(db, u_type, currentUserID);
-    console.log("ref : ", userDocRef);
-    const userDoc = await getDoc(userDocRef);
-    console.log(userDoc.data());
-    if (userDoc.exists()) {
-      const userData = userDoc.data();
-      return userData.Contacts || {};
-    } else {
-      console.log('No such user!');
-      return {};
+//function to add user2 to user1's contacts
+const addContact = async (user1ID, user2ID, newRoomID)=>{
+  //fetch user2 details
+  try{
+    const userData = await getDoc(doc(db, 'users', `${user2ID}`));
+    const newContact = {
+      name : userData.data().profile.firstname,
+      roomID : newRoomID
     }
-  } catch (error) {
-    console.error('Error fetching contacts:', error);
-    return {};
+    await setDoc(doc(db, `users/${user1ID}/contacts/${user2ID}`), newContact);
+  }catch(e){
+    console.error(e);
+  }
+}
+
+const loadContacts = async (currentUserID, otherUserID) => {
+  try{
+    const contactsRef = collection(db, `users/${currentUserID}/contacts`);
+    const contactsSnapshot = await getDocs(contactsRef);
+    const contactsList = contactsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+    if(otherUserID && !(contactsList.some(contact=>contact.id==otherUserID))){
+      //generate new roomID
+      const newRoomRef = await addDoc(collection(db, 'chats'), {});
+      const newRoomID = newRoomRef.id;
+      //add otherUser to current user's contact
+      addContact(currentUserID, otherUserID, newRoomID);
+      //add currentUser to otherUser's contact
+      addContact(otherUserID, currentUserID, newRoomID);
+
+    }
+    return contactsList || {};
+  }catch(e){
+    console.error(e);
+    return {}
   }
 };
 
