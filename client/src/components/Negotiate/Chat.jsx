@@ -19,6 +19,8 @@ import { LuUserCircle2 } from 'react-icons/lu';
 import { IoArrowBackOutline } from 'react-icons/io5';
 import { AudioRecorder } from 'react-audio-voice-recorder';
 import { useLocation } from 'react-router-dom';
+import BHeader from '../Buyer/BHeader'
+import ReactLoading from 'react-loading';
 
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
 
@@ -40,7 +42,7 @@ export default function Chat() {
 
   const chatDisplayRef = useRef(null); // Ref to chat display container
   const bottomRef = useRef(null); // Ref to the last message to scroll into view
-
+  const [userType, setUserType] = useState('farmer')
   useEffect(() => {
     if (!currentUser) {
       return;
@@ -53,7 +55,7 @@ export default function Chat() {
       setContacts(result);
       setLoading(false);
     });
-
+    getUserType(currentUser.uid, setUserType)
     return () => {
       newSocket.disconnect();
     };
@@ -138,17 +140,29 @@ export default function Chat() {
 
   if (loading) {
     return (
-      <div>
-        <h1>Loading contacts...</h1>
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <ReactLoading type={'spinningBubbles'} color={'#00b300'} height={'5%'} width={'5%'} />
       </div>
-    ); // Show a loading message or spinner
+    );
   }
 
+  
   if (!contacts || Object.keys(contacts).length === 0) {
     return <div>No contacts available</div>; // Handle case where no contacts are available
   }
 
   return (
+    <>
+    <BHeader/>
     <div className={styles.chitchat}>
       <div className={styles.chatui}>
         <div className={styles.cntlist}>
@@ -278,6 +292,7 @@ export default function Chat() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
@@ -326,6 +341,7 @@ const loadContacts = async (currentUserID, otherUserID) => {
         id: doc.id,
         ...doc.data()
     }));
+    // console.log(contactsSnapshot.docs)
     if(otherUserID && !(contactsList.some(contact=>contact.id==otherUserID))){
       //generate new roomID
       const newRoomRef = await addDoc(collection(db, 'chats'), {});
@@ -342,7 +358,17 @@ const loadContacts = async (currentUserID, otherUserID) => {
     return {}
   }
 };
+const getUserType = async (currentUserID,setUserType) =>{
+  
+  try {
+    const userRef = doc(db, `users`, currentUserID )
+  const userSnap = await getDoc(userRef)
+  setUserType(userSnap.data().profile.userType)
+  } catch (error) {
+    console.error(error)
+  }
 
+}
 const loadMessage = async (currentRoomID) => {
   // console.log(`fetching messages from ${currentRoomID}`);
   try {

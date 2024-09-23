@@ -11,7 +11,6 @@ import BContract from './Contract/BContract';
 import TrackList from './Shipping/TrackList';
 import { getAuth } from 'firebase/auth';
 import ReactLoading from 'react-loading';
-
 function Dashboard() {
   const [loading, setLoading] = useState(true);
   const navigateRoute = useNavigate();

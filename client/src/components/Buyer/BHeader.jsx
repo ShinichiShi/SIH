@@ -23,8 +23,13 @@ function BHeader() {
     <div className="h-20 font-sans">
       <div className="bg-white h-full shadow flex w-full">
         <div className=" w-full flex justify-between items-center  px-4">
-          <div className="text-green-500 text-2xl font-bold">KrishiSeva</div>
-          <h1>Welcome to KrishiSeva</h1>
+          <div className="text-2xl flex font-bold">
+            <p className='text-green-500'>Krishi</p>
+            <p className='text-black'>
+              Seva
+            </p>
+            </div>
+          <h1 className='text-xl'>Welcome to KrishiSeva</h1>
           <div>
             <div className="flex items-center justify-center gap-4">
               <div>
