@@ -16,7 +16,7 @@ function DealerCard({ dealer }) {
         <div className="flex-grow grid grid-cols-3 gap-4">
           <div className="col-span-1">
             <h2 className="font-bold text-xl text-gray-800 mb-2">
-            {dealer.profile?.displayName || 'N/A'} {dealer.profile?.lname || ''}
+            {dealer.profile?.firstname || 'N/A'} {dealer.profile?.lastname || ''}
             </h2>
           </div>
           <div className="w-full flex">
@@ -95,8 +95,8 @@ function DealerCard({ dealer }) {
   DealerCard.propTypes = {
     dealer: PropTypes.shape({
       profile: PropTypes.shape({
-        displayName: PropTypes.string,
-        lname: PropTypes.string,
+        firstname: PropTypes.string,
+        lastname: PropTypes.string,
         phone: PropTypes.string,
         email: PropTypes.string,
         uid: PropTypes.string,

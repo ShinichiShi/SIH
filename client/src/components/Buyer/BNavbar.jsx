@@ -23,14 +23,21 @@ export default function BNavbar({ handleNavigate, navigate }) {
                         {t('navbar.contracts')}
 
           </li>
-                   
+          <li
+            className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'track' ? 'bg-green-300' : ''} hover:bg-green-200`}
+            onClick={() => handleNavigate('track')}
+          >
+            Track Orders
+            </li>     
           <li
             className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'settings' ? 'bg-green-300' : ''} hover:bg-green-200`}
             onClick={() => handleNavigate('settings')}
           >
             {t('navbar.settings')}
             </li>
+
           <li
+          
             className={`cursor-pointer py-1 px-2 rounded-lg ${navigate === 'chat' ? 'bg-green-300' : ''} hover:bg-green-200`}
             onClick={() => {
               navigateChat('/chat',{

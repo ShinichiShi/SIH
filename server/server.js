@@ -1,5 +1,4 @@
 require("dotenv").config({ path: './.env.local' });
-
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
@@ -7,7 +6,7 @@ const cors = require('cors');
 const {Server} = require('socket.io');
 const {handleAudio, translate} = require("./audioHandler");
 const { handlePayment } = require("./handlePayement");
-
+const {handleShipping} = require("./handleShipping")
 const app = express();
 
 
@@ -48,6 +47,12 @@ app.get('/areas/:state/:district/:subdistrict', (req, res) => {
   const areas = states[state][district][subdistrict] || [];
   res.json(areas);
 });
+//________________________SHIPPING_______________________________________
+
+
+// app.post('/api/shiprocket/login',handleShipping);
+
+//____________________________CHAT_______________________________________
 app.get("/success", (req,res)=>{res.send("success")});
 app.get("/cancel", (req,res)=>{res.send("cancel")});
 app.post("/create-checkout-session",handlePayment);
@@ -83,7 +88,7 @@ io.on("connection", (socket)=>{
     socket.to(data.room).emit("recieve-message", data);
   })
 })
-
+//__________________________PORT LISTEN____________________________
 server.listen(SERVER_PORT, () => {
   console.log(`Server is running on http://localhost:${SERVER_PORT}`);
 });

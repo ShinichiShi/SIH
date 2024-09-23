@@ -43,7 +43,7 @@ export default function Metamask({ formData, setFormData, setFlag }) {
             if (docSnap.exists()) {
               setFormData(prevData => ({
                 ...prevData,
-                buyerName: `${data.profile.displayName} ${data.profile.lname}`
+                buyerName: `${data.profile.firstname} ${data.profile.lastname}`
               }));
             }
           }

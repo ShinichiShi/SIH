@@ -7,7 +7,7 @@ import { ToastContainer,toast } from 'react-toastify';
 export default function GenerateContract() {
   const [formData, setFormData] = useState({
     date: '',
-    farmerId: '',
+    farmerId: '0x5993D0db1b64f5DC1aD2770a889dF6B9D0491449',
     buyerId: '',
     buyerName: '',
     farmerName: '',
@@ -38,7 +38,7 @@ export default function GenerateContract() {
   const handleGenerateNext = () => {
     setFormData({
       date: '',
-      farmerId: '',
+      farmerId: '0x5993D0db1b64f5DC1aD2770a889dF6B9D0491449',
       buyerId: '',
       buyerName: '',
       farmerName: '',

@@ -9,8 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import { FaCcStripe } from "react-icons/fa6";
-
+import { FaCcStripe } from 'react-icons/fa6';
+import ShippingForm from '../Shipping/ShippingForm';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISH_KEY); // Publishable Key from your Stripe dashboard
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
 
@@ -24,6 +24,7 @@ export default function ContractStatus({ contract }) {
   const [contractState, setContractState] = useState(null);
   const [currentMetaUser, setCurrentMetaUser] = useState('');
   const [account, setAccount] = useState('');
+  const [shipping, setShipping] = useState(false);
   useEffect(() => {
     const initWeb3 = async () => {
       if (window.ethereum) {
@@ -268,23 +269,26 @@ export default function ContractStatus({ contract }) {
     }
   };
 
-  const makeStripePayment = async()=>{
-    console.log("stripe payment");
-    const response = await fetch(`http://localhost:${SERVER_PORT}/create-checkout-session`, {
-      method: 'POST',
-      headers : {
-        "Content-Type" : "application/json",
-      },
-      body : JSON.stringify({
-        product : contract.crop,
-        total_amount : contract.installmentAmt,
-      })
-    });
+  const makeStripePayment = async () => {
+    console.log('stripe payment');
+    const response = await fetch(
+      `http://localhost:${SERVER_PORT}/create-checkout-session`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          product: contract.crop,
+          total_amount: contract.installmentAmt,
+        }),
+      }
+    );
 
-    const {id} = await response.json();
+    const { id } = await response.json();
     const stripe = await stripePromise;
-    stripe.redirectToCheckout({sessionId : id});
-  }
+    stripe.redirectToCheckout({ sessionId: id });
+  };
 
   return (
     <div className="w-full">
@@ -319,19 +323,15 @@ export default function ContractStatus({ contract }) {
           <div className="absolute w-full inset-0 bg-black opacity-50"></div>
           <div className="bg-white p-6 w-full rounded-lg shadow-lg z-10">
             <div>
-              <strong>{t('contract_id')}</strong>{' '}
-              {contract.contractId || 'N/A'}
+              <strong>{t('contract_id')}</strong> {contract.contractId || 'N/A'}
             </div>
             <div>
               <strong>{t('crop')}</strong> {contract.crop || 'N/A'}
             </div>
             <div>
-              <strong>{t('farmer_name')}</strong>{' '}
-              {contract.farmerName || 'N/A'}
+              <strong>{t('farmer_name')}</strong> {contract.farmerName || 'N/A'}
             </div>
-            <div>
-              <strong>Farmer&apos;s id</strong> {contract.farmerId || 'N/A'}
-            </div>
+           
             <div>
               <strong>{t('buyer_name')}</strong> {contract.buyerName || 'N/A'}
             </div>
@@ -343,11 +343,11 @@ export default function ContractStatus({ contract }) {
             </div>
             <div>
               <strong>{t('total_amount')}</strong>{' '}
-              {"Rs." + contract.totalAmt || 'N/A'}
+              {'Rs.' + contract.totalAmt || 'N/A'}
             </div>
             <div>
               <strong>{t('installment_amount')}</strong>{' '}
-              {"Rs." + contract.installmentAmt || 'N/A'}
+              {'Rs.' + contract.installmentAmt || 'N/A'}
             </div>
             <div>
               <strong>{t('location')}:</strong> {contract.location || 'N/A'}
@@ -376,17 +376,29 @@ export default function ContractStatus({ contract }) {
               )}
               {localContract.status === 'Signed' && (
                 <Elements stripe={stripePromise}>
+                  <button
+                    className="mt-4 px-4 py-2 bg-blue-500 flex items-center justify-center gap-2 text-white rounded hover:bg-blue-600 "
+                    onClick={makeStripePayment}
+                  >
+                    <FaCcStripe />
+                    Make Payment
+                  </button>
+                </Elements>
+              )}
+              {localContract.status === 'Signed' && (
                 <button
                   className="mt-4 px-4 py-2 bg-blue-500 flex items-center justify-center gap-2 text-white rounded hover:bg-blue-600 "
-                  onClick={makeStripePayment}
+                  onClick={() => setShipping(true)}
                 >
-                  <FaCcStripe />
-
-                  Make Payment
+                  Initiate Shipping
                 </button>
-                </Elements>                
               )}
             </div>
+            {shipping === true && (
+              <div>
+                <ShippingForm onClose={() => setShipping(false)}/>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -399,14 +411,11 @@ ContractStatus.propTypes = {
   contract: PropTypes.shape({
     date: PropTypes.string.isRequired,
     farmerName: PropTypes.string.isRequired,
-    farmerId: PropTypes.string.isRequired,
     buyerName: PropTypes.string.isRequired,
     buyerId: PropTypes.string.isRequired,
     crop: PropTypes.string.isRequired,
-    totalAmt: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]).isRequired,
+    totalAmt: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      .isRequired,
     installmentAmt: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     contractId: PropTypes.string.isRequired,

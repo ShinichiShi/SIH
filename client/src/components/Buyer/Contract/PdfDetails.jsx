@@ -30,16 +30,6 @@ const PdfDetails = ({ formData, handleChange }) => {
           />
         </div>
         <div>
-          <label>{t('farmer_id')} </label>
-          <input
-            type="text"
-            name="farmerId"
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-            value={formData.farmerId}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
           <label>{t('crop_being_harvested')}: </label>
           <input
             type="text"
@@ -92,6 +82,7 @@ const PdfDetails = ({ formData, handleChange }) => {
             onChange={handleChange}
           />
         </div>
+        
       </form>
     </div>
   );
