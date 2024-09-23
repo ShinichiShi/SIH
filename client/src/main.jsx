@@ -1,8 +1,9 @@
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './components/context/auth_context';
-
+import Landing from './components/LandingPage/landing';
 import Dashboard from './components/Buyer/BDashboard';
+import Contact from './components/LandingPage/Contact';
 import Signup from './components/Buyer/Signup';
 import Login from './components/Buyer/Login';
 import FLogin from './components/Farmer/FLogin';
@@ -15,13 +16,14 @@ import NotFoundPage from './components/NotFoundPage';
 import FESignup from './components/Farmer/FESignup';
 import FDashboard2 from './components/Farmer/Farmer2.0/FDashboard2';
 import FELogin from './components/Farmer/FELogin';
-import LandingPage from './components/LandingPage/LandingPage';
+
 import './i18n';  // Import the i18n configuration
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/buyer" element={<Dashboard />} />
         <Route path="/*" element={<NotFoundPage />} />
